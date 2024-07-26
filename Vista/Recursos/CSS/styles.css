@@ -1871,7 +1871,8 @@ details.details-disabled {
         #e48639a9
     ); */
     /* background-color: #a46d3d; */
-    background-color: #f19441;
+    /* background-color: #f19441; */
+    background-color: #beb2d6;
     /* background-size: contain;
     background-attachment: scroll;
     background-position: 5% -80%, 105% 83%, center;
@@ -1893,7 +1894,7 @@ details.details-disabled {
     max-height: 500px;
     width: 97%;
     margin: auto;
-    border-radius: .7em;
+    border-radius: 1em;
     display: flex;
     overflow: hidden;
     justify-content: space-around;
@@ -2272,6 +2273,7 @@ input[type="checkbox"]:checked + .checkmark {
     border-radius: .7em;
     transition: transform 0.5s ease-in-out;
     word-wrap: break-word;
+    gap: .7em;
     text-wrap: pretty;
     /* box-shadow: .5em -.3em .3em .2em rgba(0, 0, 0, 0.164); */
 }
@@ -2355,8 +2357,8 @@ input[type="checkbox"]:checked + .checkmark {
         }
         & svg {
             fill: #08184f;
-            width: 25px;
-            height: 25px;
+            min-width: 25px;
+            min-height: 25px;
         }
     }
     & .status-pet {
@@ -2381,10 +2383,10 @@ input[type="checkbox"]:checked + .checkmark {
         }
     }
 
-    & .perdido { text-decoration: underline gold; }
-    & .en-adopcion { text-decoration: underline lime; }
-    & .en-peligro { text-decoration: underline red; }
-    & .encontrado { text-decoration: underline blueviolet; }
+    & .Perdido { text-decoration: underline gold; }
+    & .En-Adopcion { text-decoration: underline lime; }
+    & .En-Peligro { text-decoration: underline red; }
+    & .Encontrado { text-decoration: underline blueviolet; }
 
     &:hover {
         /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.651); */
@@ -2394,16 +2396,25 @@ input[type="checkbox"]:checked + .checkmark {
             transform: scale(90%);
         }
     }
+    &.card-l {
+        background-color: #ebeaea !important;
+    }
 }
 
 .img-pet {
     width: 90%;
     margin: 0 auto;
-    background-color: #f4eaea;
+    background-color: #f5f1f1;
     /* background-color: var(--solidyellow); */
     border-radius: 1em ;
-    padding: .3em;
+    padding: 0 .3em;
+    min-height: 200px;
     & a {
+        width: inherit;
+        min-height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: auto;
     }
     & img {
@@ -2415,8 +2426,12 @@ input[type="checkbox"]:checked + .checkmark {
         object-position: center;
         transition: all .3s ease;
         &:hover {
+            border-radius: 1em;
             filter: none;
         }
+    }
+    &:hover {
+        background-color: #fff;
     }
 }
 
@@ -3006,12 +3021,15 @@ input[type="checkbox"]:checked + .checkmark {
 .feed-container {
     width: 95%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
     margin: auto;
-    gap: 2em 0;
+    gap: .7em;
     justify-content: center;
     align-items: start;
     justify-items: center;
+    & .card {
+        width: 265px;
+    }
 }
 
 
@@ -3457,7 +3475,6 @@ input[type="checkbox"]:checked + .checkmark {
 
 
 
-
 .formulario h2 {
     text-align: center;
     margin-bottom: 30px;
@@ -3473,7 +3490,7 @@ input[type="checkbox"]:checked + .checkmark {
 .formulario input[type="number"],
 .formulario select,
 .formulario textarea {
-    width: calc(100% - 22px); /* Ajuste para evitar desbordamiento en el borde */
+    width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 15px;
     box-sizing: border-box;
@@ -3494,7 +3511,7 @@ input[type="checkbox"]:checked + .checkmark {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    width: 100%; /* Botón de ancho completo */
+    width: 100%;
     margin-top: 10px;
 }
 
@@ -3505,20 +3522,20 @@ input[type="checkbox"]:checked + .checkmark {
 .card {
     max-width: 600px;
     margin: 20px auto;
-    background-color: #ffcccc; /* Color rojo para animales en peligro */
+    background-color: #ffcccc;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Para evitar que el borde del header sobresalga */
+    overflow: hidden;
 }
 
 .card-header {
-    background-color: #c44d4d; /* Color de fondo del encabezado */
+    background-color: #c44d4d;
     color: white;
-    padding: 15px; /* Aumentado el padding */
-    text-align: center; /* Centrado del texto en el header */
+    padding: 15px;
+    text-align: center;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    margin-bottom: 10px; /* Separación del borde inferior */
+    margin-bottom: 10px;
 }
 
 .card-body {

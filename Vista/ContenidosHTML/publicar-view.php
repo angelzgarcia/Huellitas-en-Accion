@@ -217,7 +217,7 @@
                                         <legend>Raza</legend>
                                             <select name="raza" id="raza"  >
                                             <option value="mestizo">Mestizo</option>
-                                            <option value="siamese">Siamés</option>
+                                            <option value="siamés">Siamés</option>
                                             <option value="persian">Persa</option>
                                             <option value="maine-coon">Maine Coon</option>
                                             <option value="russian-blue">Azul Ruso</option>

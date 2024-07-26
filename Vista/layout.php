@@ -251,7 +251,7 @@
                     <!-- PUBLICACION -->
                     <?php
                         $posts = new FeedControlador();
-                        $posts -> listarFeedControlador();
+                        $posts -> listarFeedControlador('');
                     ?>
                 </div>
                 <!-- BUTTON NEXT -->

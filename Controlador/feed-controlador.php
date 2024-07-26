@@ -5,9 +5,31 @@
 
     class FeedControlador extends FeedModelo {
 
-        public function listarFeedControlador() {
+        public function listarFeedControlador($status) {
 
-            $query = self::listarFeedModelo();
+            $query = '';
+            switch ($status) {
+                case 'perdidos':
+                    $query = self::listarPerdidosModelo();
+                    break;
+
+                case 'encontrados':
+                    $query = self::listarEncontradosModelo();
+                    break;
+
+                case 'en-adopcion':
+                    $query = self::listarEnAdopcionModelo();
+                    break;
+
+                case 'en-peligro':
+                    $query = self::listarEnPeligroModelo(); 
+                    break;
+
+                default:
+                    $query = self::listarFeedModelo();
+                break;
+            }
+
             $posts = $query -> rowCount() > 0 ? $query -> fetchAll(PDO::FETCH_ASSOC) : [];
             $apiKey = 'AIzaSyAXzKi-hpY--xwLB5skRjCIRNVyRHNfY7I';
 
@@ -21,7 +43,7 @@
                         <div class="card card-l">
                             <!-- STATUS Y SEXO -->
                             <div class="status-pet <?= $post['sexo'] ?>">
-                                <p class="perdido">
+                                <p class="<?= str_replace(" ", "-", $post['status']) ?>">
                                     <?= $post['status'] ?>
                                 </p>
                                 <?php

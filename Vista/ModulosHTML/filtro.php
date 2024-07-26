@@ -21,10 +21,10 @@
                 break;
 
             default:
-                $colorForm = '84b0e9';
+                $colorForm = 'fcb271';
                 break;
         }
-    } else { $colorForm = 'fcb271'; }
+    } else { $colorForm = 'beb2d6'; }
 ?>
 
 <!-- CONTENEDOR DEL FILTRO -->
