@@ -1,0 +1,1502 @@
+
+/*  ABeeZee  */
+
+@font-face {
+    font-family: ABeeZee;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/ABeeZee/ABeeZee-Regular.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: ABeeZee-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/ABeeZee/ABeeZee-Italic.ttf) format("truetype");
+    font-style: italic;
+    font-display: swap;
+}
+
+
+
+/*  Amiko  */
+
+@font-face {
+    font-family: Amiko;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Amiko/Amiko-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Amiko-SemiBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Amiko/Amiko-SemiBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Amiko-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Amiko/Amiko-Bold.ttf) format("truetype");
+    font-style: bold;
+    font-display: swap;
+}
+
+
+
+/*  ANTON  */
+
+@font-face {
+    font-family: Anton;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Anton/Anton-Regular.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+/*  ARCHIVO NARROW  */
+
+@font-face {
+    font-family: ArchivoNarrow;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Archivo_Narrow/static/ArchivoNarrow-Regular.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: ArchivoNarrow-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Archivo_Narrow/static/ArchivoNarrow-Italic.ttf) format("truetype");
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: ArchivoNarrow-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Archivo_Narrow/static/ArchivoNarrow-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: ArchivoNarrow-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Archivo_Narrow/static/ArchivoNarrow-Bold.ttf) format("truetype");
+    font-style: bold;
+    font-display: swap;
+}
+
+
+
+/*  ARVO  */
+
+@font-face {
+    font-family: Arvo;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Arvo/Arvo-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Arvo-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Arvo/Arvo-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Arvo-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Arvo/Arvo-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Arvo-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Arvo/Arvo-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+
+/*  AUDIOWIDE  */
+
+@font-face {
+    font-family: Audiowide;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Audiowide/Audiowide-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  BALOOTAMMA2  */
+
+@font-face {
+    font-family: BalooTamma2;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Baloo_Tamma_2/static/BalooTamma2-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: BalooTamma2-SemiBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Baloo_Tamma_2/static/BalooTamma2-SemiBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: BalooTamma2-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Baloo_Tamma_2/static/BalooTamma2-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: BalooTamma2-ExtraBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Baloo_Tamma_2/static/BalooTamma2-ExtraBold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  CHIVO MONO  */
+
+@font-face {
+    font-family: ChivoMono;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Chivo_Mono/static/ChivoMono-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: ChivoMono-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Chivo_Mono/static/ChivoMono-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: ChivoMono-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Chivo_Mono/static/ChivoMono-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: ChivoMono-ExtraBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Chivo_Mono/static/ChivoMono-ExtraBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: ChivoMono-Black;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Chivo_Mono/static/ChivoMono-Black.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: ChivoMono-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Chivo_Mono/static/ChivoMono-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: ChivoMono-ExtraBoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Chivo_Mono/static/ChivoMono-ExtraBoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: ChivoMono-BlackItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Chivo_Mono/static/ChivoMono-BlackItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  CUPRUM  */
+
+@font-face {
+    font-family: Cuprum;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Cuprum/static/Cuprum-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Cuprum-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Cuprum/static/Cuprum-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Cuprum-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Cuprum/static/Cuprum-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Cuprum-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Cuprum/static/Cuprum-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  FIRA SANS EXTRA CONDENSED  */
+
+@font-face {
+    font-family: FiraSansExtraCondensed;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Fira_Sans_Extra_Condensed/FiraSansExtraCondensed-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: FiraSansExtraCondensed-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Fira_Sans_Extra_Condensed/FiraSansExtraCondensed-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: FiraSansExtraCondensed-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Fira_Sans_Extra_Condensed/FiraSansExtraCondensed-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: FiraSansExtraCondensed-ExtraBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Fira_Sans_Extra_Condensed/FiraSansExtraCondensed-ExtraBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: FiraSansExtraCondensed-Black;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Fira_Sans_Extra_Condensed/FiraSansExtraCondensed-Black.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: FiraSansExtraCondensed-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Fira_Sans_Extra_Condensed/FiraSansExtraCondensed-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: FiraSansExtraCondensed-ExtraBoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Fira_Sans_Extra_Condensed/FiraSansExtraCondensed-ExtraBoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: FiraSansExtraCondensed-BlackItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Fira_Sans_Extra_Condensed/FiraSansExtraCondensed-BlackItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  FRANK RUHL LIIBRE  */
+
+@font-face {
+    font-family: FrankRuhlLibre;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Frank_Ruhl_Libre/static/FrankRuhlLibre-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: FrankRuhlLibre-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Frank_Ruhl_Libre/static/FrankRuhlLibre-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: FrankRuhlLibre-ExtraBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Frank_Ruhl_Libre/static/FrankRuhlLibre-ExtraBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: FrankRuhlLibre-Black;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Frank_Ruhl_Libre/static/FrankRuhlLibre-Black.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  GLEGOO  */
+
+@font-face {
+    font-family: Glegoo;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Glegoo/Glegoo-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Glegoo-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Glegoo/Glegoo-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  HIND  */
+
+@font-face {
+    font-family: Hind;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Hind/Hind-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Hind-Medium;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Hind/Hind-Medium.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Hind-SemiBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Hind/Hind-SemiBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Hind-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Hind/Hind-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+
+/*  JERSEY 25  */
+
+@font-face {
+    font-family: Jersey25;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Jersey_25/Jersey25-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  JURA  */
+
+@font-face {
+    font-family: Jura;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Jura/static/Jura-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Jura-Medium;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Jura/static/Jura-Medium.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Jura-SemiBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Jura/static/Jura-SemiBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Jura-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Jura/static/Jura-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  KAMERON  */
+
+@font-face {
+    font-family: Kameron;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kameron/static/Kameron-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Kameron-Medium;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kameron/static/Kameron-Medium.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Kameron-SemiBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kameron/static/Kameron-SemiBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Kameron-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kameron/static/Kameron-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  KANIT  */
+
+@font-face {
+    font-family: Kanit;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kanit/Kanit-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Kanit-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kanit/Kanit-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Kanit-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kanit/Kanit-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Kanit-Black;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kanit/Kanit-Black.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Kanit-MediumItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kanit/Kanit-MediumItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Kanit-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kanit/Kanit-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Kanit-BlackItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kanit/Kanit-BlackItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  KUMAR ONE  */
+
+@font-face {
+    font-family: KumarOne;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Kumar_One/KumarOne-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  LALEZAR  */
+
+@font-face {
+    font-family: Lalezar;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Lalezar/Lalezar-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  LOBSTER TWO  */
+
+@font-face {
+    font-family: LobsterTwo;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Lobster_Two/LobsterTwo-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: LobsterTwo-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Lobster_Two/LobsterTwo-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: LobsterTwo-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Lobster_Two/LobsterTwo-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: LobsterTwo-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Lobster_Two/LobsterTwo-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  LORA  */
+
+@font-face {
+    font-family: Lora;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Lora/static/Lora-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Lora-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Lora/static/Lora-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Lora-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Lora/static/Lora-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Lora-SemiBoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Lora/static/Lora-SemiBoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Lora-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Lora/static/Lora-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  MALLANA  */
+
+@font-face {
+    font-family: Mallanna;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Mallanna/Mallanna-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+
+/*  MATEL SANS  */
+
+@font-face {
+    font-family: MartelSans;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Martel_Sans/MartelSans-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: MartelSans-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Martel_Sans/MartelSans-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: MartelSans-ExtraBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Martel_Sans/MartelSans-ExtraBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: MartelSans-Black;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Martel_Sans/MartelSans-Black.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  MAVEN PRO  */
+
+@font-face {
+    font-family: MavenPro;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Maven_Pro/static/MavenPro-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: MavenPro-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Maven_Pro/static/MavenPro-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: MavenPro-ExtraBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Maven_Pro/static/MavenPro-ExtraBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: MavenPro-Black;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Maven_Pro/static/MavenPro-Black.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  METROPHOBIC  */
+
+@font-face {
+    font-family: Metrophobic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Metrophobic/Metrophobic-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+/*   MOGRA    */
+
+@font-face {
+    font-family: Mogra;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Mogra/Mogra-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+/*  MONDA  */
+
+@font-face {
+    font-family: Monda;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Monda/Monda-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Monda-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Monda/Monda-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  MONTSERRAT  */
+
+@font-face {
+    font-family: Montserrat;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Montserrat/static/Montserrat-Regular.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Montserrat/static/Montserrat-Bold.ttf) format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Montserrat-ExtraBold;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Montserrat/static/Montserrat-ExtraBold.ttf) format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: Montserrat-Black;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Montserrat/static/Montserrat-Black.ttf) format("truetype");
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: Montserrat-Italic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Montserrat/static/Montserrat-Italic.ttf) format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Montserrat-MediumItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Montserrat/static/Montserrat-MediumItalic.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Montserrat-SemiBoldItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Montserrat/static/Montserrat-SemiBoldItalic.ttf) format("truetype");
+    font-weight: 450;
+}
+
+@font-face {
+    font-family: Montserrat-BoldItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Montserrat/static/Montserrat-BoldItalic.ttf) format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Montserrat-ExtraBoldItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Montserrat/static/Montserrat-ExtraBoldItalic.ttf) format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: Montserrat-BlackItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Montserrat/static/Montserrat-BlackItalic.ttf) format("truetype");
+    font-weight: 900;
+}
+
+
+
+/*  NOVA_SQUARE */
+
+@font-face {
+    font-family: Nova-Square;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Nova_Square/NovaSquare-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+
+/*  NUMANS  */
+
+@font-face {
+    font-family: Numans;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Numans/Numans-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  NUNITO  */
+
+@font-face {
+    font-family: Nunito;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Nunito/static/Nunito-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Nunito-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Nunito/static/Nunito-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Nunito-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Nunito/static/Nunito-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Nunito-ExtraBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Nunito/static/Nunito-ExtraBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family:Nunito-Black ;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Nunito/static/Nunito-Black.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Nunito-MediumItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Nunito/static/Nunito-MediumItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Nunito-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Nunito/static/Nunito-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Nunito-ExtraBoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Nunito/static/Nunito-ExtraBoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Nunito-BlackItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Nunito/static/Nunito-BlackItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  ORIENTA  */
+
+@font-face {
+    font-family: Orienta;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Orienta/Orienta-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  OSWALD  */
+
+@font-face {
+    font-family: Oswald-Light;
+    src: url(/FONTS/Oswald/static/Oswald-Light.ttf) format("truetype");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: Oswald;
+    src: url(/FONTS/Oswald/static/Oswald-Regular.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Oswald-SemiBold;
+    src: url(/FONTS/Oswald/static/Oswald-SemiBold.ttf) format("truetype");
+    font-weight: 450;
+}
+
+@font-face {
+    font-family: Oswald-Bold;
+    src: url(/FONTS/Oswald/static/Oswald-Bold.ttf) format("truetype");
+    font-weight: 500;
+}
+
+
+
+
+/*  PADAUK  */
+
+@font-face {
+    font-family: Padauk;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Padauk/Padauk-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Padauk-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Padauk/Padauk-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+
+/*  PLAYFAIR DISPLAY  */
+
+@font-face {
+    font-family: PlayfairDisplay;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Playfair_Display/static/PlayfairDisplay-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PlayfairDisplay-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Playfair_Display/static/PlayfairDisplay-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PlayfairDisplay-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Playfair_Display/static/PlayfairDisplay-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PlayfairDisplay-ExtraBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Playfair_Display/static/PlayfairDisplay-ExtraBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PlayfairDisplay-Black;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Playfair_Display/static/PlayfairDisplay-Black.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PlayfairDisplay-MediumItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Playfair_Display/static/PlayfairDisplay-MediumItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PlayfairDisplay-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Playfair_Display/static/PlayfairDisplay-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PlayfairDisplay-ExtraBoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Playfair_Display/static/PlayfairDisplay-ExtraBoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PlayfairDisplay-BlackItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Playfair_Display/static/PlayfairDisplay-BlackItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+
+/*  PONTANO SANS  */
+
+@font-face {
+    font-family: PontanoSans;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Pontano_Sans/static/PontanoSans-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PontanoSans-Medium;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Pontano_Sans/static/PontanoSans-Medium.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PontanoSans-SemiBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Pontano_Sans/static/PontanoSans-SemiBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PontanoSans-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Pontano_Sans/static/PontanoSans-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  PRIDI  */
+
+@font-face {
+    font-family: Pridi;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Pridi/Pridi-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Pridi-Medium;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Pridi/Pridi-Medium.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Pridi-SemiBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Pridi/Pridi-SemiBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Pridi-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Pridi/Pridi-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+
+/*  PT SANS CAPTION  */
+
+@font-face {
+    font-family: PTSansCaption;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/PT_Sans_Caption/PTSansCaption-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: PTSansCaption-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/PT_Sans_Caption/PTSansCaption-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  READLY  */
+
+@font-face {
+    font-family: Radley;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Radley/Radley-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Radley-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Radley/Radley-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  RALEWAY  */
+
+@font-face {
+    font-family: Raleway;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Raleway/static/Raleway-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Raleway-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Raleway/static/Raleway-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Raleway-SemiBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Raleway/static/Raleway-SemiBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Raleway-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Raleway/static/Raleway-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Raleway-ExtraBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Raleway/static/Raleway-ExtraBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Raleway-Black;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Raleway/static/Raleway-Black.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Raleway-MediumItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Raleway/static/Raleway-MediumItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Raleway-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Raleway/static/Raleway-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Raleway-ExtraBoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Raleway/static/Raleway-ExtraBoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Raleway-BlackItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Raleway/static/Raleway-BlackItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  ROBOTO  */
+
+@font-face {
+    font-family: Roboto-Light;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Roboto/Roboto-Light.ttf) format("truetype");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Roboto/Roboto-Regular.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Roboto-ExtraBold;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Roboto/Roboto-ExtraBold.ttf) format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: Roboto-Bold;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Roboto/Roboto-Bold.ttf) format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Roboto-Black;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Roboto/Roboto-Black.ttf) format("truetype");
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: Roboto-Italic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Roboto/Roboto-Italic.ttf) format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Roboto-MediumItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Roboto/Roboto-MediumItalic.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Roboto-BoldItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Roboto/Roboto-BoldItalic.ttf) format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Roboto-BlackItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Roboto/Roboto-BlackItalic.ttf) format("truetype");
+    font-weight: 700;
+}
+
+
+
+/*  ROKKITT  */
+
+@font-face {
+    font-family: Rokkitt;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Rokkitt/static/Rokkitt-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Rokkitt-Medium;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Rokkitt/static/Rokkitt-Medium.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Rokkitt-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Rokkitt/static/Rokkitt-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Rokkitt-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Rokkitt/static/Rokkitt-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Rokkitt-ExtraBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Rokkitt/static/Rokkitt-ExtraBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Rokkitt-Black;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Rokkitt/static/Rokkitt-Black.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Rokkitt-MediumItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Rokkitt/static/Rokkitt-MediumItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Rokkitt-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Rokkitt/static/Rokkitt-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Rokkitt-ExtraBoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Rokkitt/static/Rokkitt-ExtraBoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Rokkitt-BlackItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Rokkitt/static/Rokkitt-BlackItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+
+/*  SARALA  */
+
+@font-face {
+    font-family: Sarala;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Sarala/Sarala-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Sarala-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Sarala/Sarala-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  SHARE  */
+
+@font-face {
+    font-family: Share;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Share/Share-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Share-Italic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Share/Share-Italic.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Share-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Share/Share-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Share-BoldItalic;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Share/Share-BoldItalic.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  SHARE TECH MONO  */
+
+@font-face {
+    font-family: ShareTechMono;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Share_Tech_Mono/ShareTechMono-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  SIGNIKA  */
+
+@font-face {
+    font-family: Signika;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Signika/static/Signika-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Signika-Medium;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Signika/static/Signika-Medium.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Signika-SemiBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Signika/static/Signika-SemiBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Signika-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Signika/static/Signika-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  SOFIA  */
+
+@font-face {
+    font-family: Sofia;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Sofia/Sofia-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  TEKO  */
+
+@font-face {
+    font-family: Teko-Regular;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Teko/static/Teko-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Teko-Medium;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Teko/static/Teko-Medium.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Teko-SemiBold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Teko/static/Teko-SemiBold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Teko-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Teko/static/Teko-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  TRIRONG  */
+
+@font-face {
+    font-family: Trirong-ExtraLight;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Trirong/Trirong-ExtraLight.ttf) format("truetype");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: Trirong;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Trirong/Trirong-Regular.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Trirong-Bold;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Trirong/Trirong-Bold.ttf) format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Trirong-ExtraBold;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Trirong/Trirong-ExtraBold.ttf) format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: Trirong-Black;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Trirong/Trirong-Black.ttf) format("truetype");
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: Trirong-Italic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Trirong/Trirong-Italic.ttf) format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Trirong-MediumItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Trirong/Trirong-MediumItalic.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Trirong-BoldItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Trirong/Trirong-BoldItalic.ttf) format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Trirong-BlackItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/Trirong/Trirong-BlackItalic.ttf) format("truetype");
+    font-weight: 900;
+}
+
+
+
+/*  VICTOR MONO  */
+
+@font-face {
+    font-family: VictorMono-ExtraLight;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/TTF/VictorMono-ExtraLight.ttf) format("truetype");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: VictorMono;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/TTF/VictorMono-Regular.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: VictorMono-Bold;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/TTF/VictorMono-Bold.ttf) format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: VictorMono-italic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/TTF/VictorMono-Italic.ttf);
+}
+@font-face {
+    font-family: VictorMono-SemiBoldItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/TTF/VictorMono-SemiBoldItalic.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: VictorMono-BoldItalic;
+    src: url(/Digital_Solutions/Vista/Recursos/FONTS/TTF/VictorMono-BoldItalic.ttf) format("truetype");
+    font-weight: 500;
+}
+
+
+
+/*  YANTRAMANAV  */
+
+@font-face {
+    font-family: Yantramanav;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Yantramanav/Yantramanav-Regular.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Yantramanav-Medium;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Yantramanav/Yantramanav-Medium.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Yantramanav-Bold;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Yantramanav/Yantramanav-Bold.ttf) format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: Yantramanav-Black;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Yantramanav/Yantramanav-Black.ttf) format("truetype");
+    font-display: swap;
+}
+
+
+
+/*  WORK SANS  */
+
+@font-face {
+    font-family: WorkSans;
+    src:
+        url(../FONTS/Work_Sans/WorkSans-VariableFont_wght.ttf) format("truetype");
+    /* font-display: swap; */
+}
+@font-face {
+    font-family: WorkSans-Black;
+    src:
+        url(../FONTS/Work_Sans/static/WorkSans-Black.ttf) format("truetype");
+    /* font-display: swap; */
+}
+
+
+
+/*  HABIBI  */
+
+@font-face {
+    font-family: Habibi;
+    src:
+        url(/Digital_Solutions/Vista/Recursos/FONTS/Habibi/Habibi-Regular.ttf) format("truetype");
+    font-display: swap;
+}
