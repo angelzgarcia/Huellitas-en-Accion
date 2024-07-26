@@ -33,5 +33,19 @@
 
     </main>
 </body>
+
+<!-- TOOLTIPS BUTTONS -->
+<script>
+    document.querySelectorAll('button[title]').forEach((button) => {
+        const title = button.getAttribute('title');
+        button.removeAttribute('title');
+        tippy(button, {
+            content: title,
+            arrow: true,
+            animation: 'fade',
+        });
+    });
+</script>
+
 </html>
 <?php endif; ?>

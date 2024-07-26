@@ -81,11 +81,35 @@
 
         // INICIO CRUD BLOG
         protected function agregarNoticiaModelo($datos) {
+            $query = self::conectDB()->prepare("
+                INSERT INTO blog (titulo, subtitulo, descripcion, imagen)
+                VALUES (:titulo, :subtitulo, :descripcion, :imagen)
+            ");
 
+            $query->bindParam(':titulo', $datos['titulo']);
+            $query->bindParam(':subtitulo', $datos['subtitulo']);
+            $query->bindParam(':descripcion', $datos['descripcion']);
+            $query->bindParam(':imagen', $datos['imagen']);
+
+            $query->execute();
+            return $query;
         }
 
         protected function actualizarNoticiaModelo($datos) {
+            $query = self::conectDB()->prepare("
+                UPDATE blog
+                SET titulo = :titulo, subtitulo = :subtitulo, descripcion = :descripcion, imagen = :imagen
+                WHERE idBlog = :idBlog
+            ");
 
+            $query->bindParam(':idBlog', $datos['id']);
+            $query->bindParam(':titulo', $datos['titulo']);
+            $query->bindParam(':subtitulo', $datos['subtitulo']);
+            $query->bindParam(':descripcion', $datos['descripcion']);
+            $query->bindParam(':imagen', $datos['imagen']);
+
+            $query->execute();
+            return $query;
         }
         // FIN CRUD BLOG
 

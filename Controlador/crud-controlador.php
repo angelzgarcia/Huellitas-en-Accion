@@ -866,7 +866,12 @@
             ");
 
             if ($query -> rowCount() > 0) {
-
+                return self::sweetAlert([
+                    'Alerta' => 'simpleCentro',
+                    'Titulo' => '\(o_o)/',
+                    'Texto' => 'Este tip ya se encuentra registrado',
+                    'Tipo' => ''
+                ]);
             }
 
             // ESPECIFICAR POSIBLES ERRORES EN LA SUBIDA DE IMAGENS
@@ -875,49 +880,49 @@
                     case UPLOAD_ERR_INI_SIZE:
                     case UPLOAD_ERR_FORM_SIZE:
                         return self::sweetAlert([
-                            'Alerta' => 'simple',
+                            'Alerta' => 'simpleCentro',
                             'Titulo' => '\(o_o)/',
                             'Texto' => 'El archivo es demasiado grande',
                             'Tipo' => ''
                         ]);
                     case UPLOAD_ERR_PARTIAL:
                         return self::sweetAlert([
-                            'Alerta' => 'simple',
+                            'Alerta' => 'simpleCentro',
                             'Titulo' => '\(o_o)/',
                             'Texto' => 'El archivo fue subido parcialmente.',
                             'Tipo' => ''
                         ]);
                     case UPLOAD_ERR_NO_FILE:
                         return self::sweetAlert([
-                            'Alerta' => 'simple',
+                            'Alerta' => 'simpleCentro',
                             'Titulo' => '\(o_o)/',
                             'Texto' => 'No se subió ningún archivo.',
                             'Tipo' => ''
                         ]);
                     case UPLOAD_ERR_NO_TMP_DIR:
                         return self::sweetAlert([
-                            'Alerta' => 'simple',
+                            'Alerta' => 'simpleCentro',
                             'Titulo' => '\(o_o)/',
                             'Texto' => 'Falta la carpeta temporal.',
                             'Tipo' => ''
                         ]);
                     case UPLOAD_ERR_CANT_WRITE:
                         return self::sweetAlert([
-                            'Alerta' => 'simple',
+                            'Alerta' => 'simpleCentro',
                             'Titulo' => '\(o_o)/',
                             'Texto' => 'No se pudo escribir el archivo en el disco.',
                             'Tipo' => ''
                         ]);
                     case UPLOAD_ERR_EXTENSION:
                         return self::sweetAlert([
-                            'Alerta' => 'simple',
+                            'Alerta' => 'simpleCentro',
                             'Titulo' => '\(o_o)/',
                             'Texto' => 'Una extensión de PHP detuvo la subida del archivo.',
                             'Tipo' => ''
                         ]);
                     default:
                         return self::sweetAlert([
-                            'Alerta' => 'simple',
+                            'Alerta' => 'simpleCentro',
                             'Titulo' => '\(o_o)/',
                             'Texto' => 'Error desconocido.',
                             'Tipo' => ''
@@ -939,7 +944,7 @@
                 // COMPRUEBA QUE EL TIPO DE ARCHIVO ESTE PERMITIDO
                 if (!in_array($fileType, $allowedTypes)) {
                     return self::sweetAlert([
-                        'Alerta' => 'simple',
+                        'Alerta' => 'simpleCentro',
                         'Titulo' => '\(o_o)/',
                         'Texto' => 'Tipo de archivo no permitido',
                         'Tipo' => ''
@@ -951,7 +956,7 @@
                     // MUEVE EL ARCHIVO TEMPORAL A LA RUTA DESTINO
                     if (!move_uploaded_file($imagenTmpNombre, $imagenDestino)) {
                         return self::sweetAlert([
-                            'Alerta' => 'simple',
+                            'Alerta' => 'simpleCentro',
                             'Titulo' => '\(o_o)/',
                             'Texto' => 'Error al subir la imagen, intenta de nuevo',
                             'Tipo' => ''
@@ -978,7 +983,7 @@
 
                 } else {
                     return self::sweetAlert([
-                        'Alerta' => 'simple',
+                        'Alerta' => 'simpleCentro',
                         'Titulo' => 'Upss...',
                         'Texto' => 'El tip no se pudo registrar correctamente',
                         'Tipo' => 'error'
@@ -1493,18 +1498,293 @@
 
         // INICIO CRUD BLOG
         public function crudBlogControl() {
+            if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['action'])) {
+                return self::sweetAlert([
+                    'Alerta' => 'simple',
+                    'Titulo' => '\(o_o)/',
+                    'Texto' => 'Ocurrió un error con el envío de datos, intenta de nuevo',
+                    'Tipo' => ''
+                ]);
+
+            } else {
+                return match ($_POST['action']) {
+                    'add' => self::agregarNoticiaControl(),
+                    'update' => self::actualizarNoticiaControl(),
+                    'delete' => self::eliminarNoticiaControl(),
+                };
+
+            }
 
         }
 
         private function agregarNoticiaControl() {
+            $titulo = isset($_POST['titulo']) ? ucfirst(self::limpiarCadena($_POST['titulo'])) : '';
+            $subtitulo = isset($_POST['subtitulo']) ? ucfirst(self::limpiarCadena($_POST['subtitulo'])) : '';
+            $descripcion = isset($_POST['descripcion']) ? ucfirst(self::limpiarCadena($_POST['descripcion'])) : '';
+            $imagen = $_FILES['imagen'] ?? '';
+
+            $query = self::ejecturarConsultaSimple("
+                SELECT * FROM blog
+                WHERE titulo = '$titulo'
+                AND subtitulo = '$subtitulo'
+            ");
+
+            if ($query -> rowCount() > 0) {
+                return self::sweetAlert([
+                    'Alerta' => 'simpleCentro',
+                    'Titulo' => '\(o_o)/',
+                    'Texto' => 'Esta noticia ya se encuentra registrada',
+                    'Tipo' => ''
+                ]);
+            }
+
+            // ESPECIFICAR POSIBLES ERRORES EN LA SUBIDA DE IMAGENS
+            if ($imagen['error'] !== UPLOAD_ERR_OK) {
+                switch ($imagen['error']) {
+                    case UPLOAD_ERR_INI_SIZE:
+                    case UPLOAD_ERR_FORM_SIZE:
+                        return self::sweetAlert([
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => '\(o_o)/',
+                            'Texto' => 'El archivo es demasiado grande',
+                            'Tipo' => ''
+                        ]);
+                    case UPLOAD_ERR_PARTIAL:
+                        return self::sweetAlert([
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => '\(o_o)/',
+                            'Texto' => 'El archivo fue subido parcialmente.',
+                            'Tipo' => ''
+                        ]);
+                    case UPLOAD_ERR_NO_FILE:
+                        return self::sweetAlert([
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => '\(o_o)/',
+                            'Texto' => 'No se subió ningún archivo.',
+                            'Tipo' => ''
+                        ]);
+                    case UPLOAD_ERR_NO_TMP_DIR:
+                        return self::sweetAlert([
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => '\(o_o)/',
+                            'Texto' => 'Falta la carpeta temporal.',
+                            'Tipo' => ''
+                        ]);
+                    case UPLOAD_ERR_CANT_WRITE:
+                        return self::sweetAlert([
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => '\(o_o)/',
+                            'Texto' => 'No se pudo escribir el archivo en el disco.',
+                            'Tipo' => ''
+                        ]);
+                    case UPLOAD_ERR_EXTENSION:
+                        return self::sweetAlert([
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => '\(o_o)/',
+                            'Texto' => 'Una extensión de PHP detuvo la subida del archivo.',
+                            'Tipo' => ''
+                        ]);
+                    default:
+                        return self::sweetAlert([
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => '\(o_o)/',
+                            'Texto' => 'Error desconocido.',
+                            'Tipo' => ''
+                    ]);
+                }
+
+            } else {
+                // SE ALMACENA SOLO EL NOMBRE ORIGINAL DEL ARCHIVO, SIN LA RUTA DESDE DONDE SE SUBIÓ
+                $imagenNombre = basename($imagen['name']);
+                // NOMBRE DEL ARCHIVO TEMPORAL QUE SE ALMACENA EN EL SERVIDOR
+                $imagenTmpNombre = $imagen['tmp_name'];
+                // RUTA DESTINO DE ALMACENAMIENTO
+                $dir = SERVERURL . "Vista/Recursos/IMG/SUBIDAS/";
+                // DEFINIMOS LOS TIPOS DE FICHEROS PERMITIDOS
+                $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+                // DETERMINA EL TIPO DE FICHERO DE LA IMAGEN SUBIDA
+                $fileType = mime_content_type($imagenTmpNombre);
+
+                // COMPRUEBA QUE EL TIPO DE ARCHIVO ESTE PERMITIDO
+                if (!in_array($fileType, $allowedTypes)) {
+                    return self::sweetAlert([
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => '\(o_o)/',
+                        'Texto' => 'Tipo de archivo no permitido',
+                        'Tipo' => ''
+                    ]);
+
+                } else {
+                    // SE CONSTRUYE LA RUTA COMPLETA DONDE SE ALMACENARA EL FICHERO
+                    $imagenDestino = "$dir$imagenNombre";
+                    // MUEVE EL ARCHIVO TEMPORAL A LA RUTA DESTINO
+                    if (!move_uploaded_file($imagenTmpNombre, $imagenDestino)) {
+                        return self::sweetAlert([
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => '\(o_o)/',
+                            'Texto' => 'Error al subir la imagen, intenta de nuevo',
+                            'Tipo' => ''
+                        ]);
+                    }
+
+                }
+
+                $datos = [
+                    'subtitulo' => $subtitulo,
+                    'titulo' => $titulo,
+                    'descripcion' => $descripcion,
+                    'imagen' => $imagenNombre
+                ];
+
+                $query = self::agregarNoticiaModelo($datos);
+
+                if ($query -> rowCount() > 0) {
+                    return self::sweetAlert([
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => '¡Registro exitoso!',
+                        'Texto' => '',
+                        'Tipo' => 'success'
+                    ]);
+
+                } else {
+                    return self::sweetAlert([
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => 'Upss...',
+                        'Texto' => 'La noticia no se pudo registrar correctamente',
+                        'Tipo' => 'error'
+                    ]);
+
+                }
+
+            }
 
         }
 
         private function actualizarNoticiaControl() {
+            $id = isset($_POST['id']) ? self::limpiarCadena($_POST['id']) : '';
+            $titulo = isset($_POST['titulo']) ? ucfirst(self::limpiarCadena($_POST['titulo'])) : '';
+            $subtitulo = isset($_POST['titulo']) ? ucfirst(self::limpiarCadena($_POST['subtitulo'])) : '';
+            $descripcion = isset($_POST['descripcion']) ? ucfirst(self::limpiarCadena($_POST['descripcion'])) : '';
+            $imagen = $_FILES['imagen'] ?? '';
+
+            $query = self::ejecturarConsultaSimple("
+                SELECT * FROM blog
+                WHERE idBlog = '$id'
+            ");
+
+            if ($query -> rowCount() != 1) {
+                return self::sweetAlert([
+                    'Alerta' => 'simpleCentro',
+                    'Titulo' => 'No se ha podido ubicar el registro, intenalo más tarde',
+                    'Texto' => '',
+                    'Tipo' => 'warning'
+                ]);
+            }
+
+
+            if (!empty($imagen)) {
+                if ($imagen['error'] === UPLOAD_ERR_OK) {
+                    $imagenNombre = basename($imagen['name']);
+                    $imagenTmpNombre = $imagen['tmp_name'];
+                    $dir = SERVERURL . "Vista/Recursos/IMG/SUBIDAS/";
+                    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                    $fileType = mime_content_type($imagenTmpNombre);
+
+                    if (!in_array($fileType, $allowedTypes)) {
+                        return self::sweetAlert([
+                            'Alerta' => 'simple',
+                            'Titulo' => 'Tipo de archivo no permitido',
+                            'Texto' => '',
+                            'Tipo' => 'warning'
+                        ]);
+                    }
+
+                    $imagenDestino = $dir . $imagenNombre;
+                    if (!move_uploaded_file($imagenTmpNombre, $imagenDestino)) {
+                        return self::sweetAlert([
+                            'Alerta' => 'simple',
+                            'Titulo' => 'Error al subir la imagen, intenta de nuevo',
+                            'Texto' => '',
+                            'Tipo' => 'error'
+                        ]);
+                    }
+                }
+            } else {
+                $datosAntiguos = $query -> fetch(PDO::FETCH_ASSOC);
+                $imagenNombre = $datosAntiguos['imagen'];
+            }
+
+            $datosNuevos = [
+                'id' => $id,
+                'titulo' => $titulo,
+                'subtitulo' => $subtitulo,
+                'descripcion' => $descripcion,
+                'imagen' => $imagenNombre
+            ];
+
+            $query = self::actualizarNoticiaModelo($datosNuevos);
+
+            if ($query->rowCount() > 0) {
+                return self::sweetAlert([
+                    'Alerta' => 'simpleCentro',
+                    'Titulo' => '¡Actualización exitosa!',
+                    'Texto' => '',
+                    'Tipo' => 'success'
+                ]);
+            } else {
+                return self::sweetAlert([
+                    'Alerta' => 'simpleCentro',
+                    'Titulo' => 'No se detectaron nuevos datos...',
+                    'Texto' => '',
+                    'Tipo' => 'info'
+                ]);
+            }
+
 
         }
 
         private function eliminarNoticiaControl() {
+            $idNoticia = self::limpiarCadena($_POST['id']) ?? '';
+            $titulo = self::limpiarCadena($_POST['titulo']) ?? '';
+
+            $query = self::ejecturarConsultaSimple("
+                SELECT * FROM blog
+                WHERE idBlog = '$idNoticia'
+                AND titulo = '$titulo'
+            ");
+
+            if ($query -> rowCount() > 0) {
+                $deletedTip = self::ejecturarConsultaSimple("
+                    DELETE FROM blog
+                    WHERE idBlog = '$idNoticia'
+                ");
+
+                if ($deletedTip -> rowCount() > 0){
+                    return self::sweetAlert([
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => '¡Registro eliminado!',
+                        'Texto' => '',
+                        'Tipo' => 'success'
+                    ]);
+
+                    } else {
+                        return self::sweetAlert([
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => 'Parece que no se pudo eliminar el registro..',
+                            'Texto' => '',
+                            'Tipo' => 'error'
+                        ]);
+
+                    }
+
+            } else {
+                return self::sweetAlert([
+                    'Alerta' => 'simpleCentro',
+                    'Titulo' => 'Parece que no se encontró el registro..',
+                    'Texto' => '',
+                    'Tipo' => 'error'
+                ]);
+            }
 
         }
 
@@ -1519,49 +1799,47 @@
                 ($query = $_POST['sort'] == 'sortId'
                 ?
                 self::ejecturarConsultaSimple("
-                    SELECT SQL_CALC_FOUND_ROWS * FROM organizacion
-                    ORDER BY idOrganizacion DESC
+                    SELECT SQL_CALC_FOUND_ROWS * FROM blog
+                    ORDER BY idBlog DESC
                     LIMIT $inicio, $nRegisters
                 ")
                 :
                 self::ejecturarConsultaSimple("
-                    SELECT SQL_CALC_FOUND_ROWS * FROM organizacion
-                    ORDER BY nombre ASC
+                    SELECT SQL_CALC_FOUND_ROWS * FROM blog
+                    ORDER BY titulo ASC
                     LIMIT $inicio, $nRegisters
                 "))
             :
                 (isset($busqueda) && !empty($busqueda)
                 ?
                 self::ejecturarConsultaSimple("
-                    SELECT SQL_CALC_FOUND_ROWS * FROM organizacion
-                    WHERE nombre LIKE '%$busqueda%'
-                    OR numero LIKE '%$busqueda%'
-                    OR direccion LIKE '%$busqueda%'
-                    OR idOrganizacion LIKE '$busqueda'
+                    SELECT SQL_CALC_FOUND_ROWS * FROM blog
+                    WHERE titulo LIKE '%$busqueda%'
+                    OR subtitulo LIKE '%$busqueda%'
+                    OR descripcion LIKE '%$busqueda%'
                     LIMIT $inicio, $nRegisters
                 ")
                 :
                 self::ejecturarConsultaSimple("
-                    SELECT SQL_CALC_FOUND_ROWS * FROM organizacion
+                    SELECT SQL_CALC_FOUND_ROWS * FROM blog
                     LIMIT $inicio, $nRegisters
                 "))
             ;
 
 
-            $orgs = ($query -> rowCount() > 0) ? $query -> fetchAll(PDO::FETCH_ASSOC) : [];
+            $noticias = ($query -> rowCount() > 0) ? $query -> fetchAll(PDO::FETCH_ASSOC) : [];
 
             $totalQuery = self::ejecturarConsultaSimple("
-                SELECT COUNT(*) as total FROM organizacion
+                SELECT COUNT(*) as total FROM blog
             ");
             $total = $totalQuery->fetch(PDO::FETCH_ASSOC)['total'];
             $nPages = ceil($total / $nRegisters);
 
             ?>
-                <!-- TABLA ORGANIZACIONES -->
+                <!-- TABLA DE NOTICIAS -->
                 <table>
-                    <!-- SUBITULO DE LA TABLA Y BOTON DE ORDENAMIENTO-->
                     <caption>
-                        organizaciones
+                        Blog
                         <button title="Ordenar" id="sort-btn" class="sort-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M376-173v-125h208v125H376ZM210-418v-125h539v125H210ZM86-663v-125h788v125H86Z"/></svg>
                         </button>
@@ -1579,21 +1857,18 @@
                     </div>
                     <!-- ENCABEZADO -->
                     <thead>
-                        <!-- FILA ENCABEZADOS-->
-                        <tr style="background-color: #ca3729;">
+                        <!-- FILA -->
+                        <tr style="background-color: #d5d7d9; color:#000;">
                             <!-- ENCABEZADOS -->
                             <th></th>
                             <!-- ID -->
-                            <th><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M221.91-140.22 263.61-307H100.78L127-413h162.83l33.78-134H160.78L187-653h162.83l41.69-166.22h106.57L456.39-653h133.44l41.69-166.22h106.57L696.39-653h162.83L833-547H670.17l-33.78 134h162.83L773-307H610.17l-41.69 166.78H461.91L503.61-307H370.17l-41.69 166.78H221.91ZM396.39-413h133.44l33.78-134H430.17l-33.78 134Z"/></svg></th>
-                            <th>Nombre</th>
-                            <th>Número</th>
-                            <th>Correo</th>
-                            <th>Dirección</th>
-                            <th>Descripción</th>
+                            <th><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#e8eaed"><path d="M221.91-140.22 263.61-307H100.78L127-413h162.83l33.78-134H160.78L187-653h162.83l41.69-166.22h106.57L456.39-653h133.44l41.69-166.22h106.57L696.39-653h162.83L833-547H670.17l-33.78 134h162.83L773-307H610.17l-41.69 166.78H461.91L503.61-307H370.17l-41.69 166.78H221.91ZM396.39-413h133.44l33.78-134H430.17l-33.78 134Z"/></svg></th>
+                            <th>Titulo</th>
+                            <th>Subtitulo</th>
+                            <th>Descripcion</th>
                             <th>Imagen</th>
                         </tr>
                     </thead>
-
                     <!-- CUERPO -->
                     <tbody>
                         <!-- BOTON AGREGAR -->
@@ -1601,65 +1876,58 @@
                             <button id="btn-add" class="btn-add" title="Agregar"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg></button>
                             <div class="RespuestaAjax"></div>
                         </div>
-
                         <!-- INICIO DE LOS REGISTROS -->
-                        <?php if (!empty($orgs) && ($total > 0) && ($page <= $nPages)) : ?>
-                            <?php foreach ($orgs as $org) : ?>
-                                <!-- INICIO DE FILAS DE REGISTROS -->
-                                <tr data-id="<?=$org['idOrganizacion']?>"
-                                    data-nombre="<?=$org['nombre']?>"
-                                    data-numero="<?=$org['numero']?>"
-                                    data-correo="<?=$org['correo']?>"
-                                    data-direccion="<?=$org['direccion']?>"
-                                    data-descripcion="<?=$org['descripcion']?>"
-                                    data-foto="<?=RUTARECURSOS?>IMG/SUBIDAS/<?=$org['imagen']?>">
-                                        <!-- BOTONES DE OPERACIONES CRUD -->
-                                        <td>
-                                            <div class="buttons-actions-tables" id="buttonsActionsTables<?=$org['idOrganizacion']?>">
-                                                <!-- ELIMINAR -->
-                                                <button type="button" data-id="<?=$org['idOrganizacion']?>" class="btn-delete" id="btn-delete" title="Eliminar"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z"/></svg></button>
-                                                <!-- MODIFICAR -->
-                                                <button type="button" data-id="<?=$org['idOrganizacion']?>" class="btn-update" id="btn-update" title="Editar"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#b9bfc8"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg></button>
-                                                <!-- SETEAR OPERACION PARA EL CRUD -->
-                                                <input type="hidden" name="action" id="action">
-                                            </div>
-                                        </td>
-                                        <!-- ID -->
-                                        <td> <?=$org['idOrganizacion']?> </td>
-                                        <!-- NOMBRE -->
-                                        <td> <?=$org['nombre']?> </td>
-                                        <!-- NUMERO -->
-                                        <td> <?=$org['numero']?> </td>
-                                        <!-- CORREO -->
-                                        <td> <?=$org['correo']?> </td>
-                                        <!-- DIRECCION -->
-                                        <td> <?=$org['direccion']?> </td>
-                                        <!-- DESCRIPCION -->
-                                        <td class="min-w-c"> <?=$org['descripcion']?> </td>
-                                        <!-- IMAGEN -->
-                                        <td> <img src="<?=RUTARECURSOS?>IMG/SUBIDAS/<?=$org['imagen']?>" class="image-table"/> </td>
+                        <?php if (!empty($noticias) && ($total > 0) && ($page <= $nPages)) : ?>
+                            <?php foreach ($noticias as $noticia) : ?>
+                            <!-- FILA -->
+                                <tr data-id="<?=$noticia['idBlog']?>"
+                                    data-titulo="<?=$noticia['titulo']?>"
+                                    data-subtitulo="<?=$noticia['subtitulo']?>"
+                                    data-descripcion="<?=$noticia['descripcion']?>"
+                                    data-imagen="<?=RUTARECURSOS?>IMG/SUBIDAS/<?=$noticia['imagen']?>">
+                                    <!-- BOTONES DE OPERACIONES CRUD -->
+                                    <td>
+                                        <div class="buttons-actions-tables" id="buttonsActionsTables<?=$noticia['idBlog']?>">
+                                            <!-- ELIMINAR -->
+                                            <button type="button" data-id="<?=$noticia['idBlog']?>" class="btn-delete" id="btn-delete" title="Eliminar"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z"/></svg></button>
+                                            <!-- MODIFICAR -->
+                                            <button type="button" data-id="<?=$noticia['idBlog']?>" class="btn-update" id="btn-update" title="Editar"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#b9bfc8"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg></button>
+                                            <!-- SETEAR OPERACION PARA EL CRUD -->
+                                            <input type="hidden" name="action" id="action">
+                                        </div>
+                                    </td>
+                                    <!-- DATOS -->
+                                    <!-- id noticia -->
+                                    <td><?=$noticia['idBlog']?></td>
+                                    <!-- titulo -->
+                                    <td><?=$noticia['titulo']?></td>
+                                    <!-- subtitulo -->
+                                    <td><?=$noticia['subtitulo']?></td>
+                                    <!-- descripcion -->
+                                    <td class="min-w-c desc-new"><?=$noticia['descripcion']?></td>
+                                    <!-- imagen -->
+                                    <td><img src="<?=RUTARECURSOS?>IMG/SUBIDAS/<?=$noticia['imagen']?>" class="image-table" alt="new-img"></td>
                                 </tr>
-                                <!-- FIN DE FILA DE REGISTROS -->
                             <?php endforeach; ?>
+                        <!-- FIN DE LOS REGISTROS -->
                         <?php else: ?>
-                            <!-- EN CASO DE NO HABER REGISTROS -->
+                        <!-- EN CASO DE NO HABER REGISTROS -->
                             <tr>
                                 <td>
                                 </td>
-                                <td colspan="7" style="letter-spacing: .5em; font-size: 1.3em;">
+                                <td colspan="6" style="letter-spacing: .5em; font-size: 1.3em;">
                                     NO SE ENCONTRARON REGISTROS....
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td colspan="7">
+                                <td colspan="6">
                                     <img src="<?=RUTARECURSOS?>IMG/joe-caione-qO-PIF84Vxg-unsplash.jpg" alt="" style="width: 100%; height: 100%;">
                                 </td>
                             </tr>
                         <?php endif; ?>
-                        <!-- FIN DE LOS REGISTROS -->
                     </tbody>
-                    <!-- FIN DEL CUERPO -->
+
                 </table>
                 <!-- FIN DE LA TABLA -->
 
@@ -1669,7 +1937,7 @@
                         <ul>
                             <?php $arrow =  ($page == 1) ? 'disabled' : 'enabled'; ?>
                                 <li class="back-<?=$arrow?>">
-                                    <a href="<?=SERVER?>organizaciones/<?=$page-1?>">
+                                    <a href="<?=SERVER?>noticias/<?=$page-1?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M224.78-194.5 428.37-480 224.78-765.5h111.63L540-480 336.41-194.5H224.78Zm251.63 0L680-480 476.41-765.5H587.8L791.63-480 587.8-194.5H476.41Z"/></svg>
                                     </a>
                                 </li>
@@ -1679,7 +1947,7 @@
                                         $pageSelectd = $i == $page ? 'selected' :  'unselected';
                                         ?>
                                             <li class="page-<?=$pageSelectd?>";">
-                                                <a href="<?=SERVER?>organizaciones/<?=$i?>">
+                                                <a href="<?=SERVER?>noticias/<?=$i?>">
                                                     <?=$i?>
                                                 </a>
                                             </li>
@@ -1688,7 +1956,7 @@
                                 ?>
                             <?php $arrow = ($page == $nPages) ? 'disabled' : 'enabled'; ?>
                                 <li class="next-<?=$arrow?>">
-                                    <a href="<?=SERVER?>organizaciones/<?= ++$page?>">
+                                    <a href="<?=SERVER?>noticias/<?= ++$page?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M224.78-194.5 428.37-480 224.78-765.5h111.63L540-480 336.41-194.5H224.78Zm251.63 0L680-480 476.41-765.5H587.8L791.63-480 587.8-194.5H476.41Z"/></svg>
                                     </a>
                                 </li>

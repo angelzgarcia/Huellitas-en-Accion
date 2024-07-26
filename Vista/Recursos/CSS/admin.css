@@ -32,6 +32,19 @@
     scrollbar-width: thin;
 }
 
+.desc-new {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+    text-wrap: balance;
+    overflow: hidden;
+    text-overflow: ellipsis;;
+}
+
+textarea {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
 
 /* SIDEBAR ADMIN*/
 

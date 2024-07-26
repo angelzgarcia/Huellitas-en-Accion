@@ -30,6 +30,12 @@
                         </div>
                     <?php
                 endforeach;
+            else:
+                ?>
+                    <div class="empty-register">
+                        <h2>NO HAY TIPS TODAVIA</h2>
+                    </div>
+                <?php
             endif;
 
         }

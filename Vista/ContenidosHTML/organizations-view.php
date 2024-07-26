@@ -26,11 +26,8 @@
             <h1 class="org-title">Organizaciones</h1>
         </div>
 
-        <!-- CONTENEDOR DE TARJETAS -->
-        <div class="organizations-container">
-            <!-- TARJETA DE ORGANIZACION -->
-            <?php $targets -> listarOrganizacionesControl(); ?>
-        </div>
+        <!-- TARJETA DE ORGANIZACION -->
+        <?php $targets -> listarOrganizacionesControl(); ?>
 
         <!-- PIE DE PAGINA -->
         <?php require_once RUTAMODULOS . "footer.php"; ?>

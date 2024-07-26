@@ -11,7 +11,6 @@
         require_once RUTACONTROL . 'crud-controlador.php';
         $pagina = explode('/', $_GET['views']);
         $table = new CrudControlador();
-
 ?>
 <body class="admin-index">
     <main class="content-page content-page-admin">
@@ -90,16 +89,16 @@
     $(document).ready(function() {
 
         if (sessionStorage.getItem('agregarTip') === 'true') {
-            agregarOrg();
+            agregarTip();
             sessionStorage.removeItem('agregarTip');
         }
 
-        // BOTON AGREGAR ORGANIZACION
+        // BOTON AGREGAR TIP
         $('.btn-add').click(function() {
             agregarTip();
         });
 
-        // FORMULARIO AGREGAR ORGANIZACION
+        // FORMULARIO AGREGAR TIP
         async function agregarTip() {
             const { value: formValues } = await Swal.fire({
                 title: "AGREGAR TIP",

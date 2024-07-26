@@ -36,6 +36,20 @@
             return $output;
         }
 
+        protected function geocodificacion($latitud, $longitud, $apiKey) {
+            $url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitud,$longitud&key=$apiKey";
+
+            $response = file_get_contents($url);
+            $response = json_decode($response, true);
+
+            if (isset($response['results'][0])) {
+                return $response['results'][0]['formatted_address'];
+            } else {
+                return "No se pudo encontrar la dirección.";
+            }
+
+        }
+
         protected function generarCodigo($letra, $longitud, $num) {
             for ($i=1; $i <= $longitud; $i++) {
                 $numero = rand(0,9);
