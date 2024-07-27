@@ -3329,6 +3329,7 @@ input[type="checkbox"]:checked + .checkmark {
     justify-content: space-between;
     align-items: start;
     gap: 2em;
+    padding: 1em 0;
     & .btn-frm-animals {
         align-self: flex-end;
         border-radius: .3em;

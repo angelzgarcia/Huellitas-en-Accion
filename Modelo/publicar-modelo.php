@@ -12,8 +12,8 @@
 
             protected function publicarModelo($datos) {
                 $query = self::conectDB() -> prepare ("
-                    INSERT INTO animal (nombre, sexo, tipoAnimal, raza, estadoSalud, status, tamanio, peso,  descripcion, imagen, idUsuario, idUbicacion)
-                    VALUES (:nombre, :sexo, :tipoAnimal, :raza, :estadoSalud, :status, :tamanio, :peso, :descripcion, :imagen, :idUsuario, :idUbicacion)
+                    INSERT INTO animal (nombre, sexo, tipoAnimal, raza, estadoSalud, status, tamanio, peso, edad,  descripcion, imagen, fechaReporte, idUsuario, idUbicacion)
+                    VALUES (:nombre, :sexo, :tipoAnimal, :raza, :estadoSalud, :status, :tamanio, :peso, :edad, :descripcion, :imagen, :fechaReporte, :idUsuario, :idUbicacion)
                 ");
 
                 $query -> bindParam(':nombre', $datos['nombre']);
@@ -24,8 +24,10 @@
                 $query -> bindParam(':status', $datos['status']);
                 $query -> bindParam(':tamanio', $datos['tamanio']);
                 $query -> bindParam(':peso', $datos['peso']);
+                $query -> bindParam(':edad', $datos['edad']);
                 $query -> bindParam(':descripcion', $datos['descripcion']);
                 $query -> bindParam(':imagen', $datos['imagen']);
+                $query -> bindParam(':fechaReporte', $datos['fechaReporte']);
                 $query -> bindParam(':idUsuario', $datos['idUsuario']);
                 $query -> bindParam(':idUbicacion', $datos['idUbicacion']);
 

@@ -46,6 +46,13 @@ textarea {
     scrollbar-color: transparent transparent;
 }
 
+.empty-post-profile {
+    width: 57vw;
+    margin: auto;
+    min-height: 90vh;
+    background-position: right center;
+}
+
 /* SIDEBAR ADMIN*/
 
 .sidebar-admin {
@@ -758,10 +765,12 @@ textarea {
                 }
                 & p {
                     text-align: start;
-                    text-overflow: ellipsis;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
+                    text-wrap: balance;
+                    word-break: break-all;
                     overflow: hidden;
+                    text-overflow: ellipsis;;
                 }
                 & p:first-of-type {
                     -webkit-line-clamp: 3;
@@ -773,6 +782,10 @@ textarea {
                     -webkit-line-clamp: 1;
                 }
             }
+            & .Perdido { text-decoration: underline gold; }
+            & .En-Adopcion { text-decoration: underline lime; }
+            & .En-Peligro { text-decoration: underline red; }
+            & .Encontrado { text-decoration: underline blueviolet; }
             &:hover a {
                 transition: all .3s ease;
                 transform: scale(105%);

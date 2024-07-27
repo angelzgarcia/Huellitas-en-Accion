@@ -24,7 +24,9 @@
                 $raza = self::limpiarCadena(ucwords(strtolower($_POST['raza']))) ?? '';
                 $tamanio = self::limpiarCadena(ucwords(strtolower($_POST['tamanio']))) ?? '';
                 $peso = self::limpiarCadena($_POST['peso']) ?? '';
-                $descripcion = self::limpiarCadena($_POST['descripcion']) ?? '';
+                $valorEdad = self::limpiarCadena($_POST['valorEdad']) ?? '';
+                $tipoEdadHidden = self::limpiarCadena($_POST['tipoEdadHidden']) ?? '';
+                $descripcion = ucfirst(self::limpiarCadena($_POST['descripcion'])) ?? '';
                 $imagen = $_FILES['imagen'] ?? '';
                 $latitud = self::limpiarCadena($_POST['latitud']) ?? '';
                 $longitud = self::limpiarCadena($_POST['longitud']) ?? '';
@@ -45,6 +47,16 @@
                         [
                             'Alerta' => 'simpleCentro',
                             'Titulo' => 'Ingresa un peso válido',
+                            'Texto' => '',
+                            'Tipo' => 'warning'
+                        ]
+                    );
+                }
+                if (!preg_match('/^\d{1,2}$/', $valorEdad) || $valorEdad < 1) {
+                    return self::sweetAlert(
+                        [
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => 'Ingresa una edad válida',
                             'Texto' => '',
                             'Tipo' => 'warning'
                         ]
@@ -207,17 +219,34 @@
                 $usuario = $query->fetch(PDO::FETCH_ASSOC);
                 $idUsuario = $usuario['idUsuario'];
 
+                $edad = $tipoEdadHidden == 'meses'
+                ?
+                    ($valorEdad == 1
+                    ?
+                    ' mes'
+                    :
+                    ' meses')
+                :
+                    ($valorEdad == 1
+                    ?
+                    ' año'
+                    :
+                    ' años')
+                ;
+
                 $datos = [
-                    'tipoAnimal' => $tipoAnimal,
-                    'estadoSalud' => $saludStatus,
-                    'status' => $status,
                     'nombre' => $nombre,
                     'sexo' => $sexo,
+                    'tipoAnimal' => $tipoAnimal,
                     'raza' => $raza,
+                    'estadoSalud' => $saludStatus,
+                    'status' => $status,
                     'tamanio' => $tamanio,
                     'peso' => "{$peso}kg",
+                    'edad' => "$valorEdad$edad",
                     'descripcion' => $descripcion,
                     'imagen' => $nombreImagen,
+                    'fechaReporte' => date('Y-m-d'),
                     'idUsuario' => $idUsuario,
                     'idUbicacion' => $idUbicacion
                 ];

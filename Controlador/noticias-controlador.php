@@ -31,7 +31,7 @@
             else:
                 ?>
                     <div class="empty-register">
-                        <h2>NO HAY NOTICIAS TODAVIA</h2>
+                        <h2>NO HAY NOTICIAS TODAVÍA</h2>
                     </div>
                 <?php
             endif;

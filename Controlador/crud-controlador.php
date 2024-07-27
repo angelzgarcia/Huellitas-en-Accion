@@ -713,8 +713,10 @@
                             <th>Status</th>
                             <th>Tamaño</th>
                             <th>Peso</th>
+                            <th>Edad</th>
                             <th>Descripcion</th>
                             <th>Imagen</th>
+                            <th>Fecha de Reporte</th>
                             <th>ID Usuario</th>
                             <th>Nombre Del Usuario</th>
                             <th>ID Ubicación</th>
@@ -758,10 +760,14 @@
                                     <td><?=$animal['tamanio']?></td>
                                     <!-- peso -->
                                     <td><?=$animal['peso']?></td>
+                                    <!-- edad -->
+                                    <td><?=$animal['edad']?></td>
                                     <!-- descripcion -->
                                     <td class="min-w-c"><?=$animal['descripcion']?></td>
                                     <!-- imagen -->
                                     <td><img src="<?=RUTARECURSOS?>IMG/SUBIDAS/<?=$animal['imagen']?>" class="image-table"/></td>
+                                    <!-- fecha de reporte -->
+                                    <td><?=$animal['fechaReporte']?></td>
                                     <!-- id usuario -->
                                     <td><?=$animal['idUsuario']?></td>
                                     <!-- nombreUsuario -->
@@ -1389,6 +1395,8 @@
                         <th>Foto</th>
                         <th>Género</th>
                         <th>Tipo de Usuario</th>
+                        <th>Acerca de mi</th>
+                        <th>Ubicación</th>
                         <th>Token</th>
                         <th>Verificado</th>
                     </tr>
@@ -1431,6 +1439,10 @@
                                 <td><?=$usuario['genero'] ?? '<strong><em>NULO</em></strong>' ?></td>
                                 <!-- tipo de usuario -->
                                 <td><?=$usuario['tipoUsuario'] ?? '<strong><em>NULO</em></strong>' ?></td>
+                                <!-- acerca de mi -->
+                                <td><?=$usuario['sobreMi'] ?? '<strong><em>NULO</em></strong>' ?></td>
+                                <!-- ubicación -->
+                                <td><?=$usuario['ubicación'] ?? '<strong><em>NULO</em></strong>' ?></td>
                                 <!-- token de confirmacion -->
                                 <td><?=$usuario['token'] ?? '<strong><em>NULO</em></strong>' ?></td>
                                 <!-- verificado -->

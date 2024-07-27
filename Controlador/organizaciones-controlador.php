@@ -54,7 +54,7 @@
             else:
                 ?>
                     <div class="empty-register">
-                        <h2>NO HAY ORGANIZACIONES TODAVIA</h2>
+                        <h2>NO HAY ORGANIZACIONES TODAVÍA</h2>
                     </div>
                 <?php
             endif;

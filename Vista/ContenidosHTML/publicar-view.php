@@ -276,7 +276,19 @@
                     <!-- peso -->
                     <fieldset>
                         <legend>Peso (Kg)</legend>
-                        <input type="text" id="peso" name="peso"  >
+                        <input type="text" id="peso" name="peso" title="Ingresa solo unidades">
+                    </fieldset>
+
+                    <!-- edad -->
+                    <fieldset>
+                        <legend>Edad estimada</legend>
+                        <select name="tipoEdad" id="tipoEdad">
+                            <option disabled selected>Meses / Años</option>
+                            <option value="meses">Meses</option>
+                            <option value="anios">Años</option>
+                        </select>
+                        <input type="text" id="valorEdad" name="valorEdad" title="Ingresa solo unidades" hidden>
+                        <input type="hidden" id="tipoEdadHidden" name="tipoEdadHidden">
                     </fieldset>
 
                     <!-- descripcion -->
@@ -586,6 +598,23 @@
     }
 </script>
 
+<!-- SELECT E INPUT EDAD -->
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectEdad = document.getElementById('tipoEdad');
+        const inputEdad = document.getElementById('valorEdad');
+        const hiddenTipoEdad = document.getElementById('tipoEdadHidden');
+
+        selectEdad.addEventListener('change', function() {
+            hiddenTipoEdad.value = selectEdad.value;
+            inputEdad.hidden = false;
+            selectEdad.hidden = true;
+        });
+    });
+
+</script>
+
 <!-- AJAX -->
 <script>
     $(document).ready(function() {
@@ -601,6 +630,8 @@
             let raza = document.getElementById('raza').value;
             let tamanio = document.getElementById('tamanio').value;
             let peso = document.getElementById('peso').value;
+            let valorEdad = document.getElementById('valorEdad').value;
+            let tipoEdadHidden = document.getElementById('tipoEdadHidden').value;
             let descripcion = document.getElementById('descripcion').value;
             let saludStatus = document.getElementById('saludStatus').value;
             let tipoAnimal = document.getElementById('tipoAnimal').value;
@@ -665,6 +696,19 @@
 
         });
 
+    });
+</script>
+
+<!-- TOOLTIPS -->
+<script>
+    document.querySelectorAll('input[title]').forEach((input) => {
+        const title = input.getAttribute('title');
+        input.removeAttribute('title');
+        tippy(input, {
+            content: title,
+            arrow: true,
+            animation: 'fade',
+        });
     });
 </script>
 

@@ -20,6 +20,9 @@
 
             </div>
 
+            <!-- FOOTER -->
+            <?php require_once RUTAMODULOS . 'footer.php' ?>
+
             <!-- SIDEBAR -->
             <?php require_once RUTAMODULOS . 'sidebar.php' ?>
 

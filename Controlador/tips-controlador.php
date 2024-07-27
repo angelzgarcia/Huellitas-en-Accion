@@ -33,7 +33,7 @@
             else:
                 ?>
                     <div class="empty-register">
-                        <h2>NO HAY TIPS TODAVIA</h2>
+                        <h2>NO HAY TIPS TODAVÍA</h2>
                     </div>
                 <?php
             endif;
