@@ -26,7 +26,7 @@
             </div>
 
             <!-- CONTENEDOR DE PUBLICACIONES -->
-            <div class="profile-content">
+            <div class="profile-content" style="background-color: <?= $_SESSION['tipoU'] == 'Usuario' ? '' : '#0b141a'; ?>;">
                 <h2>Publicaciones</h2>
                 <!-- CONTENEDOR DE PUBLICACION -->
                 <div class="post-cards-container">

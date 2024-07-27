@@ -50,6 +50,38 @@
 
         }
 
+        protected function obtenerCoordenadas($direccion, $apiKey) {
+            $url = 'https://maps.googleapis.com/maps/api/geocode/json';
+
+            $params = [
+                'address' => urlencode($direccion),
+                'key' => $apiKey
+            ];
+
+            $url .= '?' . http_build_query($params);
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $response = curl_exec($ch); 
+
+            curl_close($ch);
+
+            $data = json_decode($response, true);
+
+            if ($data['status'] === 'OK') {
+                $coordenadas = $data['results'][0]['geometry']['location'];
+                return [
+                    'latitud' => $coordenadas['lat'],
+                    'longitud' => $coordenadas['lng']
+                ];
+            } else {
+                return null;
+            }
+        }
+
         protected function generarCodigo($letra, $longitud, $num) {
             for ($i=1; $i <= $longitud; $i++) {
                 $numero = rand(0,9);

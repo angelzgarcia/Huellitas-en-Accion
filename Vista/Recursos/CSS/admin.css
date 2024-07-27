@@ -692,7 +692,7 @@ textarea {
         width: 64%;
         right: 0;
         scrollbar-width: thin;
-        border-radius: 3em 0 0 0;
+        /* border-radius: 3em 0 0 0; */
         display: flex;
         flex-direction: column;
         /* justify-content: start; */
@@ -770,7 +770,7 @@ textarea {
                     text-wrap: balance;
                     word-break: break-all;
                     overflow: hidden;
-                    text-overflow: ellipsis;;
+                    text-overflow: ellipsis;
                 }
                 & p:first-of-type {
                     -webkit-line-clamp: 3;

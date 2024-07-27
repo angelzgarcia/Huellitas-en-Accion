@@ -369,6 +369,7 @@
             mapTypeControl: true,
             scaleControl: true,
             streetViewControl: true,
+            gestureHandling: 'greedy',
             styles: [
                 {
                     "elementType": "geometry",

@@ -70,34 +70,34 @@
             <!-- PEQUEÑO -->
             <label class="custom-checkbox">
                 <input type="checkbox" name="pequenio" checked/>
-                <span class="checkmark"></span>
+                <span class="checkmark" title="Pequeño" ></span>
             </label>
             <!-- MEDIANO -->
             <label class="custom-checkbox">
                 <input type="checkbox" name="mediano" checked/>
-                <span class="checkmark"></span>
+                <span class="checkmark" title="Mediano" ></span>
             </label>
             <!-- GRANDE -->
             <label class="custom-checkbox">
                 <input type="checkbox" name="grande" checked/>
-                <span class="checkmark"></span>
+                <span class="checkmark" title="Grande"></span>
             </label>
 
             <!-- EDAD -->
             <!-- CACHORRO -->
             <label class="custom-checkbox">
                 <input type="checkbox" name="pequenio" checked/>
-                <span class="checkmark"></span>
+                <span class="checkmark" title="Cachorro"></span>
             </label>
             <!-- ADULTO -->
             <label class="custom-checkbox">
                 <input type="checkbox" name="mediano" checked/>
-                <span class="checkmark"></span>
+                <span class="checkmark" title="Adulto"></span>
             </label>
             <!-- ADULTO MAYOR -->
             <label class="custom-checkbox">
                 <input type="checkbox" name="grande" checked/>
-                <span class="checkmark"></span>
+                <span class="checkmark" title="Adulto mayor"></span>
             </label>
         </div>
 
@@ -145,3 +145,17 @@
     </form>
 
 </div>
+
+<!-- TOOLTIPS -->
+<script>
+    document.querySelectorAll('span[title]').forEach((span) => {
+        const title = span.getAttribute('title');
+        span.removeAttribute('title');
+        tippy(span, {
+            content: title,
+            arrow: true,
+            animation: 'fade',
+            theme: 'custom',
+        });
+    });
+</script>
