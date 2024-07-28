@@ -29,11 +29,11 @@
 
 
         <!-- TARJETAS PERIDOS -->
-        <div class="perdidos-container">
+        <div class="perdidos-container filtradosContainer">
             <!-- PUBLICACION -->
             <?php
                 $posts = new FeedControlador();
-                $posts -> listarFeedControlador('perdidos');
+                $posts -> listarFeedControlador($_GET['views'], '');
             ?>
         </div>
 

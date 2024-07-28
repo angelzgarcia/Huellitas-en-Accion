@@ -314,9 +314,9 @@
                     <input type="text" id="tipoAnimal" name="tipoAnimal" value="<?=$typeOfAnimal?>" hidden   >
 
                     <!-- Latitud -->
-                    <input type="text" id="latitud" name="latitud" hidden   >
+                    <input type="text" id="latitud" name="latitud"    >
                     <!-- longitud -->
-                    <input type="text" id="longitud" name="longitud" hidden   >
+                    <input type="text" id="longitud" name="longitud"    >
 
                     <!-- correo de usuario -->
                     <input type="text" id="correo" name="correo" value="<?= $_SESSION['email'] ?>" hidden   >
@@ -327,7 +327,7 @@
                 <div class="map-button-container">
                     <h3><?=$statusSalud != 'estable' ? '¿Dónde se visualizó por útlima vez?' : ''; ?></h3>
                     <!-- mapa -->
-                    <div id="map" class="map-container"></div>
+                    <div id="mapAnimals" class="map-container"></div>
 
                     <div class="buttons-form-animals">
                         <!-- ubicacion -->
@@ -500,7 +500,7 @@
                 }
             ]
         };
-        mapPerro = new google.maps.Map(document.getElementById('map'), mapOptions);
+        mapPerro = new google.maps.Map(document.getElementById('mapAnimals'), mapOptions);
 
         markerPerro = new google.maps.Marker({
             position: { lat: 23.6345, lng: -102.5528 },
@@ -588,6 +588,7 @@
             alert('Tu navegador no soporta Geolocalización.');
         }
     }
+
 </script>
 
 <!-- PASAR EL FICHERO SUBIDO AL INPUT OCULTO -->

@@ -1913,7 +1913,7 @@ details.details-disabled {
     margin: 4em auto 0 auto;
     min-height: 500px;
     max-height: 500px;
-    width: 97%;
+    width: 90%;
     margin: auto;
     border-radius: 1em;
     display: flex;
@@ -2166,8 +2166,8 @@ input[type="checkbox"] {
         background-image: url(../IMG/Mars_symbol__outline_.svg-removebg-preview.png);
     }
     &:nth-of-type(4) > .checkmark {
-        background-image: url(../IMG/128614370-línea-negra-icono-de-símbolo-de-género-femenino-aislado-sobre-fondo-blanco-símbolo-de-venus-el-removebg-preview.png);
-        background-size: 70px;
+        background-image: url(../IMG/Venus_symbol__outline_.svg-removebg-preview.png);
+        background-size: 40px;
     }
     &:nth-of-type(5) > .checkmark {
         background-image: url(../IMG/icons.png);
@@ -2191,7 +2191,7 @@ input[type="checkbox"] {
         background-image: url(../IMG/illustration-logo-icon-puppy-silhouette-against-a-white-backdrop-free-vector-removebg-preview.png);
     }
     &:nth-of-type(9) > .checkmark {
-        background-image: url(../IMG/dog-face-icon-happy-puppy-head-silhouette-vector-removebg-preview.png);
+        background-image: url(../IMG/dog-face-ic.png);
     }
     &:nth-of-type(10) > .checkmark {
         background-image: url(../IMG/old-english-sheepdog-silhouette-portrait-vector-removebg-preview.png);

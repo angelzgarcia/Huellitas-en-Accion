@@ -36,7 +36,7 @@
     </div>
 
     <!-- FILTRO DE BUSQUEDA -->
-    <form action="" method="post" class="en-adopcion encontrados" style="background-color: #<?=$colorForm?>;">
+    <form action="<?=SERVER?>Ajax/filtroAjax.php" method="POST" class="en-adopcion encontrados formAjax" style="background-color: #<?=$colorForm?>;">
         <span>
             Quiero buscar un....
         </span>
@@ -45,66 +45,66 @@
         <div class="checbox-filter">
             <!-- PERRO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="perro" checked/>
+                <input type="checkbox" name="perro" value="1" checked/>
                 <span class="checkmark"></span>
             </label>
             <!-- GATO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="gato" checked/>
+                <input type="checkbox" name="gato" value="1" checked/>
                 <span class="checkmark"></span>
             </label>
 
             <!-- SEXO -->
             <!-- MACHO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="macho" checked/>
+                <input type="checkbox" name="macho" value="1" checked/>
                 <span class="checkmark"></span>
             </label>
             <!-- HEMBRA -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="macho" checked/>
+                <input type="checkbox" name="hembra" value="1" checked/>
                 <span class="checkmark"></span>
             </label>
 
             <!-- TAMAÑO -->
             <!-- PEQUEÑO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="pequenio" checked/>
+                <input type="checkbox" name="pequenio" value="1" checked/>
                 <span class="checkmark" title="Pequeño" ></span>
             </label>
             <!-- MEDIANO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="mediano" checked/>
+                <input type="checkbox" name="mediano" value="1" checked/>
                 <span class="checkmark" title="Mediano" ></span>
             </label>
             <!-- GRANDE -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="grande" checked/>
+                <input type="checkbox" name="grande" value="1" checked/>
                 <span class="checkmark" title="Grande"></span>
             </label>
 
             <!-- EDAD -->
             <!-- CACHORRO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="pequenio" checked/>
+                <input type="checkbox" name="cachorro" value="1" checked/>
                 <span class="checkmark" title="Cachorro"></span>
             </label>
             <!-- ADULTO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="mediano" checked/>
+                <input type="checkbox" name="adulto" value="1" checked/>
                 <span class="checkmark" title="Adulto"></span>
             </label>
             <!-- ADULTO MAYOR -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="grande" checked/>
+                <input type="checkbox" name="adultoMayor" value="1" checked/>
                 <span class="checkmark" title="Adulto mayor"></span>
             </label>
         </div>
 
+        <!-- ESTADOS DE LA REPUBLICA -->
         <div class="submit-check-form">
-            <!-- ESTADOS DE LA REPUBLICA -->
-            <select name="" id="">
-                <option value="">Ubicación</option>
+            <select name="estado" id="estado">
+                <option selected disabled>Ubicación</option>
                 <option value="aguascalientes">Aguascalientes</option>
                 <option value="baja-california">Baja California</option>
                 <option value="baja-california-sur">Baja California Sur</option>
@@ -139,12 +139,76 @@
                 <option value="zacatecas">Zacatecas</option>
             </select>
             <!-- BOTON ENVIAR -->
-            <button type="button"><span style="margin: 0 1.5em;">Buscar</span> <i class="fa-solid fa-paw"></i></button>
+            <button type="submit"><span style="margin: 0 1.5em;">Buscar</span> <i class="fa-solid fa-paw"></i></button>
         </div>
 
+        <input type="text" name="status" value="<?=htmlspecialchars($_GET['views'])?>" hidden readonly>
     </form>
+    <!-- <div class="RespuestaAjax"></div> -->
 
 </div>
+
+<!-- AJAX -->
+<script>
+    $(document).ready(function() {
+        $('.formAjax').submit(function(e) {
+            e.preventDefault();
+
+            let form = $(this);
+            let metodo = form.attr('method');
+            let accion = form.attr('action');
+            // let respuesta = form.find('.RespuestaAjax');
+            let formData = new FormData(this);
+            if (formData.entries().next().done) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Selecciona al menos un filtro de búsqueda',
+                    text: '',
+                    width: 400,
+                    showConfirmButton: false,
+                    timer: 1200,
+                    toast: true,
+                });
+                return false;
+            }
+
+            Swal.fire({
+                title: 'Buscando...',
+                // icon: 'info',
+                allowOutsideClick: false,
+                width: 210,
+                showConfirmButton: false,
+                timer: 900,
+                toast: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            $.ajax({
+                url: accion,
+                type: metodo,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+
+                success: function(data) {
+                    setTimeout(function() {
+                        $('.filtradosContainer').html(data);
+                        // location.reload();
+                    }, 900);
+                },
+                error: function() {
+                    Swal.fire('Ocurrió un error inesperado', 'Por favor recargue la página', 'error');
+                }
+
+            });
+
+        });
+
+    });
+</script>
 
 <!-- TOOLTIPS -->
 <script>

@@ -31,11 +31,11 @@
         <?php include_once RUTAMODULOS . "filtro.php"; ?>
 
         <!-- TARJETAS ENCONTRADOS -->
-        <div class="encontrados-container">
+        <div class="encontrados-container filtradosContainer">
             <!-- PUBLICACION -->
             <?php
                 $posts = new FeedControlador();
-                $posts -> listarFeedControlador('encontrados');
+                $posts -> listarFeedControlador($_GET['views'], '');
             ?>
         </div>
 

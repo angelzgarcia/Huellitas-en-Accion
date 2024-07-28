@@ -65,7 +65,7 @@
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-            $response = curl_exec($ch); 
+            $response = curl_exec($ch);
 
             curl_close($ch);
 
@@ -77,6 +77,20 @@
                     'latitud' => $coordenadas['lat'],
                     'longitud' => $coordenadas['lng']
                 ];
+            } else {
+                return null;
+            }
+        }
+
+        protected static function getStateBoundaries($stateName) {
+            $apiKey = 'AIzaSyAXzKi-hpY--xwLB5skRjCIRNVyRHNfY7I';
+            $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($stateName) . ",+Mexico&key=" . $apiKey;
+
+            $response = file_get_contents($url);
+            $data = json_decode($response, true);
+
+            if (!empty($data['results'][0]['geometry']['bounds'])) {
+                return $data['results'][0]['geometry']['bounds'];
             } else {
                 return null;
             }

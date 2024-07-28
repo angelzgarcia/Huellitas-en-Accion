@@ -5,10 +5,10 @@
 
     class FeedControlador extends FeedModelo {
 
-        public function listarFeedControlador($status) {
+        public function listarFeedControlador($status, $datos) {
 
             $query = '';
-            switch ($status) {
+            switch (self::limpiarCadena($status)) {
                 case 'perdidos':
                     $query = self::listarPerdidosModelo();
                     break;
@@ -17,12 +17,16 @@
                     $query = self::listarEncontradosModelo();
                     break;
 
-                case 'en-adopcion':
+                case 'en_adopcion':
                     $query = self::listarEnAdopcionModelo();
                     break;
 
-                case 'en-peligro':
+                case 'en_peligro':
                     $query = self::listarEnPeligroModelo();
+                    break;
+
+                case 'filtro':
+                    $query = self::listarFiltradosModelo($datos);
                     break;
 
                 default:
@@ -89,6 +93,54 @@
                     </div>
                 <?php
             endif;
+
+        }
+
+        public function filtrarFeedControlador() {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $perro = isset($_POST['perro']) ? 1 : 0;
+                $gato = isset($_POST['gato']) ? 1 : 0;
+                $macho = isset($_POST['macho']) ? 1 : 0;
+                $hembra = isset($_POST['hembra']) ? 1 : 0;
+                $pequeño = isset($_POST['pequenio']) ? 1 : 0;
+                $mediano = isset($_POST['mediano']) ? 1 : 0;
+                $grande = isset($_POST['grande']) ? 1 : 0;
+                $cachorroMin = isset($_POST['cachorro']) ? 0 : '';
+                $cachorroMax = isset($_POST['cachorro']) ? 12 : '';
+                $adultoMin = isset($_POST['adulto']) ? 13 : '';
+                $adultoMax = isset($_POST['adulto']) ? 84 : '';
+                $adultoMayorMin = isset($_POST['adultoMayor']) ? 85 : '';
+                $estado = isset($_POST['estado']) ? self::limpiarCadena($_POST['estado']) : '';
+                $status = isset($_POST['status']) ? self::limpiarCadena(ucwords(strtolower(str_replace('_', ' ', substr($_POST['status'], -1) == 's') ? substr($_POST['status'], 0, strlen($_POST['status']) - 1) : str_replace('_', ' ',$_POST['status'])))) : '';
+                $limites = $estado ? self::getStateBoundaries($estado) : null;
+
+                $datos = [
+                    'perro' => $perro,
+                    'gato' => $gato,
+                    'macho' => $macho,
+                    'hembra' => $hembra,
+                    'pequeño' => $pequeño,
+                    'mediano' => $mediano,
+                    'grande' => $grande,
+                    'cachorroMin' => $cachorroMin,
+                    'cachorroMax' => $cachorroMax,
+                    'adultoMin' => $adultoMin,
+                    'adultoMax' => $adultoMax,
+                    'adultoMayorMin' => $adultoMayorMin,
+                    'limites' => $limites,
+                    'status' => $status,
+                ];
+
+                self::listarFeedControlador('filtro', $datos);
+                // return self::listarFeedControlador('filtro', $datos);
+                // // $purge = '';
+                // // foreach ($datos as $dato) {
+                // //     $purge .= " $dato ";
+                // // }
+                // return '<script>alert("'.$datos['limites']['southwest']['lng'].'")</script>';
+
+            }
+
 
         }
 

@@ -32,11 +32,11 @@
         <?php include_once RUTAMODULOS . "filtro.php"; ?>
 
         <!-- ORGANIZACIONES VISTA / CONTENIDO -->
-        <div class="en-adopcion-container">
+        <div class="en-adopcion-container filtradosContainer">
             <!-- PUBLICACION -->
             <?php
                 $posts = new FeedControlador();
-                $posts -> listarFeedControlador('en-adopcion');
+                $posts -> listarFeedControlador($_GET['views'], '');
             ?>
         </div>
 

@@ -31,11 +31,11 @@
         <?php include_once RUTAMODULOS . "filtro.php"; ?>
 
         <!-- ORGANIZACIONES VISTA / CONTENIDO -->
-        <div class="en-peligro-container">
+        <div class="en-peligro-container filtradosContainer">
             <!-- PUBLICACION -->
             <?php
                 $posts = new FeedControlador();
-                $posts -> listarFeedControlador('en-peligro');
+                $posts -> listarFeedControlador($_GET['views'], '');
             ?>
         </div>
 

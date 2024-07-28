@@ -11,13 +11,11 @@
             <!-- FILTRO DE BUSQUEDA -->
             <?php require_once RUTAMODULOS . 'filtro.php'; ?>
 
-            <div class="feed-container">
-
+            <div class="feed-container filtradosContainer">
                 <?php
                     $posts = new FeedControlador();
-                    $posts -> listarFeedControlador('');
+                    $posts -> listarFeedControlador($_GET['views'], '');
                 ?>
-
             </div>
 
             <!-- FOOTER -->
