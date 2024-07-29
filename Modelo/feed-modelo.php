@@ -6,15 +6,17 @@
     class FeedModelo extends MainModel {
 
         protected function listarFeedModelo() {
+
             $query = self::conectDB()->prepare('
                 SELECT a.*, us.nombre AS nombreUs, us.apellidos AS apellidosUs, ub.*
                 FROM animal a
                 JOIN usuario us ON a.idUsuario = us.idUsuario
                 JOIN ubicacion ub ON a.idUbicacion = ub.idUbicacion
+                WHERE ub.latitud BETWEEN "14.3895" AND "32.7188"
+                AND ub.longitud BETWEEN "-118.6523" AND "-86.5887"
                 ORDER BY a.idAnimal DESC
             ');
-
-            $query -> execute();
+            $query->execute();
             return $query;
         }
 
@@ -25,10 +27,11 @@
                 JOIN usuario us ON a.idUsuario = us.idUsuario
                 JOIN ubicacion ub ON a.idUbicacion = ub.idUbicacion
                 WHERE a.status = "Perdido"
+                AND ub.latitud BETWEEN "14.5374" AND "32.7201"
+                AND ub.longitud BETWEEN "-118.9347" AND "-86.6904"
                 ORDER BY a.idAnimal DESC
             ');
-
-            $query -> execute();
+            $query->execute();
             return $query;
         }
 
@@ -39,10 +42,11 @@
                 JOIN usuario us ON a.idUsuario = us.idUsuario
                 JOIN ubicacion ub ON a.idUbicacion = ub.idUbicacion
                 WHERE a.status = "Encontrado"
+                AND ub.latitud BETWEEN "14.5374" AND "32.7201"
+                AND ub.longitud BETWEEN "-118.9347" AND "-86.6904"
                 ORDER BY a.idAnimal DESC
             ');
-
-            $query -> execute();
+            $query->execute();
             return $query;
         }
 
@@ -53,10 +57,11 @@
                 JOIN usuario us ON a.idUsuario = us.idUsuario
                 JOIN ubicacion ub ON a.idUbicacion = ub.idUbicacion
                 WHERE a.status = "En Adopcion"
+                AND ub.latitud BETWEEN "14.5374" AND "32.7201"
+                AND ub.longitud BETWEEN "-118.9347" AND "-86.6904"
                 ORDER BY a.idAnimal DESC
             ');
-
-            $query -> execute();
+            $query->execute();
             return $query;
         }
 
@@ -67,10 +72,11 @@
                 JOIN usuario us ON a.idUsuario = us.idUsuario
                 JOIN ubicacion ub ON a.idUbicacion = ub.idUbicacion
                 WHERE a.status = "En Peligro"
+                AND ub.latitud BETWEEN "14.5374" AND "32.7201"
+                AND ub.longitud BETWEEN "-118.9347" AND "-86.6904"
                 ORDER BY a.idAnimal DESC
             ');
-
-            $query -> execute();
+            $query->execute();
             return $query;
         }
 
@@ -111,7 +117,7 @@
                                 ELSE
                                     0
                             END
-                        ) BETWEEN IFNULL(:cachorroMin, 0) AND IFNULL(:cachorroMax, 12)
+                        ) BETWEEN :cachorroMin AND :cachorroMax
                         OR
                         (
                             CASE
@@ -127,7 +133,7 @@
                                 ELSE
                                     0
                             END
-                        ) BETWEEN IFNULL(:adultoMin, 13) AND IFNULL(:adultoMax, 84)
+                        ) BETWEEN :adultoMin AND :adultoMax
                         OR
                         (
                             CASE
@@ -143,13 +149,14 @@
                                 ELSE
                                     0
                             END
-                        ) >= IFNULL(:adultoMayorMin, 85)
+                        ) >= :adultoMayorMin
                     )';
 
             if ($datos['limites']) {
                 $queryStr .= '
-                AND (ub.latitud BETWEEN :sur AND :norte)
-                AND (ub.longitud BETWEEN :oeste AND :este)';
+                    AND (ub.latitud BETWEEN :sur AND :norte)
+                    AND (ub.longitud BETWEEN :oeste AND :este)
+                ';
             }
 
             $queryStr .= ' ORDER BY a.idAnimal DESC';

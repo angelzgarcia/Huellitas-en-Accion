@@ -21,7 +21,7 @@
                 $status = self::limpiarCadena(ucwords(strtolower(str_replace('-', ' ', $_POST['status'])))) ?? '';
                 $nombre = self::limpiarCadena(ucwords(strtolower($_POST['nombre']))) ?? '';
                 $sexo = self::limpiarCadena(ucwords(strtolower($_POST['sexo']))) ?? '';
-                $raza = self::limpiarCadena(ucwords(strtolower($_POST['raza']))) ?? '';
+                $raza = self::limpiarCadena(ucwords(strtolower(str_replace('-', ' ', $_POST['raza'])))) ?? '';
                 $tamanio = self::limpiarCadena(ucwords(strtolower($_POST['tamanio']))) ?? '';
                 $peso = self::limpiarCadena($_POST['peso']) ?? '';
                 $valorEdad = self::limpiarCadena($_POST['valorEdad']) ?? '';
@@ -31,6 +31,17 @@
                 $latitud = self::limpiarCadena($_POST['latitud']) ?? '';
                 $longitud = self::limpiarCadena($_POST['longitud']) ?? '';
                 $correo = self::limpiarCadena($_POST['correo']) ?? '';
+
+                if ($latitud < 14.5374 || $latitud > 32.7201 || $longitud < -118.9347 || $longitud > -86.6904) {
+                    return self::sweetAlert(
+                        [
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => 'Tu ubicación debe estar dentro de la República Mexicana.',
+                            'Texto' => '',
+                            'Tipo' => 'warning'
+                        ]
+                    );
+                }
 
                 if (!preg_match('/^[A-Za-z ]+$/', $nombre)) {
                     return self::sweetAlert(
@@ -52,7 +63,7 @@
                         ]
                     );
                 }
-                if (!preg_match('/^\d{1,2}$/', $valorEdad) || $valorEdad < 1) {
+                if (!preg_match('/^\d{1,2}$/', $valorEdad)) {
                     return self::sweetAlert(
                         [
                             'Alerta' => 'simpleCentro',
@@ -62,11 +73,59 @@
                         ]
                     );
                 }
+                switch ($tipoEdadHidden) {
+                    case 'meses':
+                        if ($valorEdad > 12) {
+                            return self::sweetAlert(
+                                [
+                                    'Alerta' => 'simpleCentro',
+                                    'Titulo' => 'Estas intentando ingresar la edad en años',
+                                    'Texto' => '',
+                                    'Tipo' => 'warning'
+                                ]
+                            );
+
+                        } elseif ($valorEdad < 1) {
+                            return self::sweetAlert(
+                                [
+                                    'Alerta' => 'simpleCentro',
+                                    'Titulo' => 'Ingresa una edad válida',
+                                    'Texto' => '',
+                                    'Tipo' => 'warning'
+                                ]
+                            );
+                        }
+                        break;
+
+                    default:
+                        if ($valorEdad > 50) {
+                            return self::sweetAlert(
+                                [
+                                    'Alerta' => 'simpleCentro',
+                                    'Titulo' => 'Ingresa una edad válida',
+                                    'Texto' => '',
+                                    'Tipo' => 'warning'
+                                ]
+                            );
+
+                        } elseif ($valorEdad < 1) {
+                            return self::sweetAlert(
+                                [
+                                    'Alerta' => 'simpleCentro',
+                                    'Titulo' => 'Estas intentando ingresar la edad en meses',
+                                    'Texto' => '',
+                                    'Tipo' => 'warning'
+                                ]
+                            );
+                        }
+                        break;
+                }
+
                 if (strlen($descripcion) < 50) {
                     return self::sweetAlert(
                         [
                             'Alerta' => 'simpleCentro',
-                            'Titulo' => 'Caracteres insuficientes',
+                            'Titulo' => 'Caracteres mínimos insuficientes',
                             'Texto' => 'Faltan: '. (50-strlen($descripcion)).'',
                             'Tipo' => 'warning'
                         ]
@@ -75,7 +134,7 @@
                     return self::sweetAlert(
                         [
                             'Alerta' => 'simpleCentro',
-                            'Titulo' => 'Demasiados caracteres',
+                            'Titulo' => '¡Demasiados caracteres!',
                             'Texto' => 'Sobran: '. (strlen($descripcion)-500).'',
                             'Tipo' => 'warning'
                         ]
@@ -163,44 +222,7 @@
                     }
                 }
 
-                $query = self::conectDB() -> prepare("
-                    INSERT INTO ubicacion (latitud, longitud)
-                    VALUES (:latitud, :longitud)
-                ");
-
-                $query -> bindParam(':latitud', $latitud);
-                $query -> bindParam(':longitud', $longitud);
-                $query -> execute();
-
-                if ($query -> rowCount() != 1) {
-                    return self::sweetAlert([
-                        'Alerta' => 'simpleCentro',
-                        'Titulo' => 'No se pudo guardar la ubicación.',
-                        'Texto' => '',
-                        'Tipo' => 'error'
-                    ]);
-
-                }
-                $query = self::conectDB()->prepare('
-                    SELECT idUbicacion FROM ubicacion
-                    WHERE latitud = :latitud AND longitud = :longitud
-                    ORDER BY idUbicacion DESC
-                    LIMIT 1
-                ');
-                $query->bindParam(':latitud', $latitud);
-                $query->bindParam(':longitud', $longitud);
-                $query->execute();
-                if ($query->rowCount() != 1) {
-                    return self::sweetAlert([
-                        'Alerta' => 'simpleCentro',
-                        'Titulo' => 'Hubo un error con la ubicación',
-                        'Texto' => '',
-                        'Tipo' => 'error'
-                    ]);
-                }
-                $ubicacion = $query->fetch(PDO::FETCH_ASSOC);
-                $idUbicacion = $ubicacion['idUbicacion'];
-
+                // CONSULTA ID USUARIO
                 $query = self::conectDB() -> prepare('
                     SELECT idUsuario FROM usuario
                     WHERE correo_electronico = :correo
@@ -218,6 +240,43 @@
                 }
                 $usuario = $query->fetch(PDO::FETCH_ASSOC);
                 $idUsuario = $usuario['idUsuario'];
+
+                // COUSNULTA INSERCION DE UBICACION
+                $query = self::conectDB() -> prepare("
+                    INSERT INTO ubicacion (latitud, longitud)
+                    VALUES (:latitud, :longitud)
+                ");
+                $query -> bindParam(':latitud', $latitud);
+                $query -> bindParam(':longitud', $longitud);
+                $query -> execute();
+
+                if ($query -> rowCount() != 1) {
+                    return self::sweetAlert([
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => 'No se pudo determinar la ubicación.',
+                        'Texto' => '',
+                        'Tipo' => 'error'
+                    ]);
+
+                }
+
+                // CONSULTA DE ULTIMA UBICACION INSERTADA
+                $query = self::conectDB()->prepare('
+                    SELECT * FROM ubicacion
+                    ORDER BY idUbicacion DESC
+                    LIMIT 1
+                ');
+                $query->execute();
+                if ($query->rowCount() != 1) {
+                    return self::sweetAlert([
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => 'Hubo un error con la ubicación, lo sentimos',
+                        'Texto' => '',
+                        'Tipo' => 'error'
+                    ]);
+                }
+                $ubicacion = $query->fetch(PDO::FETCH_ASSOC);
+                $idUbicacion = $ubicacion['idUbicacion'];
 
                 $edad = $tipoEdadHidden == 'meses'
                 ?
@@ -265,27 +324,41 @@
                 try {
                     $query = self::publicarModelo($datos);
 
-                    if ($query->rowCount() != 1) {
+                    if (!$query)  {
+                        $deleted = self::eliminarUbicacion($datos['idUbicacion']);
+
+                        if (!$deleted) {
+                            return self::sweetAlert([
+                                'Alerta' => 'simpleCentro',
+                                'Titulo' => 'Estamos experimentando problemas, por favor intenta más tarde',
+                                // 'Texto' => $e->getMessage(),
+                                'Tipo' => 'error'
+                            ]);
+
+                        } else {
+                            return self::sweetAlert([
+                                'Alerta' => 'simpleCentro',
+                                'Titulo' => 'Lo sentimos mucho, hubo un problema al realizar la publicación',
+                                // 'Texto' => $e->getMessage(),
+                                'Tipo' => 'error'
+                            ]);
+                        }
+
+                    } else {
                         return self::sweetAlert([
-                            'Alerta' => 'simpleCentro',
-                            'Titulo' => 'Lo sentimos mucho, hubo un problema al realizar la publicación',
-                            'Tipo' => 'error'
+                            'Alerta' => 'limpiar',
+                            'Titulo' => '(^_^)b',
+                            'Texto' => '¡Tu publicación se revisará para su aprobación!',
+                            'Tipo' => 'success'
                         ]);
                     }
-
-                    return self::sweetAlert([
-                        'Alerta' => 'limpiar',
-                        'Titulo' => '(^_^)b',
-                        'Texto' => '¡Tu publicación se revisará para su aprobación!',
-                        'Tipo' => 'success'
-                    ]);
 
                 } catch (Exception $e) {
                     self::eliminarUbicacion($idUbicacion);
                     return self::sweetAlert([
                         'Alerta' => 'simpleCentro',
                         'Titulo' => 'Lo sentimos mucho, hubo un problema al realizar la publicación',
-                        // 'Texto' => $e->getMessage(),
+                        'Texto' => $e->getMessage(),
                         'Tipo' => 'error'
                     ]);
 

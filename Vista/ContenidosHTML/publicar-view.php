@@ -314,9 +314,9 @@
                     <input type="text" id="tipoAnimal" name="tipoAnimal" value="<?=$typeOfAnimal?>" hidden   >
 
                     <!-- Latitud -->
-                    <input type="text" id="latitud" name="latitud"    >
+                    <input type="text" id="latitud" name="latitud" hidden >
                     <!-- longitud -->
-                    <input type="text" id="longitud" name="longitud"    >
+                    <input type="text" id="longitud" name="longitud" hidden >
 
                     <!-- correo de usuario -->
                     <input type="text" id="correo" name="correo" value="<?= $_SESSION['email'] ?>" hidden   >

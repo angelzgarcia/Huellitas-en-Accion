@@ -11,7 +11,7 @@
         exit();
 
     else:
-        include_once RUTAMODULOS . 'head.php';
+        // include_once RUTAMODULOS . 'head.php';
         require_once RUTACONTROL . "feed-controlador.php";
 
         $s = new FeedControlador();

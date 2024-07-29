@@ -45,58 +45,58 @@
         <div class="checbox-filter">
             <!-- PERRO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="perro" value="1" checked/>
+                <input type="checkbox" id="perro" name="perro" value="1" checked/>
                 <span class="checkmark"></span>
             </label>
             <!-- GATO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="gato" value="1" checked/>
+                <input type="checkbox" id="gato" name="gato" value="1" checked/>
                 <span class="checkmark"></span>
             </label>
 
             <!-- SEXO -->
             <!-- MACHO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="macho" value="1" checked/>
+                <input type="checkbox" id="macho" name="macho" value="1" checked/>
                 <span class="checkmark"></span>
             </label>
             <!-- HEMBRA -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="hembra" value="1" checked/>
+                <input type="checkbox" id="hembra" name="hembra" value="1" checked/>
                 <span class="checkmark"></span>
             </label>
 
             <!-- TAMAÑO -->
             <!-- PEQUEÑO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="pequenio" value="1" checked/>
+                <input type="checkbox" id="pequenio" name="pequenio" value="1" checked/>
                 <span class="checkmark" title="Pequeño" ></span>
             </label>
             <!-- MEDIANO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="mediano" value="1" checked/>
+                <input type="checkbox" id="mediano" name="mediano" value="1" checked/>
                 <span class="checkmark" title="Mediano" ></span>
             </label>
             <!-- GRANDE -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="grande" value="1" checked/>
+                <input type="checkbox" id="grande" name="grande" value="1" checked/>
                 <span class="checkmark" title="Grande"></span>
             </label>
 
             <!-- EDAD -->
             <!-- CACHORRO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="cachorro" value="1" checked/>
+                <input type="checkbox" id="cachorro" name="cachorro" value="1" checked/>
                 <span class="checkmark" title="Cachorro"></span>
             </label>
             <!-- ADULTO -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="adulto" value="1" checked/>
+                <input type="checkbox" id="adulto" name="adulto" value="1" checked/>
                 <span class="checkmark" title="Adulto"></span>
             </label>
             <!-- ADULTO MAYOR -->
             <label class="custom-checkbox">
-                <input type="checkbox" name="adultoMayor" value="1" checked/>
+                <input type="checkbox" id="adultoMayor" name="adultoMayor" value="1" checked/>
                 <span class="checkmark" title="Adulto mayor"></span>
             </label>
         </div>
@@ -105,6 +105,7 @@
         <div class="submit-check-form">
             <select name="estado" id="estado">
                 <option selected disabled>Ubicación</option>
+                <option value="">República Mexicana</option>
                 <option value="aguascalientes">Aguascalientes</option>
                 <option value="baja-california">Baja California</option>
                 <option value="baja-california-sur">Baja California Sur</option>
@@ -157,6 +158,17 @@
             let form = $(this);
             let metodo = form.attr('method');
             let accion = form.attr('action');
+            let perro = document.getElementById('perro').checked;
+            let gato  = document.getElementById('gato').checked;
+            let macho = document.getElementById('macho').checked;
+            let hembra = document.getElementById('hembra').checked;
+            let pequenio = document.getElementById('pequenio').checked;
+            let mediano = document.getElementById('mediano').checked;
+            let grande = document.getElementById('grande').checked;
+            let cachorro = document.getElementById('cachorro').checked;
+            let adulto = document.getElementById('adulto').checked;
+            let adultoMayor = document.getElementById('adultoMayor').checked;
+
             // let respuesta = form.find('.RespuestaAjax');
             let formData = new FormData(this);
             if (formData.entries().next().done) {
@@ -172,38 +184,96 @@
                 return false;
             }
 
-            Swal.fire({
-                title: 'Buscando...',
-                // icon: 'info',
-                allowOutsideClick: false,
-                width: 210,
-                showConfirmButton: false,
-                timer: 900,
-                toast: true,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
+            if (!(perro || gato || macho || hembra || pequenio || mediano || grande || cachorro || adulto || adultoMayor)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Selecciona al menos un filtro de búsqueda',
+                    text: '',
+                    width: 400,
+                    showConfirmButton: false,
+                    timer: 1200,
+                    toast: true,
+                });
 
-            $.ajax({
-                url: accion,
-                type: metodo,
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
+            } else if (!(perro || gato)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Selecciona al menos un filtro de tipo de animal',
+                    text: '',
+                    width: 400,
+                    showConfirmButton: false,
+                    timer: 1200,
+                    toast: true,
+                });
 
-                success: function(data) {
-                    setTimeout(function() {
-                        $('.filtradosContainer').html(data);
-                        // location.reload();
-                    }, 900);
-                },
-                error: function() {
-                    Swal.fire('Ocurrió un error inesperado', 'Por favor recargue la página', 'error');
-                }
+            } else if (!(macho || hembra)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Selecciona al menos un filtro de sexo',
+                    text: '',
+                    width: 400,
+                    showConfirmButton: false,
+                    timer: 1200,
+                    toast: true,
+                });
 
-            });
+            } else if (!(pequenio || mediano || grande)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Selecciona al menos un filtro de tamaño',
+                    text: '',
+                    width: 400,
+                    showConfirmButton: false,
+                    timer: 1200,
+                    toast: true,
+                });
+
+            } else if (!(cachorro || adulto || adultoMayor)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Selecciona al menos un filtro de edad',
+                    text: '',
+                    width: 400,
+                    showConfirmButton: false,
+                    timer: 1200,
+                    toast: true,
+                });
+
+            } else {
+                Swal.fire({
+                    title: 'Buscando...',
+                    // icon: 'info',
+                    allowOutsideClick: false,
+                    width: 210,
+                    showConfirmButton: false,
+                    timer: 900,
+                    toast: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                $.ajax({
+                    url: accion,
+                    type: metodo,
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+
+                    success: function(data) {
+                        setTimeout(function() {
+                            $('.filtradosContainer').html(data);
+                            // location.reload();
+                        }, 900);
+                    },
+                    error: function() {
+                        Swal.fire('Ocurrió un error inesperado', 'Por favor recargue la página', 'error');
+                    }
+
+                });
+
+            }
 
         });
 

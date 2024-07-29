@@ -33,7 +33,7 @@
                     <!-- PUBLICACION -->
                     <?php
                         $post = new PerfilControlador();
-                        $post -> listarPostsControlador();
+                        $post -> listarPostsControlador(PerfilModelo::encryption(htmlspecialchars($_SESSION['email'])));
                     ?>
                 </div>
 

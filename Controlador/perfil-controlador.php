@@ -5,8 +5,18 @@
 
     class PerfilControlador extends PerfilModelo {
 
-        public function listarPostsControlador() {
-            $query = self::listarPostsModelo();
+        public function listarPostsControlador($email) {
+            $query = self::conectDB() -> prepare('
+                SELECT idUsuario FROM usuario
+                WHERE correo_electronico = :email
+            ');
+            $email = self::decryption($email);
+            $query -> bindParam(':email', $email);
+            $query -> execute();
+
+            $idUser = $query -> rowCount() > 0 ? $query -> fetch(PDO::FETCH_ASSOC) : '';
+            $query = self::listarPostsModelo(self::encryption($idUser['idUsuario']));
+
             $posts = $query -> rowCount() > 0 ? $query -> fetchAll(PDO::FETCH_ASSOC) : [];
             $apiKey = 'AIzaSyAXzKi-hpY--xwLB5skRjCIRNVyRHNfY7I';
 

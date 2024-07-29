@@ -105,13 +105,14 @@
                 $pequeño = isset($_POST['pequenio']) ? 1 : 0;
                 $mediano = isset($_POST['mediano']) ? 1 : 0;
                 $grande = isset($_POST['grande']) ? 1 : 0;
-                $cachorroMin = isset($_POST['cachorro']) ? 0 : '';
-                $cachorroMax = isset($_POST['cachorro']) ? 12 : '';
-                $adultoMin = isset($_POST['adulto']) ? 13 : '';
-                $adultoMax = isset($_POST['adulto']) ? 84 : '';
-                $adultoMayorMin = isset($_POST['adultoMayor']) ? 85 : '';
-                $estado = isset($_POST['estado']) ? self::limpiarCadena($_POST['estado']) : '';
+                $cachorroMin = isset($_POST['cachorro']) ? 0 : null;
+                $cachorroMax = isset($_POST['cachorro']) ? 12 : null;
+                $adultoMin = isset($_POST['adulto']) ? 13 : null;
+                $adultoMax = isset($_POST['adulto']) ? 84 : null;
+                $adultoMayorMin = isset($_POST['adultoMayor']) ? 85 : null;
+                $estado = isset($_POST['estado']) ? self::limpiarCadena($_POST['estado']) : null;
                 $status = isset($_POST['status']) ? self::limpiarCadena(ucwords(strtolower(str_replace('_', ' ', substr($_POST['status'], -1) == 's') ? substr($_POST['status'], 0, strlen($_POST['status']) - 1) : str_replace('_', ' ',$_POST['status'])))) : '';
+
                 $limites = $estado ? self::getStateBoundaries($estado) : null;
 
                 $datos = [
@@ -138,6 +139,7 @@
                 // //     $purge .= " $dato ";
                 // // }
                 // return '<script>alert("'.$datos['limites']['southwest']['lng'].'")</script>';
+                // return '<script>alert("'.$estado.'")</script>';
 
             }
 

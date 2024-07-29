@@ -5,9 +5,13 @@
         class PublicarModelo extends MainModel {
 
             public function eliminarUbicacion($idUbicacion) {
-                $query = self::conectDB()->prepare('DELETE FROM ubicacion WHERE idUbicacion = :idUbicacion');
+                $query = self::conectDB()->prepare('
+                    DELETE FROM ubicacion
+                    WHERE idUbicacion = :idUbicacion
+                ');
                 $query->bindParam(':idUbicacion', $idUbicacion);
                 $query->execute();
+                return $query;
             }
 
             protected function publicarModelo($datos) {

@@ -20,7 +20,7 @@
             return $respuesta;
         }
 
-        public function encryption($string){
+        public static function encryption($string){
             $output=FALSE;
             $key=hash('sha256', SECRET_KEY);
             $iv=substr(hash('sha256', SECRET_IV), 0, 16);
@@ -83,6 +83,142 @@
         }
 
         protected static function getStateBoundaries($stateName) {
+            $stateBoundaries = [
+                'aguascalientes' => [
+                    'northeast' => ['lat' => 22.467930, 'lng' => -101.999544],
+                    'southwest' => ['lat' => 21.572222, 'lng' => -102.977700]
+                ],
+                'baja-california' => [
+                    'northeast' => ['lat' => 32.718831, 'lng' => -114.722009],
+                    'southwest' => ['lat' => 27.153346, 'lng' => -118.421964]
+                ],
+                'baja-california-sur' => [
+                    'northeast' => ['lat' => 28.323139, 'lng' => -109.442458],
+                    'southwest' => ['lat' => 22.870500, 'lng' => -114.895908]
+                ],
+                'campeche' => [
+                    'northeast' => ['lat' => 20.861787, 'lng' => -89.175528],
+                    'southwest' => ['lat' => 17.894728, 'lng' => -92.271587]
+                ],
+                'chiapas' => [
+                    'northeast' => ['lat' => 17.849645, 'lng' => -90.409092],
+                    'southwest' => ['lat' => 14.532369, 'lng' => -94.320797]
+                ],
+                'chihuahua' => [
+                    'northeast' => ['lat' => 31.868074, 'lng' => -103.044534],
+                    'southwest' => ['lat' => 25.419606, 'lng' => -109.292203]
+                ],
+                'coahuila' => [
+                    'northeast' => ['lat' => 29.849764, 'lng' => -100.079045],
+                    'southwest' => ['lat' => 24.334417, 'lng' => -104.570639]
+                ],
+                'colima' => [
+                    'northeast' => ['lat' => 19.523552, 'lng' => -103.472111],
+                    'southwest' => ['lat' => 18.700247, 'lng' => -104.698487]
+                ],
+                'cdmx' => [
+                    'northeast' => ['lat' => 19.592757, 'lng' => -98.960426],
+                    'southwest' => ['lat' => 19.187271, 'lng' => -99.360807]
+                ],
+                'durango' => [
+                    'northeast' => ['lat' => 26.984909, 'lng' => -102.020614],
+                    'southwest' => ['lat' => 22.565498, 'lng' => -107.994708]
+                ],
+                'guanajuato' => [
+                    'northeast' => ['lat' => 21.991139, 'lng' => -100.345539],
+                    'southwest' => ['lat' => 19.768755, 'lng' => -102.218181]
+                ],
+                'guerrero' => [
+                    'northeast' => ['lat' => 18.915947, 'lng' => -98.014743],
+                    'southwest' => ['lat' => 16.192055, 'lng' => -102.501297]
+                ],
+                'hidalgo' => [
+                    'northeast' => ['lat' => 21.338667, 'lng' => -98.347422],
+                    'southwest' => ['lat' => 19.369791, 'lng' => -99.538556]
+                ],
+                'jalisco' => [
+                    'northeast' => ['lat' => 22.755487, 'lng' => -101.846557],
+                    'southwest' => ['lat' => 18.897325, 'lng' => -105.753503]
+                ],
+                'mexico' => [
+                    'northeast' => ['lat' => 20.179758, 'lng' => -98.552774],
+                    'southwest' => ['lat' => 18.003398, 'lng' => -100.406693]
+                ],
+                'michoacan' => [
+                    'northeast' => ['lat' => 20.428374, 'lng' => -100.020261],
+                    'southwest' => ['lat' => 17.649234, 'lng' => -103.514847]
+                ],
+                'morelos' => [
+                    'northeast' => ['lat' => 18.931875, 'lng' => -98.617646],
+                    'southwest' => ['lat' => 18.339939, 'lng' => -99.359817]
+                ],
+                'nayarit' => [
+                    'northeast' => ['lat' => 23.502462, 'lng' => -104.388248],
+                    'southwest' => ['lat' => 20.712262, 'lng' => -106.933468]
+                ],
+                'nuevo-leon' => [
+                    'northeast' => ['lat' => 27.164176, 'lng' => -98.999054],
+                    'southwest' => ['lat' => 23.671708, 'lng' => -101.524282]
+                ],
+                'oaxaca' => [
+                    'northeast' => ['lat' => 18.912792, 'lng' => -93.972220],
+                    'southwest' => ['lat' => 15.894738, 'lng' => -98.745247]
+                ],
+                'puebla' => [
+                    'northeast' => ['lat' => 20.8665109, 'lng' => -97.1503],
+                    'southwest' => ['lat' => 17.4657, 'lng' => -99.0872]
+                ],
+                'queretaro' => [
+                    'northeast' => ['lat' => 21.635462, 'lng' => -99.533128],
+                    'southwest' => ['lat' => 20.102610, 'lng' => -100.529874]
+                ],
+                'quintana-roo' => [
+                    'northeast' => ['lat' => 21.705834, 'lng' => -86.745009],
+                    'southwest' => ['lat' => 17.768891, 'lng' => -89.277342]
+                ],
+                'san-luis-potosi' => [
+                    'northeast' => ['lat' => 24.502052, 'lng' => -98.800134],
+                    'southwest' => ['lat' => 21.120462, 'lng' => -102.473206]
+                ],
+                'sinaloa' => [
+                    'northeast' => ['lat' => 27.292331, 'lng' => -106.343108],
+                    'southwest' => ['lat' => 22.339691, 'lng' => -109.045223]
+                ],
+                'sonora' => [
+                    'northeast' => ['lat' => 32.529521, 'lng' => -108.995237],
+                    'southwest' => ['lat' => 26.542654, 'lng' => -115.236428]
+                ],
+                'tabasco' => [
+                    'northeast' => ['lat' => 18.650559, 'lng' => -91.161540],
+                    'southwest' => ['lat' => 16.983435, 'lng' => -94.159439]
+                ],
+                'tamaulipas' => [
+                    'northeast' => ['lat' => 27.690120, 'lng' => -97.101537],
+                    'southwest' => ['lat' => 22.573737, 'lng' => -100.734178]
+                ],
+                'tlaxcala' => [
+                    'northeast' => ['lat' => 19.540057, 'lng' => -97.748461],
+                    'southwest' => ['lat' => 19.123970, 'lng' => -98.564816]
+                ],
+                'veracruz' => [
+                    'northeast' => ['lat' => 22.413452, 'lng' => -93.828316],
+                    'southwest' => ['lat' => 17.052875, 'lng' => -98.999054]
+                ],
+                'yucatan' => [
+                    'northeast' => ['lat' => 21.664140, 'lng' => -87.589032],
+                    'southwest' => ['lat' => 19.487374, 'lng' => -90.845507]
+                ],
+                'zacatecas' => [
+                    'northeast' => ['lat' => 25.731553, 'lng' => -101.6141],
+                    'southwest' => ['lat' => 22.2260, 'lng' => -103.0581]
+                ]
+            ];
+
+            if (isset($stateBoundaries[$stateName])) {
+                return $stateBoundaries[$stateName];
+            }
+
+            // esta madre da lo que quiere
             $apiKey = 'AIzaSyAXzKi-hpY--xwLB5skRjCIRNVyRHNfY7I';
             $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($stateName) . ",+Mexico&key=" . $apiKey;
 
