@@ -5,7 +5,7 @@
     require_once "../Core/confGeneral.php";
     session_start(['name' => 'HA-A']);
 
-    if ($_SERVER['REQUEST_METHOD'] != 'POST' || ($_SESSION['tipoU'] != 'Usuario' && $_SESSION['tipoU'] != 'Administrador')):
+    if ($_SERVER['REQUEST_METHOD'] != 'POST'):
         session_destroy();
         header('Location: ' . SERVER);
         exit();

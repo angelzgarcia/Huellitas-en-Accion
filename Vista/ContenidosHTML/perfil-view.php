@@ -84,6 +84,171 @@
 
     </main>
 </body>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    $('.delete-post').click(function(event) {
+            event.preventDefault();
+
+            const itemId = this.getAttribute('data-id');
+            eliminarPost(itemId)
+
+            function eliminarPost(itemId) {
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: true
+            });
+            swalWithBootstrapButtons.fire({
+            title: "Quiero eliminar este registro",
+            text: "¡Esta acción no podrá revertirse!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si, eliminar",
+            cancelButtonText: "No, cancelar",
+            confirmButtonColor: "#c62e2e",
+            cancelButtonColor: "#7066e0",
+            reverseButtons: true,
+            toast: true,
+            showClass: {
+                popup: `
+                animate__animated
+                animate__fadeInUp
+                animate__faster
+                `
+            },
+            hideClass: {
+                popup: `
+                animate__animated
+                animate__fadeOutDown
+                animate__faster
+                `
+            },
+            didOpen: (toast) => {
+                toast.classList.add('custom-toast-form');
+            },
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                title: "Entiendo los efectos que esto puede tener...",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: "Guardar",
+                confirmButtonColor: "#c62e2e",
+                denyButtonText: `No guardar`,
+                denyButtonColor: "#7066e0",
+                toast: true,
+                showClass: {
+                    popup: `
+                    animate__animated
+                    animate__fadeInUp
+                    animate__faster
+                    `
+                },
+                hideClass: {
+                    popup: `
+                    animate__animated
+                    animate__fadeOutDown
+                    animate__faster
+                    `
+                },
+                didOpen: (toast) => {
+                    toast.classList.add('custom-toast-form');
+                },
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    confirmarEliminacion(id, nombre, numero, correo, direccion, descripcion, foto);
+                } else if (result.isDenied) {
+                    Swal.fire({
+                        title: "Operación cancelada",
+                        timer: 2000,
+                        icon: 'info',
+                        // width: 300,
+                        toast: true,
+                        didOpen: (toast) => {
+                            toast.classList.add('custom-toast-form');
+                        },
+                        showConfirmButton: false,
+                        showClass: {
+                            popup: `
+                            animate__animated
+                            animate__fadeInDown
+                            animate__faster
+                            `
+                        },
+                        hideClass: {
+                            popup: `
+                            animate__animated
+                            animate__fadeOutDown
+                            animate__faster
+                            `
+                        }
+                    })
+                }
+                });
+
+            } else if ( result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire({
+                    title: "Operación cancelada",
+                    timer: 2000,
+                    icon: 'info',
+                    // width: 300,
+                    toast: true,
+                    didOpen: (toast) => {
+                        toast.classList.add('custom-toast-form');
+                    },
+                    showConfirmButton: false,
+                    showClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeInDown
+                        animate__faster
+                        `
+                    },
+                    hideClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                        `
+                    }
+                })
+            }
+            });
+        }
+    });
+});
+
+</script>
+
+<!-- TOOLTIPS -->
+<script>
+    document.querySelectorAll('button[title]').forEach((button) => {
+        const title = button.getAttribute('title');
+        button.removeAttribute('title');
+        tippy(button, {
+            content: title,
+            arrow: true,
+            animation: 'fade',
+        });
+    });
+</script>
+<!-- TOOLTIPS -->
+<script>
+    document.querySelectorAll('a[title]').forEach((a) => {
+        const title = a.getAttribute('title');
+        a.removeAttribute('title');
+        tippy(a, {
+            content: title,
+            arrow: true,
+            animation: 'fade',
+        });
+    });
+</script>
+
+
 </html>
 <?php } ?>
 

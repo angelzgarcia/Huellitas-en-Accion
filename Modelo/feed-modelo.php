@@ -86,71 +86,67 @@
 
         protected function listarFiltradosModelo($datos) {
             $queryStr = '
-                SELECT a.*, us.nombre AS nombreUs, us.apellidos AS apellidosUs, ub.*
-                FROM animal a
-                JOIN usuario us ON a.idUsuario = us.idUsuario
-                JOIN ubicacion ub ON a.idUbicacion = ub.idUbicacion
-                WHERE a.status = :status
-                OR (
-                    NOT EXISTS (
-                        SELECT 1
-                        FROM animal
-                        WHERE status = :status
-                    )
-                    AND (a.status = "En Peligro" OR a.status = "En Adopcion" OR a.status = "Encontrado" OR a.status = "Perdido")
-                )
-                AND ((:perro = 1 AND a.tipoAnimal = "Perro") OR (:gato = 1 AND a.tipoAnimal = "Gato"))
-                AND ((:macho = 1 AND a.sexo = "Macho") OR  (:hembra = 1 AND a.sexo = "Hembra"))
-                AND ((:pequenio = 1 AND a.tamanio = "Pequeño") OR (:mediano = 1 AND a.tamanio = "Mediano") OR (:grande  = 1 AND a.tamanio = "Grande"))
-                AND (
-                        (
+            SELECT a.*, us.nombre AS nombreUs, us.apellidos AS apellidosUs, ub.*
+            FROM animal a
+            JOIN usuario us ON a.idUsuario = us.idUsuario
+            JOIN ubicacion ub ON a.idUbicacion = ub.idUbicacion
+            WHERE (
+                ((:status = "Feed" OR :status IS NULL) AND (a.status = "En Peligro" OR a.status = "En Adopcion" OR a.status = "Encontrado" OR a.status = "Perdido"))
+                OR (a.status = :status)
+            )
+            AND ((:perro = 1 AND a.tipoAnimal = "Perro") OR (:gato = 1 AND a.tipoAnimal = "Gato"))
+            AND ((:macho = 1 AND a.sexo = "Macho") OR (:hembra = 1 AND a.sexo = "Hembra"))
+            AND ((:pequenio = 1 AND a.tamanio = "Pequeño") OR (:mediano = 1 AND a.tamanio = "Mediano") OR (:grande = 1 AND a.tamanio = "Grande"))
+            AND (
+                (
+                    CASE
+                        WHEN a.edad LIKE "%año%" THEN
                             CASE
-                                WHEN a.edad LIKE "%año%" THEN
-                                    CASE
-                                        WHEN a.edad LIKE "%mes%" THEN
-                                            CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12 + CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(a.edad, "mes", 1), " ", -1) AS UNSIGNED)
-                                        ELSE
-                                            CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12
-                                    END
                                 WHEN a.edad LIKE "%mes%" THEN
-                                    CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED)
+                                    CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12 + CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(a.edad, "mes", 1), " ", -1) AS UNSIGNED)
                                 ELSE
-                                    0
+                                    CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12
                             END
-                        ) BETWEEN :cachorroMin AND :cachorroMax
-                        OR
-                        (
+                        WHEN a.edad LIKE "%mes%" THEN
+                            CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED)
+                        ELSE
+                            0
+                    END
+                ) BETWEEN :cachorroMin AND :cachorroMax
+                OR
+                (
+                    CASE
+                        WHEN a.edad LIKE "%año%" THEN
                             CASE
-                                WHEN a.edad LIKE "%año%" THEN
-                                    CASE
-                                        WHEN a.edad LIKE "%mes%" THEN
-                                            CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12 + CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(a.edad, "mes", 1), " ", -1) AS UNSIGNED)
-                                        ELSE
-                                            CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12
-                                    END
                                 WHEN a.edad LIKE "%mes%" THEN
-                                    CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED)
+                                    CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12 + CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(a.edad, "mes", 1), " ", -1) AS UNSIGNED)
                                 ELSE
-                                    0
+                                    CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12
                             END
-                        ) BETWEEN :adultoMin AND :adultoMax
-                        OR
-                        (
+                        WHEN a.edad LIKE "%mes%" THEN
+                            CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED)
+                        ELSE
+                            0
+                    END
+                ) BETWEEN :adultoMin AND :adultoMax
+                OR
+                (
+                    CASE
+                        WHEN a.edad LIKE "%año%" THEN
                             CASE
-                                WHEN a.edad LIKE "%año%" THEN
-                                    CASE
-                                        WHEN a.edad LIKE "%mes%" THEN
-                                            CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12 + CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(a.edad, "mes", 1), " ", -1) AS UNSIGNED)
-                                        ELSE
-                                            CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12
-                                    END
                                 WHEN a.edad LIKE "%mes%" THEN
-                                    CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED)
+                                    CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12 + CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(a.edad, "mes", 1), " ", -1) AS UNSIGNED)
                                 ELSE
-                                    0
+                                    CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED) * 12
                             END
-                        ) >= :adultoMayorMin
-                    )';
+                        WHEN a.edad LIKE "%mes%" THEN
+                            CAST(SUBSTRING_INDEX(a.edad, " ", 1) AS UNSIGNED)
+                        ELSE
+                            0
+                    END
+                ) >= :adultoMayorMin
+            )
+        ';
 
             if ($datos['limites']) {
                 $queryStr .= '

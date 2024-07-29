@@ -111,7 +111,7 @@
                 $adultoMax = isset($_POST['adulto']) ? 84 : null;
                 $adultoMayorMin = isset($_POST['adultoMayor']) ? 85 : null;
                 $estado = isset($_POST['estado']) ? self::limpiarCadena($_POST['estado']) : null;
-                $status = isset($_POST['status']) ? self::limpiarCadena(ucwords(strtolower(str_replace('_', ' ', substr($_POST['status'], -1) == 's') ? substr($_POST['status'], 0, strlen($_POST['status']) - 1) : str_replace('_', ' ',$_POST['status'])))) : '';
+                $status = isset($_POST['status']) ? self::limpiarCadena(ucwords(strtolower(str_replace('_', ' ', substr($_POST['status'], -1) == 's') ? substr($_POST['status'], 0, strlen($_POST['status']) - 1) : str_replace('_', ' ',$_POST['status'])))) : null;
 
                 $limites = $estado ? self::getStateBoundaries($estado) : null;
 
@@ -129,15 +129,15 @@
                     'adultoMax' => $adultoMax,
                     'adultoMayorMin' => $adultoMayorMin,
                     'limites' => $limites,
-                    'status' => $status,
+                    'status' => $status == '' ?  null : $status,
                 ];
 
                 self::listarFeedControlador('filtro', $datos);
                 // return self::listarFeedControlador('filtro', $datos);
-                // // $purge = '';
-                // // foreach ($datos as $dato) {
-                // //     $purge .= " $dato ";
-                // // }
+                // $purge = '';
+                // foreach ($datos as $dato) {
+                //     $purge .= " $dato ";
+                // }
                 // return '<script>alert("'.$datos['limites']['southwest']['lng'].'")</script>';
                 // return '<script>alert("'.$estado.'")</script>';
 

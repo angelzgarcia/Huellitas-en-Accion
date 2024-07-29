@@ -2297,6 +2297,11 @@ input[type="checkbox"]:checked + .checkmark {
     gap: .7em;
     text-wrap: pretty;
     /* box-shadow: .5em -.3em .3em .2em rgba(0, 0, 0, 0.164); */
+    & .empty-register {
+        /* width: 95vw !important; */
+        margin: auto;
+        transform: none;
+    }
 }
 
 .card {

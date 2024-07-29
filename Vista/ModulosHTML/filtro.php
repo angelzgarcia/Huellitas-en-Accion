@@ -170,19 +170,7 @@
             let adultoMayor = document.getElementById('adultoMayor').checked;
 
             // let respuesta = form.find('.RespuestaAjax');
-            let formData = new FormData(this);
-            if (formData.entries().next().done) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Selecciona al menos un filtro de búsqueda',
-                    text: '',
-                    width: 400,
-                    showConfirmButton: false,
-                    timer: 1200,
-                    toast: true,
-                });
-                return false;
-            }
+
 
             if (!(perro || gato || macho || hembra || pequenio || mediano || grande || cachorro || adulto || adultoMayor)) {
                 Swal.fire({
@@ -240,6 +228,21 @@
                 });
 
             } else {
+                let formData = new FormData(this);
+
+                if (formData.entries().next().done) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Selecciona al menos un filtro de búsqueda',
+                        text: '',
+                        width: 400,
+                        showConfirmButton: false,
+                        timer: 1200,
+                        toast: true,
+                    });
+                    return false;
+
+                }
                 Swal.fire({
                     title: 'Buscando...',
                     // icon: 'info',
@@ -265,14 +268,13 @@
                         setTimeout(function() {
                             $('.filtradosContainer').html(data);
                             // location.reload();
-                        }, 900);
+                        }, 100);
                     },
                     error: function() {
                         Swal.fire('Ocurrió un error inesperado', 'Por favor recargue la página', 'error');
                     }
 
                 });
-
             }
 
         });
