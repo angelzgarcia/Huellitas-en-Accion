@@ -22,6 +22,12 @@
     if ($v == '404') : require_once RUTACONTENIDOS . $v . "-view.php";
     elseif ($v != 'index.php') : require_once $v;
     else :
+        $banner = [
+            0 => 'markus-winkler-PcKhVNNyEio-unsplash.jpg',
+            1 => 'anoir-chafik-2_3c4dIFYFU-unsplash1.jpg',
+            2 => 'hannah-lim-U6nlG0Y5sfs-unsplash1.jpg',
+        ];
+        $b = RUTARECURSOS . 'IMG/' . $banner[rand(0, count($banner) -1)];
         require_once RUTACONTROL . 'tips-controlador.php';
         require_once SERVERURL . "Controlador/feed-controlador.php";
 ?>
@@ -35,9 +41,13 @@
 
     <!-- CONTENIDO DEL INDEX -->
         <div class="content-container">
-
         <!--BANNER INDEX-->
-            <div class="banner-container">
+            <div class="banner-container" style="    background-image:
+        linear-gradient(
+            rgba(19, 18, 18, 0.363) 100%,
+            rgba(0,0,0,0)
+        ),
+        url(<?=$b?>);">
                 <div class="slogan-description-banner">
                     <h1>Compasión <span>Conectada....</span></h1>
                     <p>
@@ -280,6 +290,8 @@
     function showSlideLost(indexL) {
         const slidesLost = document.querySelectorAll('.card-l');
         const carouselLost = document.querySelector('.carousel-lost');
+        if (slidesLost.length === 0 || !carouselLost) return;
+
         if (indexL >= slidesLost.length) {
             currentIndexLost = 0;
         } else if (indexL < 0) {
@@ -287,10 +299,8 @@
         } else {
             currentIndexLost = indexL;
         }
-        const offsetL = -currentIndexLost * (slidesLost[0].clientWidth + 20); // 20 is the margin
+        const offsetL = -currentIndexLost * (slidesLost[0].clientWidth + 20);
         carouselLost.style.transform = `translateX(${offsetL}px)`;
-
-
     }
     function nextSlideLost() {
         showSlideLost(currentIndexLost + 1);
@@ -298,14 +308,15 @@
     function prevSlideLost() {
         showSlideLost(currentIndexLost - 1);
     }
-    // Automatic transition
     setInterval(nextSlideLost, 3000);
 
-
+    // Carrusel para 'Warning'
     let currentIndexWarning = 0;
     function showSlideWarning(indexW) {
         const slidesWarning = document.querySelectorAll('.card-w');
         const carouselWarning = document.querySelector('.carousel-warning');
+        if (slidesWarning.length === 0 || !carouselWarning) return;
+
         if (indexW >= slidesWarning.length) {
             currentIndexWarning = 0;
         } else if (indexW < 0) {
@@ -313,10 +324,8 @@
         } else {
             currentIndexWarning = indexW;
         }
-        const offsetW = -currentIndexWarning * (slidesWarning[0].clientWidth + 20); // 20 is the margin
+        const offsetW = -currentIndexWarning * (slidesWarning[0].clientWidth + 20);
         carouselWarning.style.transform = `translateX(${offsetW}px)`;
-
-
     }
     function nextSlideWarning() {
         showSlideWarning(currentIndexWarning + 1);
@@ -324,14 +333,15 @@
     function prevSlideWarning() {
         showSlideWarning(currentIndexWarning - 1);
     }
-    // Automatic transition
     setInterval(nextSlideWarning, 3500);
 
-
+    // Carrusel para 'Adoption'
     let currentIndexAdoption = 0;
     function showSlideAdoption(index) {
         const slides = document.querySelectorAll('.card-a');
         const carousel = document.querySelector('.carousel-adoption');
+        if (slides.length === 0 || !carousel) return;
+
         if (index >= slides.length) {
             currentIndexAdoption = 0;
         } else if (index < 0) {
@@ -339,10 +349,8 @@
         } else {
             currentIndexAdoption = index;
         }
-        const offset = -currentIndexAdoption * (slides[0].clientWidth + 20); // 20 is the margin
+        const offset = -currentIndexAdoption * (slides[0].clientWidth + 20);
         carousel.style.transform = `translateX(${offset}px)`;
-
-
     }
     function nextSlideAdoption() {
         showSlideAdoption(currentIndexAdoption + 1);
@@ -350,14 +358,15 @@
     function prevSlideAdoption() {
         showSlideAdoption(currentIndexAdoption - 1);
     }
-    // Automatic transition
     setInterval(nextSlideAdoption, 3700);
 
-
+    // Carrusel para 'Found'
     let currentIndexFound = 0;
     function showSlideFound(indexF) {
         const slidesF = document.querySelectorAll('.card-f');
         const carouselF = document.querySelector('.carousel-found');
+        if (slidesF.length === 0 || !carouselF) return;
+
         if (indexF >= slidesF.length) {
             currentIndexFound = 0;
         } else if (indexF < 0) {
@@ -365,10 +374,8 @@
         } else {
             currentIndexFound = indexF;
         }
-        const offsetF = -currentIndexFound * (slidesF[0].clientWidth + 20); // 20 is the margin
+        const offsetF = -currentIndexFound * (slidesF[0].clientWidth + 20);
         carouselF.style.transform = `translateX(${offsetF}px)`;
-
-
     }
     function nextSlideFound() {
         showSlideFound(currentIndexFound + 1);
@@ -376,9 +383,7 @@
     function prevSlideFound() {
         showSlideFound(currentIndexFound - 1);
     }
-    // Automatic transition
     setInterval(nextSlideFound, 3900);
-
 </script>
 
 </html>

@@ -54,7 +54,7 @@
     text-align: center;
     border-radius: .5em;
     background-image:
-        url(../IMG/anusha-barwa-ppKcYi1CXcI-unsplash-removebg-preview.png);
+        url(../IMG/fabian-gieske-3nQhyFuwUkk-unsplash-removebg-preview.png);
     background-position: center;
     background-attachment: fixed;
     background-size: contain;
@@ -969,12 +969,6 @@ details.details-disabled {
     height: 85vh;
     width: calc(100vw - 48px);
     margin: auto;
-    background-image:
-        linear-gradient(
-            rgba(19, 18, 18, 0.363) 100%,
-            rgba(0,0,0,0)
-        ),
-        url(../IMG/markus-winkler-PcKhVNNyEio-unsplash.jpg);
     background-position: center  bottom;
     background-repeat: no-repeat;
     background-size: cover;
@@ -3291,7 +3285,7 @@ input[type="checkbox"]:checked + .checkmark {
 
 .container-del-container {
     width: 100%;
-    height: calc(100vh - 70px);
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3367,9 +3361,10 @@ input[type="checkbox"]:checked + .checkmark {
                 }
                 &:hover {
                     & div {
-                        box-shadow: -.5em .5em 0 0 rgba(0,0,0,0.5);
+                        box-shadow: -.5em .5em 0 0 rgb(109, 112, 117);
                         scale: 102%;
                         transform: translate(6%, -6%);
+                        border-radius: 0;
                     }
                 }
             }

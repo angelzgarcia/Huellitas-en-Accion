@@ -215,24 +215,24 @@
                                     <!-- razas gato -->
                                     <fieldset>
                                         <legend>Raza</legend>
-                                            <select name="raza" id="raza"  >
-                                            <option value="mestizo">Mestizo</option>
-                                            <option value="siamés">Siamés</option>
-                                            <option value="persian">Persa</option>
-                                            <option value="maine-coon">Maine Coon</option>
-                                            <option value="russian-blue">Azul Ruso</option>
-                                            <option value="sphynx">Sphynx</option>
-                                            <option value="bengal">Bengalí</option>
-                                            <option value="scottish-fold">Scottish Fold</option>
-                                            <option value="siberian">Siberiano</option>
-                                            <option value="british-shorthair">British Shorthair</option>
-                                            <option value="burmese">Burmés</option>
-                                            <option value="ragdoll">Ragdoll</option>
-                                            <option value="himalayan">Himalayo</option>
-                                            <option value="abysinnian">Abisinio</option>
-                                            <option value="devon-rex">Devon Rex</option>
-                                            <option value="cornish-rex">Cornish Rex</option>
-                                        </select>
+                                            <select name="raza" id="raza">
+                                                <option value="mestizo">Mestizo</option>
+                                                <option value="siamés">Siamés</option>
+                                                <option value="persian">Persa</option>
+                                                <option value="maine-coon">Maine Coon</option>
+                                                <option value="russian-blue">Azul Ruso</option>
+                                                <option value="sphynx">Sphynx</option>
+                                                <option value="bengal">Bengalí</option>
+                                                <option value="scottish-fold">Scottish Fold</option>
+                                                <option value="siberian">Siberiano</option>
+                                                <option value="british-shorthair">British Shorthair</option>
+                                                <option value="burmese">Burmés</option>
+                                                <option value="ragdoll">Ragdoll</option>
+                                                <option value="himalayan">Himalayo</option>
+                                                <option value="abysinnian">Abisinio</option>
+                                                <option value="devon-rex">Devon Rex</option>
+                                                <option value="cornish-rex">Cornish Rex</option>
+                                            </select>
                                     </fieldset>
                                 <?php
                                 break;
@@ -513,8 +513,8 @@
         });
 
         mexicoBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(14.559322, -118.363069), // Suroeste
-            new google.maps.LatLng(32.718655, -86.588700)  // Noreste
+            new google.maps.LatLng(14.559322, -118.363069),
+            new google.maps.LatLng(32.718655, -86.588700)
         );
 
         google.maps.event.addListener(markerPerro, 'dragend', function(event) {

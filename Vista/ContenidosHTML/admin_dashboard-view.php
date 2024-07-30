@@ -32,7 +32,7 @@
                 title: "<div style = 'text-align: center; font-size: 1.5em;'>¡ Bienvenid<?=$saludo?> <?=$_SESSION['nom']?> ! \n\\(^Д^)/</div> ",
                 html: '<div style="text-align: center;"><img src="<?=$_SESSION['photo']?>" style="height: 80px; border-radius: 50%;" /></div>',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 1800,
                 showClass: {
                     popup: `
                     animate__animated

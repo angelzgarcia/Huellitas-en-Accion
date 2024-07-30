@@ -22,9 +22,9 @@
 
             if (!empty($posts)):
                 foreach ($posts as $post):
-                    $latitud = $post['latitud'];
-                    $longitud = $post['longitud'];
-                    $ubicacion = self::geocodificacion($latitud, $longitud, $apiKey);
+                    // $latitud = $post['latitud'];
+                    // $longitud = $post['longitud'];
+                    $ubicacion = self::geocodificacion($post['latitud'], $post['longitud'], $apiKey);
                     ?>
                         <!-- PUBLICACION -->
                         <div class="post-card">
@@ -38,16 +38,30 @@
                                 <!-- FECHA Y BOTON DE OPCIONES -->
                                 <p>
                                     <strong><?= $post['fechaReporte'] ?></strong>
-                                    <button id="more-options" title="Más opciones">
+                                    <button class="more-options" title="Más opciones">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
                                     </button>
                                 </p>
                                 <!-- MENU DESPLEGABLE DE OPCIONES -->
-                                <div class="options-posts-container">
-                                    <a href="#" id="delete-post" title="Eliminar" data-id="<?=$post['idAnimal']?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-440v-80h560v80H200Z"/></svg>
+                                <div class="options-posts-container" id="options-posts-container">
+                                    <a href="#" class="delete-post" id="delete-post" title="Eliminar" data-id="<?=htmlspecialchars(self::encryption($post['idAnimal']))?>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M600-240v-80h160v80H600Zm0-320v-80h280v80H600Zm0 160v-80h240v80H600ZM120-640H80v-80h160v-60h160v60h160v80h-40v360q0 33-23.5 56.5T440-200H200q-33 0-56.5-23.5T120-280v-360Zm80 0v360h240v-360H200Zm0 0v360-360Z"/></svg>
                                     </a>
-                                    <a href="" id="delete-post" title="Editar">
+                                    <a href="" class="update-post" id="update-post" title="Editar"
+                                        data-id="<?=htmlspecialchars(self::encryption($post['idAnimal']))?>"
+                                        data-nombre="<?=htmlspecialchars($post['nombre'])?>"
+                                        data-sexo="<?=htmlspecialchars($post['sexo'])?>"
+                                        data-tipoanimal="<?=htmlspecialchars($post['tipoAnimal'])?>"
+                                        data-raza="<?=htmlspecialchars($post['raza'])?>"
+                                        data-estadosalud="<?=htmlspecialchars($post['estadoSalud'])?>"
+                                        data-status="<?=htmlspecialchars($post['status'])?>"
+                                        data-tamanio="<?=htmlspecialchars($post['tamanio'])?>"
+                                        data-peso="<?=htmlspecialchars($post['peso'])?>"
+                                        data-edad="<?=htmlspecialchars($post['edad'])?>"
+                                        data-descripcion="<?=htmlspecialchars($post['descripcion'])?>"
+                                        data-imagen="<?=htmlspecialchars(RUTARECURSOS . 'IMG/SUBIDAS/' . $post['imagen'])?>"
+                                        data-fecha="<?=htmlspecialchars(date('Y-m-d'))?>"
+                                        >
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg>
                                     </a>
                                 </div>
@@ -133,6 +147,98 @@
                     </a>
                 </div>
             <?php
+
+        }
+
+        public function crudPostControlador() {
+            
+        }
+        public function eliminarPostControlador() {
+            $idAnimal = isset($_POST['id']) ? self::decryption(self::limpiarCadena($_POST['id'])) : null;
+
+            if ($idAnimal === null) {
+                return self::sweetAlert(
+                    [
+                        'Alerta' => 'simple',
+                        'Titulo' => 'Error',
+                        'Texto' => 'No pudimos ubicar el post, por favor, intentalo más tarde.',
+                        'Tipo' => 'error'
+                    ]
+                );
+            }
+
+            $query = self::conectDB() -> prepare('
+                SELECT idUbicacion FROM animal
+                WHERE idAnimal = :idAnimal
+            ');
+            $query -> bindParam(':idAnimal', $idAnimal);
+            $query -> execute();
+
+            if ($query -> rowCount() > 0) {
+                $idUbicacion = $query -> fetch(PDO::FETCH_ASSOC);
+
+                $query = self::conectDB() -> prepare('
+                    DELETE FROM animal
+                    WHERE idAnimal = :idAnimal
+                ');
+                $query -> bindParam('idAnimal', $idAnimal);
+                $query -> execute();
+
+                if ($query -> rowCount() > 0) {
+                    $query = self::conectDB() -> prepare('
+                        DELETE FROM ubicacion
+                        WHERE idUbicacion = :idUbicacion
+                    ');
+                    $query -> bindParam(':idUbicacion', $idUbicacion['idUbicacion']);
+                    $query -> execute();
+
+                    if ($query -> rowCount() > 0)  {
+                        return self::sweetAlert(
+                            [
+                                'Alerta' => 'limpiar',
+                                'Titulo' => '¡Post eliminado con éxito!',
+                                'Texto' => '',
+                                'Tipo' => 'success'
+                            ]
+                        );
+
+                    } else {
+                        return self::sweetAlert(
+                            [
+                                'Alerta' => 'limpiar',
+                                'Titulo' => 'Tuvimos problemas al elimiar el post, lo sentimos',
+                                'Texto' => '',
+                                'Tipo' => 'error'
+                            ]
+                        );
+                    }
+
+                } else {
+                    return self::sweetAlert(
+                        [
+                            'Alerta' => 'limpiar',
+                            'Titulo' => 'No pudimos elimina el post, por favor, intentalo más tarde.',
+                            'Texto' => '',
+                            'Tipo' => 'error'
+                        ]
+                    );
+                }
+
+            } else {
+                return self::sweetAlert(
+                    [
+                        'Alerta' => 'limpiar',
+                        'Titulo' => 'Lo sentimos, hubo un error con la ubicación.',
+                        'Texto' => '',
+                        'Tipo' => 'success'
+                    ]
+                );
+            }
+
+        }
+
+        public function editarPostControlador($datos) {
+
         }
 
     }

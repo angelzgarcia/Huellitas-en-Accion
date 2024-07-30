@@ -789,7 +789,7 @@ textarea {
                     justify-content: space-between;
                     align-items: center;
                 }
-                & button#more-options {
+                & button.more-options {
                     border: none;
                     display: flex;
                     /* justify-content: center; */
@@ -856,6 +856,22 @@ textarea {
             }
         }
 
+        & .bio,
+        .info-list,
+        .social-links {
+            background-image:
+                /* linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.100) 100%,
+                    transparent
+                ), */
+                url(../IMG/the3dragons-mSOUgRr7wyU-unsplash-removebg-preview.png);
+            background-position: left bottom;
+            background-repeat: no-repeat;
+            background-size: 250px;
+            background-attachment: fixed;
+        }
+
         & .profile-content {
             color: #000;
             & .post-card {
@@ -877,14 +893,18 @@ textarea {
     justify-content: center;
     align-items: center;
     position: absolute;
-    width: 25%;
-    right: 15%;
-    bottom: 11%;
+    min-width: 25%;
+    right: 12%;
+    bottom: 8%;
+    /* border: 3px solid #ebeb; */
+    padding: .1em;
+    box-shadow: 0 0 0 .13em #ebeb;
+    border-radius: 1em;
     & a {
         border-radius: 1em;
-        width: 100%;
-        padding: 1em;
-        display: block;
+        /* width: 100%; */
+        padding: .8em .9em;
+        display: flex;
         justify-content: space-between;
         align-items: center;
         text-decoration: none;

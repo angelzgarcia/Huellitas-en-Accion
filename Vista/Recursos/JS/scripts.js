@@ -81,24 +81,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-// carrusel team
+// Carrusel team
 let currentIndex = 0;
 const items = document.querySelectorAll('.team-carrusel .team-item');
 const totalItems = items.length;
 
+const nextButton = document.querySelector('.team-next');
+const prevButton = document.querySelector('.team-prev');
+const dots = document.querySelectorAll('.team-dot');
 
-document.querySelector('.team-next').addEventListener('click', () => {
-    moveToNext();
-});
+if (nextButton) {
+    nextButton.addEventListener('click', () => {
+        moveToNext();
+    });
+}
 
-document.querySelector('.team-prev').addEventListener('click', () => {
-    moveToPrev();
-});
+if (prevButton) {
+    prevButton.addEventListener('click', () => {
+        moveToPrev();
+    });
+}
 
 function updateCarrusel() {
     const carruselItems = document.querySelector('.team-carrusel-items');
-    carruselItems.style.transform = `translateX(-${currentIndex * 100}%)`;
-    updateDots();
+    if (carruselItems) {
+        carruselItems.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
+    }
 }
 
 function moveToNext() {
@@ -111,94 +120,99 @@ function moveToPrev() {
     updateCarrusel();
 }
 
-const dots = document.querySelectorAll('.team-dot');
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        currentIndex = index;
-        updateCarrusel();
-    });
-});
-
-function updateDots() {
+if (dots.length) {
     dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
+        dot.addEventListener('click', () => {
+            currentIndex = index;
+            updateCarrusel();
+        });
     });
 }
 
-updateCarrusel();
-
-
-
-
-
-// FUNCION PARA LOS FORMULARIOS CON AJAX
-$(document).ready(function() {
-    $('.formAjax').submit(function(e) {
-        e.preventDefault();
-
-        var form = $(this);
-        var tipo = form.attr('data-form');
-        var accion = form.attr('action');
-        var metodo = form.attr('method');
-        var respuesta = form.find('.RespuestaAjax');
-
-        var msjError = "<script>Swal.fire('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
-        var formdata = new FormData(this);
-
-        var textoAlerta;
-        if (tipo === "save") {
-            textoAlerta = "Los datos que enviaras quedaran almacenados en el sistema";
-        } else if (tipo === "delete") {
-            textoAlerta = "Los datos serán eliminados completamente del sistema";
-        } else if (tipo === "update") {
-            textoAlerta = "Los datos del sistema serán actualizados";
-        } else {
-            textoAlerta = "Quieres realizar la operación solicitada";
-        }
-
-        Swal.fire({
-            title: "¿Estás seguro?",
-            text: textoAlerta,
-            icon: "question",
-            showCancelButton: true,
-            confirmButtonText: "Aceptar",
-            cancelButtonText: "Cancelar"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type: metodo,
-                    url: accion,
-                    data: formdata,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    xhr: function() {
-                        var xhr = new window.XMLHttpRequest();
-                        xhr.upload.addEventListener("progress", function(evt) {
-                            if (evt.lengthComputable) {
-                                var percentComplete = evt.loaded / evt.total;
-                                percentComplete = parseInt(percentComplete * 100);
-                                if (percentComplete < 100) {
-                                    respuesta.html('<p class="text-center">Procesado... (' + percentComplete + '%)</p><div><div style="width: ' + percentComplete + '%;"></div></div>');
-                                } else {
-                                    respuesta.html('<p ></p>');
-                                }
-                            }
-                        }, false);
-                        return xhr;
-                    },
-                    success: function(data) {
-                        respuesta.html(data);
-                    },
-                    error: function() {
-                        respuesta.html(msjError);
-                    }
-                });
-                return false;
-            }
+function updateDots() {
+    if (dots.length) {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
         });
-    });
-});
+    }
+}
+
+if (totalItems > 0) {
+    updateCarrusel();
+}
+
+
+
+
+
+// // FUNCION PARA LOS FORMULARIOS CON AJAX
+// $(document).ready(function() {
+//     $('.formAjax').submit(function(e) {
+//         e.preventDefault();
+
+//         var form = $(this);
+//         var tipo = form.attr('data-form');
+//         var accion = form.attr('action');
+//         var metodo = form.attr('method');
+//         var respuesta = form.find('.RespuestaAjax');
+
+//         var msjError = "<script>Swal.fire('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
+//         var formdata = new FormData(this);
+
+//         var textoAlerta;
+//         if (tipo === "save") {
+//             textoAlerta = "Los datos que enviaras quedaran almacenados en el sistema";
+//         } else if (tipo === "delete") {
+//             textoAlerta = "Los datos serán eliminados completamente del sistema";
+//         } else if (tipo === "update") {
+//             textoAlerta = "Los datos del sistema serán actualizados";
+//         } else {
+//             textoAlerta = "Quieres realizar la operación solicitada";
+//         }
+
+//         Swal.fire({
+//             title: "¿Estás seguro?",
+//             text: textoAlerta,
+//             icon: "question",
+//             showCancelButton: true,
+//             confirmButtonText: "Aceptar",
+//             cancelButtonText: "Cancelar"
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+//                 $.ajax({
+//                     type: metodo,
+//                     url: accion,
+//                     data: formdata,
+//                     cache: false,
+//                     contentType: false,
+//                     processData: false,
+//                     xhr: function() {
+//                         var xhr = new window.XMLHttpRequest();
+//                         xhr.upload.addEventListener("progress", function(evt) {
+//                             if (evt.lengthComputable) {
+//                                 var percentComplete = evt.loaded / evt.total;
+//                                 percentComplete = parseInt(percentComplete * 100);
+//                                 if (percentComplete < 100) {
+//                                     respuesta.html('<p class="text-center">Procesado... (' + percentComplete + '%)</p><div><div style="width: ' + percentComplete + '%;"></div></div>');
+//                                 } else {
+//                                     respuesta.html('<p ></p>');
+//                                 }
+//                             }
+//                         }, false);
+//                         return xhr;
+//                     },
+//                     success: function(data) {
+//                         respuesta.html(data);
+//                     },
+//                     error: function() {
+//                         respuesta.html(msjError);
+//                     }
+//                 });
+//                 return false;
+//             }
+//         });
+//     });
+// });
 
 
 // MOSTRAR MENU DE OPCIONES Y AJUSTES DE LOS PERFILES
