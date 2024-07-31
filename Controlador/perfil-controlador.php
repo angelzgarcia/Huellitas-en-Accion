@@ -99,7 +99,9 @@
 
             ?>
                 <!-- biografia -->
-                <div class="bio">
+                <div class="bio" data-emailuser="<?= htmlspecialchars(self::encryption($_SESSION['email'])) ?>"
+                    data-sobremi="<?= htmlspecialchars($user['sobreMi']) ?>"
+                    data-foto="<?= htmlspecialchars($_SESSION['photo']) ?>">
                     <!-- foto -->
                     <img src="<?=$_SESSION['photo'] ?>" alt="Foto de Perfil" class="profile-pic" id="profilePic">
                     <!-- nombre -->
@@ -149,7 +151,7 @@
 
         }
 
-        public function crudPostControlador() {
+        public function crudPerfilControlador() {
             if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['action'])) {
                 return self::sweetAlert([
                     'Alerta' => 'simple',
@@ -160,11 +162,110 @@
 
             } else {
                 return match ($_POST['action']) {
-                    'update' => self::editarPostControlador(),
-                    'delete' => self::eliminarPostControlador(),
+                    'updatePost' => self::editarPostControlador(),
+                    'deletePost' => self::eliminarPostControlador(),
+                    'updateBio' => self::editarBiografiaPerfilControlador(),
+                    'updateInfo' => self::editarInfoPerfilControlador(),
                 };
 
             }
+        }
+
+        private function editarBiografiaPerfilControlador() {
+            $email = isset($_POST['email']) ? self::limpiarCadena(self::decryption($_POST['email'])) : null;
+            $sobreMi = isset($_POST['sobreMi']) ? self::limpiarCadena($_POST['sobreMi']) : null;
+            $imagen = $_FILES['imagen'] ?? '';
+
+            $query = self::conectDB() -> prepare('
+                SELECT idUsuario, google_id, foto FROM usuario
+                WHERE correo_electronico = :email
+            ');
+            $query -> bindParam('email', $email);
+            $query -> execute();
+
+            if ($query -> rowCount() > 0) {
+                $datosUsuario = $query -> fetch(PDO::FETCH_ASSOC);
+
+                if (!empty($imagen)) {
+                    if ($imagen['error'] === UPLOAD_ERR_OK) {
+                        $imagenNombre = basename($imagen['name']);
+                        $imagenTmpNombre = $imagen['tmp_name'];
+                        $dir = SERVERURL . "Vista/Recursos/IMG/SUBIDAS/PERFILES/";
+                        $allowedTypes = ['image/jpeg', 'image/png'];
+                        $fileType = mime_content_type($imagenTmpNombre);
+                        $imagenSesion = RUTARECURSOS .'IMG/SUBIDAS/PERFILES/'. $imagenNombre;
+
+                        if (!in_array($fileType, $allowedTypes)) {
+                            return self::sweetAlert([
+                                'Alerta' => 'simple',
+                                'Titulo' => 'Tipo de archivo no permitido',
+                                'Texto' => '',
+                                'Tipo' => 'warning'
+                            ]);
+                        }
+
+                        $imagenDestino = $dir . $imagenNombre;
+                        if (!move_uploaded_file($imagenTmpNombre, $imagenDestino)) {
+                            return self::sweetAlert([
+                                'Alerta' => 'simple',
+                                'Titulo' => 'Error al subir la imagen, intenta de nuevo',
+                                'Texto' => '',
+                                'Tipo' => 'error'
+                            ]);
+                        }
+                    } else {
+                        return self::sweetAlert([
+                            'Alerta' => 'simple',
+                            'Titulo' => 'Tuvimos problemas al cargar la foto, intentalo más tarde.',
+                            'Texto' => '',
+                            'Tipo' => 'error'
+                        ]);
+                    }
+
+                } else {
+                    $imagenNombre = $datosUsuario['foto'];
+                    $imagenSesion = $_SESSION['photo'];
+                }
+
+                $datos = [
+                    'idUsuario'=> $datosUsuario['idUsuario'],
+                    'foto'=> $imagenNombre,
+                    'sobreMi'=> $sobreMi,
+                ];
+                $query = self::actualizarBiografiaPerfilModelo($datos);
+
+                if ($query -> rowCount() > 0) {
+                    $_SESSION['photo'] = $imagenSesion;
+
+                    return self::sweetAlert([
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => '¡Actualización exitosa!',
+                        'Texto' => '',
+                        'Tipo' => 'success'
+                    ]);
+
+                } else {
+                    return self::sweetAlert([
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => 'No se detectaron nuevos datos...',
+                        'Texto' => '',
+                        'Tipo' => 'info'
+                    ]);
+                }
+
+            } else {
+                return self::sweetAlert([
+                    'Alerta' => 'simpleCentro',
+                    'Titulo' => 'No hemos podido conectar con tu perfil ):',
+                    'Texto' => '',
+                    'Tipo' => 'warning'
+                ]);
+            }
+
+        }
+
+        private function editarInfoPerfilControlador() {
+
         }
 
         private function eliminarPostControlador() {
@@ -173,7 +274,7 @@
             if ($idAnimal === null) {
                 return self::sweetAlert(
                     [
-                        'Alerta' => 'simple',
+                        'Alerta' => 'simpleCentro',
                         'Titulo' => 'Error',
                         'Texto' => 'No pudimos ubicar el post, por favor, intentalo más tarde.',
                         'Tipo' => 'error'
@@ -209,7 +310,7 @@
                     if ($query -> rowCount() > 0)  {
                         return self::sweetAlert(
                             [
-                                'Alerta' => 'limpiar',
+                                'Alerta' => 'simpleCentro',
                                 'Titulo' => '¡Post eliminado con éxito!',
                                 'Texto' => '',
                                 'Tipo' => 'success'
@@ -219,7 +320,7 @@
                     } else {
                         return self::sweetAlert(
                             [
-                                'Alerta' => 'limpiar',
+                                'Alerta' => 'simpleCentro',
                                 'Titulo' => 'Tuvimos problemas al elimiar el post, lo sentimos',
                                 'Texto' => '',
                                 'Tipo' => 'error'
@@ -230,7 +331,7 @@
                 } else {
                     return self::sweetAlert(
                         [
-                            'Alerta' => 'limpiar',
+                            'Alerta' => 'simpleCentro',
                             'Titulo' => 'No pudimos elimina el post, por favor, intentalo más tarde.',
                             'Texto' => '',
                             'Tipo' => 'error'
@@ -241,7 +342,7 @@
             } else {
                 return self::sweetAlert(
                     [
-                        'Alerta' => 'limpiar',
+                        'Alerta' => 'simpleCentro',
                         'Titulo' => 'Lo sentimos, hubo un error con la ubicación.',
                         'Texto' => '',
                         'Tipo' => 'success'

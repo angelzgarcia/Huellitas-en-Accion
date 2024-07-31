@@ -98,7 +98,7 @@
                 $_SESSION['nom'] = $dataUser['nombre'] ?? '';
                 $_SESSION['ap'] = $dataUser['apellidos'] ?? '';
                 $_SESSION['gen'] = $dataUser['genero'] ?? '';
-                $_SESSION['photo'] = $dataUser['foto'] ?? '';
+                $_SESSION['photo'] = $picture ?? RUTARECURSOS .'IMG/SUBIDAS/PERFILES/'. $dataUser['foto'];
                 $_SESSION['tipoU'] = $dataUser['tipoUsuario'] ?? '';
                 $_SESSION['email'] = $dataUser['correo_electronico'] ?? '';
                 $_SESSION['numero'] = $dataUser['telefono'] ?? '';
@@ -128,7 +128,7 @@
                     $_SESSION['nom'] = $dataUser['nombre'] ?? '';
                     $_SESSION['ap'] = $dataUser['apellidos'] ?? '';
                     $_SESSION['gen'] = $dataUser['genero'] ?? '';
-                    $_SESSION['photo'] = $dataUser['foto'] ?? '';
+                    $_SESSION['photo'] = $picture ?? RUTARECURSOS .'IMG/SUBIDAS/PERFILES/'. $dataUser['foto'];
                     $_SESSION['tipoU'] = $dataUser['tipoUsuario'] ?? '';
                     $_SESSION['email'] = $dataUser['correo_electronico'] ?? '';
                     $_SESSION['numero'] = $dataUser['telefono'] ?? '';
@@ -168,7 +168,7 @@
                         session_start(['name' => 'HA-A']);
                         $_SESSION['google_id'] = $dataUser['google_id'] ?? '';
                         $_SESSION['nom'] = $dataUser['nombre'] ?? '';
-                        $_SESSION['photo'] = $dataUser['foto'] ?? '';
+                        $_SESSION['photo'] = $picture ?? RUTARECURSOS .'IMG/SUBIDAS/PERFILES/'. $dataUser['foto'];
                         $_SESSION['tipoU'] = $dataUser['tipoU'] ?? '';
                         $_SESSION['email'] = $dataUser['correo'] ?? '';
                         $_SESSION['token'] = md5(uniqid(mt_rand(), true));

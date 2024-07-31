@@ -34,4 +34,18 @@
             return $query;
         }
 
+        protected function actualizarBiografiaPerfilModelo ($datos) {
+            $query = self::conectDB() -> prepare('
+                UPDATE usuario
+                SET foto = :foto, sobreMi = :sobreMi
+                WHERE idUsuario = :idUsuario;
+            ');
+            $query -> bindParam(':foto', $datos['foto']);
+            $query -> bindParam(':sobreMi', $datos['sobreMi']);
+            $query -> bindParam(':idUsuario', $datos['idUsuario']);
+
+            $query -> execute();
+            return $query;
+        }
+
     }

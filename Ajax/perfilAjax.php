@@ -17,7 +17,7 @@
 <body>
     <?php
         $post = new PerfilControlador();
-        echo $post -> crudPostControlador();
+        echo $post -> crudPerfilControlador();
     ?>
 </body>
 </html>

@@ -55,7 +55,7 @@
                             // position: "top",
                             // icon: "success",
                             title: "<div style = 'text-align: center; font-size: 1.5em;'>¡ Bienvenid<?=$saludo?> <?=$_SESSION['nom']?> ! \n\\(^Д^)/</div> ",
-                            html: '<div style="text-align: center;"><img src="<?=$_SESSION['photo']?>" style="height: 80px; border-radius: 50%;" /></div>',
+                            html: '<div style="text-align: center;"><img src="<?=$_SESSION['photo']?>" style="height: 80px; width: 80px; object-fit: cover; object-position: center; border-radius: 50%; border: 1em outset #f0f2f5;" /></div>',
                             showConfirmButton: false,
                             timer: 1800,
                             showClass: {
@@ -96,7 +96,7 @@
     "
     ?>
 
-    //  MENU OPCIONES
+    //  MENU OPCIONES POST
     document.addEventListener('DOMContentLoaded', function() {
         const moreOptionsButtons = document.querySelectorAll('.more-options');
 
@@ -118,7 +118,7 @@
         });
     });
 
-    // BOTON ELIMINAR
+    // BOTON ELIMINAR POST
     document.addEventListener('DOMContentLoaded', function() {
         $('.delete-post').click(function(event) {
             event.preventDefault();
@@ -159,7 +159,9 @@
                     animate__faster
                     `
                 },
-                <?php if(!$esUsuario){ $toast; } ?>
+                didOpen: (toast) => {
+                    <?php if(!$esUsuario){ $toast; } ?>
+                },
                 }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
@@ -185,7 +187,9 @@
                             animate__faster
                             `
                         },
-                        <?php if(!$esUsuario){ $toast; } ?>
+                        didOpen: (toast) => {
+                            <?php if(!$esUsuario){ $toast; } ?>
+                        },
                     }).then((result) => {
                     if (result.isConfirmed) {
                         Swal.fire({
@@ -234,7 +238,9 @@
                             icon: 'info',
                             // width: 300,
                             toast: true,
-                            <?php if(!$esUsuario){ $toast; } ?>
+                            didOpen: (toast) => {
+                                <?php if(!$esUsuario){ $toast; } ?>
+                            },
                             showConfirmButton: false,
                             showClass: {
                                 popup: `
@@ -261,7 +267,9 @@
                     icon: 'info',
                     // width: 300,
                     toast: true,
-                    <?php if(!$esUsuario){ $toast; } ?>
+                    didOpen: (toast) => {
+                        <?php if(!$esUsuario){ $toast; } ?>
+                    },
                     showConfirmButton: false,
                     showClass: {
                         popup: `
@@ -285,6 +293,8 @@
             function enviarDatos(postId) {
                 var formData = new FormData();
                 formData.append('id', postId);
+                formData.append('action', 'deletePost');
+
                 $.ajax({
                     type: 'POST',
                     url: '<?=SERVER?>Ajax/perfilAjax.php',
@@ -294,9 +304,9 @@
                     processData: false,
                     success: function(response) {
                         $('.RespuestaAjax').html(response);
-                        // setTimeout(function() {
-                        //     location.reload();
-                        // }, 100);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function() {
                         Swal.fire('Ocurrió un error inesperado', 'Por favor recargue la página', 'error');
@@ -306,7 +316,7 @@
         });
     });
 
-    // BOTON EDITAR
+    // BOTON EDITAR POST
     document.addEventListener('DOMContentLoaded', function() {
         $('.update-post').click(function(event) {
             event.preventDefault();
@@ -491,7 +501,139 @@
                 formData.append('idPost', datos.postId);
                 formData.append('status', datos.status);
                 formData.append('estadoSalud', datos.estadoSalud);
-                formData.append('action', 'update');
+                formData.append('action', 'updatePost');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '<?=SERVER?>Ajax/perfilAjax.php',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        $('.RespuestaAjax').html(response);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
+                    },
+                    error: function() {
+                        Swal.fire('Ocurrió un error inesperado', 'Por favor recargue la página', 'error');
+                    }
+                });
+            }
+        });
+    });
+
+    // BOTON EDITAR SOBRE MI - BIOGRAFIA DEL PERFIL
+    document.addEventListener('DOMContentLoaded', function() {
+        $('.bio').click(function(event) {
+            event.preventDefault();
+
+            const email = $(this).data('emailuser');
+            const sobreMi = $(this).data('sobremi');
+            const foto = $(this).data('foto');
+            editarBioPerfil(email, sobreMi, foto);
+
+            async function editarBioPerfil(email, sobreMi, foto) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger"
+                    },
+                    buttonsStyling: true
+                });
+                const { value: formValues } = await Swal.fire({
+                    title: 'Editar perfil',
+                    html: `
+                        <div>
+                            <img src="${foto}" id="foto-actual" style="border-radius: 1em; width: 23%;" alt="profile foto"/>
+                        </div>
+                        <br>
+                        <h3>Sobre mí</h3>
+                        <textarea id="edit-sobreMi" class="swal2-textarea" style="width: 75%; resize: vertical; margin:0;" placeholder="Máximo 300 caracteres.\nMínimo 30 caracteres." aria-label="Ingresa tu frase de presentación aquí">${sobreMi}</textarea>
+                        <br><br>
+                        <h3>Cargar nueva foto</h3>
+                        <input type="file" id="edit-imagenPerfil" style="margin:0;" class="swal2-file" accept="image/*" aria-label="Sube tu foto de perfil">
+                        <input type="text" id="fotoactual" value="${foto}" style="margin:0;" hidden readonly accept="image/*" >
+                    `,
+                    confirmButtonText: "Guardar",
+                    showCancelButton: true,
+                    cancelButtonText: "Cancelar",
+                    cancelButtonColor: 'red',
+                    preConfirm: () => {
+                        const sobreMi = document.getElementById('edit-sobreMi').value;
+                        const editFoto = document.getElementById('edit-imagenPerfil').files[0];
+                        const fotoActual = document.getElementById('fotoactual').value;
+                        if (!sobreMi || !fotoActual) {
+                            Swal.showValidationMessage('El campo es obligatorio');
+                            return false;
+                        }
+                        if (sobreMi.length < 30) {
+                            Swal.showValidationMessage('Mínimo 30 caracteres');
+                            return false;
+                        }
+                        if (sobreMi.length > 300) {
+                            Swal.showValidationMessage('Máximo 300 caracteres');
+                            return false;
+                        }
+                        return {
+                            email: email,
+                            sobreMi: sobreMi,
+                            fotoNueva: editFoto,
+                            fotoActual: fotoActual,
+                        };
+                    }
+                });
+                if (formValues) {
+                    Swal.fire({
+                        title: "Actualizando perfil...",
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        timer: 1500,
+                        width: 300,
+                        timerProgressBar: true,
+                        toast: true,
+                        showClass: {
+                            popup: `
+                            animate__animated
+                            animate__fadeInUp
+                            animate__faster
+                            `
+                        },
+                        hideClass: {
+                            popup: `
+                            animate__animated
+                            animate__fadeOutDown
+                            animate__faster
+                            `
+                        },
+                        didOpen: (toast) => {
+                            <?php if(!$esUsuario){ $toast; } ?>
+                            Swal.showLoading();
+                            const timer = Swal.getPopup().querySelector("b");
+                            timerInterval = setInterval(() => {
+                            timer.textContent = `${Swal.getTimerLeft()}`;
+                            }, 100);
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval);
+                        }
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            enviarDatos(formValues);
+                        }
+                    });
+                }
+
+            }
+
+            function enviarDatos(formValues) {
+                var formData = new FormData();
+                formData.append('email', formValues.email);
+                formData.append('sobreMi', formValues.sobreMi);
+                formData.append('imagen', formValues.fotoNueva);
+                formData.append('fotoActual', formValues.fotoActual);
+                formData.append('action', 'updateBio');
 
                 $.ajax({
                     type: 'POST',

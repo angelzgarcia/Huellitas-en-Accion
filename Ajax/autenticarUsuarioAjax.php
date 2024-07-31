@@ -13,6 +13,7 @@ try {
         session_destroy();
         header('Location: ' . SERVER . 'loggin-form');
         exit();
+        
     } else {
         $cliente = new Google_Client(['client_id' => '314207445739-jemg2fmtjl7enmaa1pr039bluqugjpqg.apps.googleusercontent.com']);
 
