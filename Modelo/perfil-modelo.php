@@ -38,10 +38,24 @@
             $query = self::conectDB() -> prepare('
                 UPDATE usuario
                 SET foto = :foto, sobreMi = :sobreMi
-                WHERE idUsuario = :idUsuario;
+                WHERE idUsuario = :idUsuario
             ');
             $query -> bindParam(':foto', $datos['foto']);
             $query -> bindParam(':sobreMi', $datos['sobreMi']);
+            $query -> bindParam(':idUsuario', $datos['idUsuario']);
+
+            $query -> execute();
+            return $query;
+        }
+
+        protected function editarInfoPerfilModelo ($datos) {
+            $query = self::conectDB() -> prepare('
+                UPDATE usuario
+                SET telefono = :numero, ubicacion = :ubicacion
+                WHERE idUsuario = :idUsuario
+            ');
+            $query -> bindParam(':numero', $datos['numero']);
+            $query -> bindParam(':ubicacion', $datos['ubicacion']);
             $query -> bindParam(':idUsuario', $datos['idUsuario']);
 
             $query -> execute();

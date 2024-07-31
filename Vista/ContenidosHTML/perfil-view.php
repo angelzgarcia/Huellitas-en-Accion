@@ -656,6 +656,188 @@
         });
     });
 
+    // BOTON EDITAR INFO DEL PERFIL
+    document.addEventListener('DOMContentLoaded', function() {
+        $('.info-list').click(function(event) {
+            event.preventDefault();
+
+            const email = $(this).data('emailuser');
+            const numero = $(this).data('numero');
+            const ubicacion = $(this).data('ubicacion');
+            editarInfoPerfil(email, numero, ubicacion);
+
+            async function editarInfoPerfil(email, numero, ubicacion) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger"
+                    },
+                    buttonsStyling: true
+                });
+                const { value: formValues } = await Swal.fire({
+                    title: 'Editar info',
+                    html: `
+                        <p style="width: 100%; display: flex; align-items: start; justify-content: center; gap: .2em;">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5790ab"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480v58q0 59-40.5 100.5T740-280q-35 0-66-15t-52-43q-29 29-65.5 43.5T480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480v58q0 26 17 44t43 18q26 0 43-18t17-44v-58q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93h200v80H480Zm0-280q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z"/></svg>
+                            </span>
+                            <small style="vertical-align:middle;" ><em>${email}</em></small>
+                        </p>
+                        <br>
+                        <h3 style="display: flex; align-items: center; justify-content: center; gap: .3em;">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5790ab"><path d="M162-120q-18 0-30-12t-12-30v-162q0-13 9-23.5t23-14.5l138-28q14-2 28.5 2.5T342-374l94 94q38-22 72-48.5t65-57.5q33-32 60.5-66.5T681-524l-97-98q-8-8-11-19t-1-27l26-140q2-13 13-22.5t25-9.5h162q18 0 30 12t12 30q0 125-54.5 247T631-329Q531-229 409-174.5T162-120Zm556-480q17-39 26-79t14-81h-88l-18 94 66 66ZM360-244l-66-66-94 20v88q41-3 81-14t79-28Zm358-356ZM360-244Z"/></svg>
+                        </h3>
+                        <input type="text" id="edit-numero" value="${numero}" class="swal2-input" placeholder="Número" maxlength="10" style="margin:0;">
+                        <br><br>
+                        <h3 style="display: flex; align-items: center; justify-content: center; gap: .3em;">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5790ab"><path d="M480-360q56 0 101-27.5t71-72.5q-35-29-79-44.5T480-520q-49 0-93 15.5T308-460q26 45 71 72.5T480-360Zm0-200q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0 374q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>
+                        </h3>
+                        <input type="text" id="edit-ubicacion" value="${ubicacion}" placeholder="Ubicación" readonly class="swal2-input" style="margin:0;">
+                        <br><br>
+                        <input type="button" class="swal2-input" value="Obtener ubicación" onclick="obtenerUbicacion()" style="margin:0;">
+                    `,
+                    confirmButtonText: "Guardar",
+                    showCancelButton: true,
+                    cancelButtonText: "Cancelar",
+                    cancelButtonColor: 'red',
+                    preConfirm: () => {
+                        const numero = document.getElementById('edit-numero').value;
+                        const ubicacion = document.getElementById('edit-ubicacion').value;
+                        return {
+                            email: email,
+                            numero: numero,
+                            ubicacion: ubicacion,
+                        };
+                    }
+                });
+                if (formValues) {
+                    Swal.fire({
+                        title: "Actualizando información...",
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        timer: 1500,
+                        width: 300,
+                        timerProgressBar: true,
+                        toast: true,
+                        showClass: {
+                            popup: `
+                            animate__animated
+                            animate__fadeInUp
+                            animate__faster
+                            `
+                        },
+                        hideClass: {
+                            popup: `
+                            animate__animated
+                            animate__fadeOutDown
+                            animate__faster
+                            `
+                        },
+                        didOpen: (toast) => {
+                            <?php if(!$esUsuario){ $toast; } ?>
+                            Swal.showLoading();
+                            const timer = Swal.getPopup().querySelector("b");
+                            timerInterval = setInterval(() => {
+                            timer.textContent = `${Swal.getTimerLeft()}`;
+                            }, 100);
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval);
+                        }
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            enviarDatos(formValues);
+                        }
+                    });
+                }
+
+            }
+
+            function enviarDatos(formValues) {
+                var formData = new FormData();
+                formData.append('email', formValues.email);
+                formData.append('numero', formValues.numero);
+                formData.append('ubicacion', formValues.ubicacion);
+                formData.append('action', 'updateInfo');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '<?=SERVER?>Ajax/perfilAjax.php',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        $('.RespuestaAjax').html(response);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
+                    },
+                    error: function() {
+                        Swal.fire('Ocurrió un error inesperado', 'Por favor recargue la página', 'error');
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+
+<!-- OBTENER UBICACION -->
+<script>
+
+    const GOOGLE_MAPS_API_KEY = 'AIzaSyAXzKi-hpY--xwLB5skRjCIRNVyRHNfY7I';
+
+    async function obtenerUbicacion() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async function(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                const { ciudad, pais } = await obtenerCiudadYPais(latitude, longitude);
+
+                Swal.getPopup().querySelector('#edit-ubicacion').value = `${ciudad}, ${pais}`;
+            }, function(error) {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'No se pudo obtener la ubicación. Asegúrate de que los permisos de geolocalización estén habilitados.',
+                    icon: 'error'
+                });
+            });
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'La geolocalización no es compatible con este navegador.',
+                icon: 'error'
+            });
+        }
+    }
+
+    async function obtenerCiudadYPais(lat, lng) {
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.status === 'OK' && data.results.length > 0) {
+            const addressComponents = data.results[0].address_components;
+            let ciudad = '';
+            let pais = '';
+
+            addressComponents.forEach(component => {
+                if (component.types.includes('locality')) {
+                    ciudad = component.long_name;
+                }
+                if (component.types.includes('country')) {
+                    pais = component.long_name;
+                }
+            });
+
+            return { ciudad, pais };
+        } else {
+            return { ciudad: 'Ciudad no encontrada', pais: 'País no encontrado' };
+        }
+    }
+
 </script>
 
 <!-- TOOLTIPS -->

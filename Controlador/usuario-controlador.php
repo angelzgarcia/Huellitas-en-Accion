@@ -329,6 +329,7 @@
                     'foto' => $foto,
                     'gene' => $genero,
                     'tipoU' => $tipoUsuario,
+                    'ubicacion' => null,
                     'tok' => $token,
                     'confirm' => 0
                 ];

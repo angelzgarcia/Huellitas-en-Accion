@@ -6,7 +6,7 @@ class UsuarioModelo extends MainModel {
 
         public function crearUsuarioModelo($datos) {
             $query = MainModel::conectDB()->prepare("
-                INSERT INTO usuario(google_id, nombre, apellidos, correo_electronico, contraseña, telefono, foto, genero, tipoUsuario, token, confirmado)
+                INSERT INTO usuario(google_id, nombre, apellidos, correo_electronico, contraseña, telefono, foto, genero, tipoUsuario, ubicacion token, confirmado)
                 VALUES(:google_id, :nombre, :apellidos, :correo, :pass, :telefono, :foto, :genero, :tipoUsuario, :token, :confirmado)
             ");
 
@@ -20,6 +20,7 @@ class UsuarioModelo extends MainModel {
             $query->bindParam(":foto", $datos['foto']);
             $query->bindParam(":genero", $datos['gene']);
             $query->bindParam(":tipoUsuario", $datos['tipoU']);
+            $query->bindParam(":ubicacion", $datos['ubicacion']);
             $query->bindParam(":token", $datos['tok']);
             $query->bindParam(":confirmado", $datos['confirm']);
 

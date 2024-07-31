@@ -112,7 +112,8 @@
                     <button><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg></button>
                 </div>
                 <!-- info del usuario -->
-                <div class="info-list">
+                <div class="info-list" data-emailuser="<?= htmlspecialchars(self::limpiarCadena($_SESSION['email'])) ?>"
+                    data-numero="<?= htmlspecialchars($_SESSION['numero'] ?? '') ?>" data-ubicacion="<?= htmlspecialchars($user['ubicacion'] ?? '') ?>">
                     <ul>
                         <h2>Info</h2>
                         <!-- email -->
@@ -265,6 +266,97 @@
         }
 
         private function editarInfoPerfilControlador() {
+            $email = !empty($_POST['email']) ? self::limpiarCadena($_POST['email']) : null;
+            $numero = !empty($_POST['numero']) ? self::limpiarCadena($_POST['numero']) : null;
+            $ubicacion = !empty($_POST['ubicacion']) ? self::limpiarCadena($_POST['ubicacion']) : null;
+
+            if ($email == null && $numero == null && $ubicacion == null) {
+                return self::sweetAlert(
+                    [
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => 'No se detectaron nuevos cambios',
+                        'Texto' => '',
+                        'Tipo' => 'warning'
+                    ]
+                );
+            }
+
+            if ($numero != null && !preg_match("/^\d{10,10}$/", $numero)) {
+                return self::sweetAlert(
+                    [
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => 'Ingresa un número válido',
+                        'Texto' => '',
+                        'Tipo' => 'warning'
+                    ]
+                );
+            }
+
+            if ($numero != null) {
+                $query = self::ejecturarConsultaSimple('
+                    SELECT telefono FROM usuario
+                    WHERE telefono = "'.$numero.'"
+                ');
+
+                if ($query -> rowCount() == 1)  {
+                    return self::sweetAlert(
+                        [
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => 'El número ya se encuentra registrado',
+                            'Texto' => '',
+                            'Tipo' => 'warning'
+                        ]
+                    );
+                }
+
+            }
+
+            $query = self::conectDB() -> prepare('
+                SELECT idUsuario FROM usuario
+                WHERE correo_electronico = :email
+            ');
+            $query -> bindParam(':email', $email);
+            $query -> execute();
+
+            if($query -> rowCount() == 1)  {
+                $id = $query -> fetch(PDO::FETCH_ASSOC);
+                $datos = [
+                    'idUsuario' => $id['idUsuario'],
+                    'numero' => $numero,
+                    'ubicacion' => $ubicacion
+                ];
+
+                $query = self::editarInfoPerfilModelo($datos);
+
+                if ($query -> rowCount() > 0) {
+                    return self::sweetAlert(
+                        [
+                            'Alerta' => 'simpleCentro',
+                            'Titulo' => '¡Información actualizada!',
+                            'Texto' => '',
+                            'Tipo' => 'success'
+                        ]
+                    );
+
+                } else {
+                    return self::sweetAlert([
+                        'Alerta' => 'simpleCentro',
+                        'Titulo' => 'No se detectaron nuevos datos...',
+                        'Texto' => '',
+                        'Tipo' => 'info'
+                    ]);
+                }
+
+            } else {
+                return self::sweetAlert([
+                    'Alerta' => 'simpleCentro',
+                    'Titulo' => 'No pudimos conectar con tu perfil :(',
+                    'Texto' => '',
+                    'Tipo' => 'error'
+                ]);
+
+            }
+
 
         }
 
