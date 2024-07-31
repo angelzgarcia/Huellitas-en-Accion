@@ -20,4 +20,18 @@
             return $query;
         }
 
+        protected function editarPostModelo($datos) {
+            $query = self::conectDB() -> prepare('
+                UPDATE animal
+                SET estadoSalud = :estadoSalud, status = :status
+                WHERE idAnimal = :idAnimal
+            ');
+            $query -> bindParam(':idAnimal', $datos['idPost']);
+            $query -> bindParam(':estadoSalud', $datos['estadoSalud']);
+            $query -> bindParam(':status', $datos['status']);
+
+            $query -> execute();
+            return $query;
+        }
+
     }

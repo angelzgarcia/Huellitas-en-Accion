@@ -47,7 +47,7 @@
                                     <a href="#" class="delete-post" id="delete-post" title="Eliminar" data-id="<?=htmlspecialchars(self::encryption($post['idAnimal']))?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M600-240v-80h160v80H600Zm0-320v-80h280v80H600Zm0 160v-80h240v80H600ZM120-640H80v-80h160v-60h160v60h160v80h-40v360q0 33-23.5 56.5T440-200H200q-33 0-56.5-23.5T120-280v-360Zm80 0v360h240v-360H200Zm0 0v360-360Z"/></svg>
                                     </a>
-                                    <a href="" class="update-post" id="update-post" title="Editar"
+                                    <a href="#" class="update-post" id="update-post" title="Editar"
                                         data-id="<?=htmlspecialchars(self::encryption($post['idAnimal']))?>"
                                         data-nombre="<?=htmlspecialchars($post['nombre'])?>"
                                         data-sexo="<?=htmlspecialchars($post['sexo'])?>"
@@ -60,8 +60,7 @@
                                         data-edad="<?=htmlspecialchars($post['edad'])?>"
                                         data-descripcion="<?=htmlspecialchars($post['descripcion'])?>"
                                         data-imagen="<?=htmlspecialchars(RUTARECURSOS . 'IMG/SUBIDAS/' . $post['imagen'])?>"
-                                        data-fecha="<?=htmlspecialchars(date('Y-m-d'))?>"
-                                        >
+                                        data-fecha="<?=htmlspecialchars(date('Y-m-d'))?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg>
                                     </a>
                                 </div>
@@ -151,9 +150,24 @@
         }
 
         public function crudPostControlador() {
-            
+            if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['action'])) {
+                return self::sweetAlert([
+                    'Alerta' => 'simple',
+                    'Titulo' => '\(o_o)/',
+                    'Texto' => 'Ocurrió un error con el envío de datos, intenta de nuevo',
+                    'Tipo' => ''
+                ]);
+
+            } else {
+                return match ($_POST['action']) {
+                    'update' => self::editarPostControlador(),
+                    'delete' => self::eliminarPostControlador(),
+                };
+
+            }
         }
-        public function eliminarPostControlador() {
+
+        private function eliminarPostControlador() {
             $idAnimal = isset($_POST['id']) ? self::decryption(self::limpiarCadena($_POST['id'])) : null;
 
             if ($idAnimal === null) {
@@ -237,7 +251,34 @@
 
         }
 
-        public function editarPostControlador($datos) {
+        private function editarPostControlador() {
+            $idPost = isset($_POST['idPost']) ? self::limpiarCadena(self::decryption($_POST['idPost'])) : null;
+            $estadoSalud = isset($_POST['estadoSalud']) ? ucwords(strtolower(str_replace('-', ' ', self::limpiarCadena($_POST['estadoSalud'])))) : null;
+            $status = isset($_POST['status']) ? ucwords(strtolower(str_replace('-', ' ', self::limpiarCadena($_POST['status'])))) : null;
+
+            $datos = [
+                'idPost'=> $idPost,
+                'estadoSalud'=> $estadoSalud,
+                'status'=> $status,
+            ];
+
+            $query = self::editarPostModelo($datos);
+            if ($query->rowCount() > 0) {
+                return self::sweetAlert([
+                    'Alerta' => 'simpleCentro',
+                    'Titulo' => '¡Actualización exitosa!',
+                    'Texto' => '',
+                    'Tipo' => 'success'
+                ]);
+            } else {
+                return self::sweetAlert([
+                    'Alerta' => 'simpleCentro',
+                    'Titulo' => 'No se detectaron nuevos datos...',
+                    'Texto' => '',
+                    'Tipo' => 'info'
+                ]);
+            }
+
 
         }
 
