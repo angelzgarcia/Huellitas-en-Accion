@@ -6,7 +6,7 @@
             $listaBlanca = [
                 "loggin-form", "about_us", "admin_dashboard", "blog", "en_adopcion", "en_peligro", "encontrados",
                 "organizations", "feed", "perdidos", "publicar", "emergencia", "confirm_email", "perfil", "organizaciones", "ubicaciones",
-                "animales", "usuarios", "tips", "noticias"
+                "animales", "usuarios", "tips", "noticias", "post"
             ];
 
             if (!in_array($vista, $listaBlanca)) {

@@ -12,11 +12,11 @@
         require_once SERVERURL . "Controlador/perfil-controlador.php";
 
 ?>
-<body class="user-index" style="background-color: <?= $bgU = $_SESSION['tipoU'] == 'Administrador' ? '#232224' : ''; ?>;">
+<body class="user-index"">
     <main class="content-page content-page-user">
 
         <!-- PERFIL CONTENEDOR -->
-        <div class="profile-container <?=$_SESSION['tipoU'] != 'Administrador' ? 'profile-user' : 'profile-admin'; ?>">
+        <div class="profile-container profile-user">
             <!-- PERFIL BIO -->
             <div class="profile-header">
                 <?php
@@ -26,7 +26,7 @@
             </div>
 
             <!-- CONTENEDOR DE PUBLICACIONES -->
-            <div class="profile-content" style="background-color: <?= $_SESSION['tipoU'] == 'Usuario' ? '' : '#0b141a'; ?>;">
+            <div class="profile-content">
                 <h2>Publicaciones</h2>
                 <!-- CONTENEDOR DE PUBLICACION -->
                 <div class="post-cards-container">
@@ -414,13 +414,13 @@
 
                                 <div style="width: 100%; display: flex; flex-direction: column;">
                                     <label><strong>Modifica el estado de salud</strong></label>
-                                    <select id="edit-estado-salud" class="swal2-input">
+                                    <select id="edit-estado-salud" class="swal2-select" style="margin:0;">
                                         <option value="Comprometido" ${estadoSalud === 'Comprometido' ? 'disabled selected' : ''}>Comprometido</option>
                                         <option value="Estable" ${estadoSalud === 'Estable' ? 'disabled selected' : ''}>Estable</option>
                                         <option value="Grave" ${estadoSalud === 'Grave' ? 'disabled selected' : ''}>Grave</option>
                                     </select><br>
                                     <label><strong>Modifica el status</strong></label>
-                                    <select id="edit-status" class="swal2-input">
+                                    <select id="edit-status" class="swal2-select" style="margin:0;">
                                         <option value="Perdido" ${status === 'Perdido' ? 'disabled selected' : ''}>Perdido</option>
                                         <option value="Encontrado" ${status === 'Encontrado' ? 'disabled selected' : ''}>Encontrado</option>
                                         <option value="En Adopcion" ${status === 'En Adopcion' ? 'disabled selected' : ''}>En adopción</option>
@@ -549,10 +549,16 @@
                             <img src="${foto}" id="foto-actual" style="border-radius: 1em; width: 23%;" alt="profile foto"/>
                         </div>
                         <br>
-                        <h3>Sobre mí</h3>
+                        <h3 style="display: flex; align-items: center; justify-content: center; gap: .3em;">
+                            Sobre mí
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5790ab"><path d="m480-80-10-120h-10q-142 0-241-99t-99-241q0-142 99-241t241-99q71 0 132.5 26.5t108 73q46.5 46.5 73 108T800-540q0 75-24.5 144t-67 128q-42.5 59-101 107T480-80Zm80-146q71-60 115.5-140.5T720-540q0-109-75.5-184.5T460-800q-109 0-184.5 75.5T200-540q0 109 75.5 184.5T460-280h100v54Zm-101-95q17 0 29-12t12-29q0-17-12-29t-29-12q-17 0-29 12t-12 29q0 17 12 29t29 12Zm-29-127h60q0-30 6-42t38-44q18-18 30-39t12-45q0-51-34.5-76.5T460-720q-44 0-74 24.5T344-636l56 22q5-17 19-33.5t41-16.5q27 0 40.5 15t13.5 33q0 17-10 30.5T480-558q-35 30-42.5 47.5T430-448Zm30-65Z"/></svg>
+                        </h3>
                         <textarea id="edit-sobreMi" class="swal2-textarea" style="width: 75%; resize: vertical; margin:0;" placeholder="Máximo 300 caracteres.\nMínimo 30 caracteres." aria-label="Ingresa tu frase de presentación aquí">${sobreMi}</textarea>
                         <br><br>
-                        <h3>Cargar nueva foto</h3>
+                        <h3 style="display: flex; align-items: center; justify-content: center; gap: .3em;">
+                            Cargar nueva foto
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5790ab"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg>
+                        </h3>
                         <input type="file" id="edit-imagenPerfil" style="margin:0;" class="swal2-file" accept="image/*" aria-label="Sube tu foto de perfil">
                         <input type="text" id="fotoactual" value="${foto}" style="margin:0;" hidden readonly accept="image/*" >
                     `,

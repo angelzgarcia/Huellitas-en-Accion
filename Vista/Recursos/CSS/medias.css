@@ -1,7 +1,7 @@
 @media (max-width: 1000px) {
 
     .why-adopt-contaniner {
-        width: 70%;
+        /* width: 70%; */
         grid-template-columns: 1fr;
         gap: 0;
         margin: 1em auto;
@@ -114,6 +114,27 @@
         position: relative !important;
     }
 
+    .post-header-container {
+        flex-direction: column;
+        & .info-post-container {
+            width: 100%;
+        }
+        & h2 {
+            font-size: 2em !important;
+        }
+    }
+
+    & .post-body-container {
+        flex-direction: column;
+    }
+
+    .container-del-container {
+        align-items: start;
+    }
+
+    & .type-of-animal-container {
+        align-items: center;
+    }
 
 }
 
@@ -243,14 +264,31 @@
         width: 100vw;
     }
 
+    .foot {
+        padding: 1em;
+        & .links-social-foot {
+            /* flex-wrap: wrap; */
+            justify-content: center;
+        }
+    }
+    .content-page-forms-publish {
+        height: 100%;
+    }
+
+    .formAnimals {
+        flex-direction: column;
+        width: 100%;
+        align-items: stretch;
+    }
+
 }
 
 
 @media (max-width: 715px) {
 
-    .body-index {
+    /* .body-index {
         padding-top: 12vh;
-    }
+    } */
 
     /* .nav-hero { */
         /* flex-direction: column;
@@ -297,7 +335,11 @@
         width: 95%;
 
         & .facts-percents-container {
-            width: 45%;
+            /* width: 45%; */
+            align-items: stretch;
+            & .fac-percent-container {
+                height: auto;
+            }
         }
     }
 
@@ -365,6 +407,62 @@
         font-size: 3vw;
     }
 
+    .foot {
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        & .col-foot {
+            width: 50%;
+            justify-content: center;
+            align-items: center;
+            & h2 {
+                text-align: center;
+            }
+            & a {
+                text-align: center;
+                width: 50%;
+            }
+        }
+        & .col1 {
+            text-align: center;
+            & p {
+                margin: auto auto 2em auto;
+            }
+        }
+        & .col3 {
+            margin: 3em auto auto auto;
+            & .links-help {
+                width: 100%;
+                align-items: center;
+                margin: 0 auto 3em auto;
+            }
+        }
+        & .links-social-foot {
+            width: 100%;
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            grid-auto-rows: auto;
+            & a {
+                width: 100% !important;
+            }
+        }
+    }
+
+    .forms-type-animal-container {
+        flex-direction: column;
+    }
+
+    & .type-of-animal-container {
+        align-items: end ;
+    }
+
+    .settings-profile.hiddenS {
+        min-width: auto;
+        padding: 0;
+    }
 
 }
 
@@ -386,6 +484,19 @@
         padding: 0;
         margin: 0;
         width: 100%;
+    }
+
+    .banner-container {
+        width: 100vw;
+        & .slogan-description-banner {
+            width: 100%;
+            & h1 {
+                font-size: 2em;
+            }
+            & p {
+                font-size: 1.1em;
+            }
+        }
     }
 
     .content-page {
@@ -514,7 +625,8 @@
         margin: auto;
         & > form .checbox-filter {
             grid-template-columns: repeat(2, 1fr);
-            gap: 0;
+            gap: 0 .6em;
+            gap: 0 6em;
             & .checkmark {
                 padding: 1em 0;
             }
@@ -523,6 +635,7 @@
 
     .banner-about-us {
         height: 70vh;
+        padding: 1em 2em;
     }
 
     .banner-organizations {
@@ -557,13 +670,112 @@
     }
 
     .why-adopt-contaniner {
+        padding: 0;
+        width: 100vw;
         & .facts-percents-container {
             width: 80%;
+        }
+        & .img-adopt-container {
+            border-radius: 0;
+            height: 60vh;
+            background-size: auto;
+            background-position: 70% top;
         }
     }
 
     .profile-container {
         width: 100vw;
+    }
+
+    & .foot-image {
+        width: 100vw;
+    }
+
+    & .foot {
+        width: 100vw;
+        & .col-foot {
+            width: 100%;
+            & a {
+                width: 70%;
+                & img {
+                    width: 50%;
+                }
+            }
+            & p {
+                width: 50%;
+            }
+        }
+    }
+
+    .posts-container {
+        padding: 0;
+    }
+
+    .post-map-container {
+        border-radius: 0 !important;
+    }
+
+    & .post-body-container {
+        & .datos-especificos-container,
+        & .datos-generales-container {
+            width: 100%;
+            & h3 {
+                text-align: center;
+                width: 100%;
+            }
+            & p {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .formularioAnimalsContainer {
+        width: 100vw;
+    }
+
+    .custom-checkbox {
+        &:first-of-type > .checkmark {
+            background-size: 600px;
+            background-position: 89.5% center;
+            background-image: url(../IMG/icons2.png);
+        }
+        &:nth-of-type(2) > .checkmark {
+            background-size: 600px;
+            background-position: 104% center;
+            background-image: url(../IMG/icons2.png);
+        }
+        &:nth-of-type(5) > .checkmark {
+            background-size: 500px;
+            background-position: -12% center;
+            background-image: url(../IMG/icons3.png);
+        }
+        &:nth-of-type(6) > .checkmark {
+            background-size: 500px;
+            background-position: 1% center;
+            background-image: url(../IMG/icons3.png);
+        }
+        &:nth-of-type(7) > .checkmark {
+            background-size: 500px;
+            background-position: 26% center;
+            background-image: url(../IMG/icons3.png);
+        }
+    }
+
+    .settings-profile.hiddenS {
+        top: 120px;
+        /* right: 0; */
+        left: 60%;
+        min-width: 25vw;
+        border-radius: 1em;
+        padding: .5em;
+        & a[disabled]  {
+            pointer-events: none !important;
+            color: gray;
+            cursor: not-allowed;
+        }
     }
 
 }

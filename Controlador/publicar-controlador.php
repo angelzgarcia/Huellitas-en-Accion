@@ -348,7 +348,7 @@
                         return self::sweetAlert([
                             'Alerta' => 'limpiar',
                             'Titulo' => '(^_^)b',
-                            'Texto' => '¡Tu publicación se revisará para su aprobación!',
+                            'Texto' => '¡Tu publicación fué aprobada!',
                             'Tipo' => 'success'
                         ]);
                     }

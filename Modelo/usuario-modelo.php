@@ -6,8 +6,8 @@ class UsuarioModelo extends MainModel {
 
         public function crearUsuarioModelo($datos) {
             $query = MainModel::conectDB()->prepare("
-                INSERT INTO usuario(google_id, nombre, apellidos, correo_electronico, contraseña, telefono, foto, genero, tipoUsuario, ubicacion token, confirmado)
-                VALUES(:google_id, :nombre, :apellidos, :correo, :pass, :telefono, :foto, :genero, :tipoUsuario, :token, :confirmado)
+                INSERT INTO usuario(google_id, nombre, apellidos, correo_electronico, contraseña, telefono, foto, genero, tipoUsuario, ubicacion, token, confirmado)
+                VALUES(:google_id, :nombre, :apellidos, :correo, :pass, :telefono, :foto, :genero, :tipoUsuario, :ubicacion, :token, :confirmado)
             ");
 
             // SE SUSTITUYEN LOS MARCADORES

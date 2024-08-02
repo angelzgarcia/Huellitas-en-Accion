@@ -21,7 +21,7 @@
                 break;
 
             default:
-                $colorForm = 'fcb271';
+                $colorForm = 'f19441';
                 break;
         }
     } else { $colorForm = 'beb2d6'; }
@@ -46,24 +46,24 @@
             <!-- PERRO -->
             <label class="custom-checkbox">
                 <input type="checkbox" id="perro" name="perro" value="1" checked/>
-                <span class="checkmark"></span>
+                <span class="checkmark" title="Perro"></span>
             </label>
             <!-- GATO -->
             <label class="custom-checkbox">
                 <input type="checkbox" id="gato" name="gato" value="1" checked/>
-                <span class="checkmark"></span>
+                <span class="checkmark" title="Gato"></span>
             </label>
 
             <!-- SEXO -->
             <!-- MACHO -->
             <label class="custom-checkbox">
                 <input type="checkbox" id="macho" name="macho" value="1" checked/>
-                <span class="checkmark"></span>
+                <span class="checkmark" title="Macho"></span>
             </label>
             <!-- HEMBRA -->
             <label class="custom-checkbox">
                 <input type="checkbox" id="hembra" name="hembra" value="1" checked/>
-                <span class="checkmark"></span>
+                <span class="checkmark" title="Hembra"></span>
             </label>
 
             <!-- TAMAÑO -->

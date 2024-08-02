@@ -9,9 +9,8 @@
             <img src="<?=RUTARECURSOS?>IMG/_252d979c-5df0-43e0-b23d-0cbe28e62864__1_-removebg-preview.png" alt="">
         </a>
         <p>
-            Te ayudamos a reportar, localizar
-            y/o difundir perros y gatos perdidos,
-            encontrados y en adopción.
+        Te brindamos herramientas para reportar, encontrar y difundir información sobre
+        perros y gatos extraviados, encontrados, en peligro y en adopción.
         </p>
     </div>
 
@@ -19,13 +18,15 @@
         <h2>SOMOS HUELLITAS EN ACCION</h2>
         <br>
         <a href="<?=SERVER?>about_us">Conócenos</a>
-        <a href="">Finales Felices</a>
-        <a href="">Términos y Condiciones</a>
+        <a href="<?=SERVER?>encontrados">Finales Felices</a>
+        <a href="<?=SERVER?>Ajax/termsAjax.php?file=<?=htmlspecialchars($s::encryption('Vista/Recursos/PDF/TERMINOS-Y-CONDICIONES-DE-USO-HUELLITAS-EN-ACCION.pdf'))?>&rnd=<?=htmlspecialchars($s::encryption(rand(0,999999999999)))?>" target="_blank">
+            Términos y Condiciones
+        </a>
         <br><br>
         <h2>CONTACTO</h2>
         <br>
-        <a href="">ds_huellitasenaccion@gmail.com</a>
-        <a href="">+52 5617523128</a>
+        <a href="#" style="cursor: none;">ds_huellitasenaccion@gmail.com</a>
+        <a href="#" style="cursor: none;">+52 5617523128</a>
         <!-- <a href="">+52 55 6537 3779</a> -->
 
     </div>

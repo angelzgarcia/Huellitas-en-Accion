@@ -18,7 +18,7 @@
                 <h2>Huellitas en acci<a href="<?=SERVER?>"><i class="fa-solid fa-paw"></i></a>n !</h2>
             </div>
             <div class="slogan-site">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Iure ipsa reiciendis laudantium nemo impedit quidem, sapiente,
+                Ayudamos a conectar a perros y gatos perdidos, <br> encontrados y en adopción con quienes los buscan.
             </div>
         </div>
     </div>
@@ -51,8 +51,11 @@
             <h3>Nuestra visión</h3>
         </div>
         <div class="mission-description vision-description">
-            Somos un grupo de personas dedicadas en pro de los animales que proporciona una herramienta poderosa para reportar mascotas en situaciones especificas con
-            el fin de darles una mejor vida con familias amorosas.
+            Nuestra visión es ser líderes en la transformación de la sociedad hacia una cultura de respeto,
+            justicia y empatía hacia todos los animales. Aspiramos a un futuro donde no existan animales abandonados, y donde
+            cada perro y gato vulnerable reciba el cuidado, la protección y el amor que merece. Nos comprometemos a impulsar
+            comunidades informadas y responsables, capaces de actuar colectivamente para erradicar el abandono y la violencia
+            contra los animales, creando así un entorno seguro y compasivo para todos.
         </div>
     </div>
 
@@ -61,8 +64,8 @@
     <div class="team-container">
         <h1>CONOCE A NUESTRO EQUIPO</h1>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores eaque omnis, laboriosam itaque et sed molestiae ipsum beatae, aliquid
-            architecto cupiditate recusandae, nostrum inventore soluta molestias. Quae neque velit provident.
+            Nuestro equipo de trabajo en Huellitas en Acción está conformado por un grupo apasionado y comprometido de profesionales y
+            voluntarios, unidos por el amor y el respeto hacia los animales.
         </p>
         <div class="team-carrusel">
             <button class="team-prev">&#10094;</button>

@@ -5,7 +5,7 @@
 <!-- ENCABEZADO -->
 <header class="hero">
     <!-- CONTENEDOR BARRA DE NAVEGACION -->
-    <div class="nav-hero" id="hero" style="background-color: <?=$bg?>;">
+    <div class="nav-hero" id="hero">
 
         <!-- LOGO -->
         <a href="<?= isset($_GET['views']) && $_GET['views'] != 'index' ? SERVER : '#ha'; ?>">

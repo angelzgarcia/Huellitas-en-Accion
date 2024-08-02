@@ -28,6 +28,7 @@
         }
 
         require_once RUTACONTROL . "sesion-controlador.php";
+        // require_once RUTAMODULOS . "heaad.php";
 
         $s = new SesionControl();
         echo $s->iniciarSesionControl();
